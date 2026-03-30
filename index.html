@@ -3,540 +3,446 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VECVO â€” Longevity Science Research Hub</title>
-<meta name="description" content="Systematic documentation of aging biology, lifespan-extending interventions, and translational research. Evidence-based longevity science compilation.">
+<title>VECVO — Longevity Science Research Compilation</title>
+<meta name="description" content="Curated compilation of peer-reviewed research on aging biology, lifespan interventions, and translational longevity science. Evidence-based reference database.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --void: #0a0a0f;
-  --deep: #12121a;
-  --panel: #1a1a24;
-  --border: rgba(80,120,180,0.12);
-  --accent: #5080d0;
-  --accent-dim: rgba(80,120,180,0.15);
-  --white: #f5f7fa;
-  --text: #c8d0e0;
-  --muted: #96a2b8;
-  --warning: #d08050;
-  --success: #50c878;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --border: #e1e4e8;
+  --text: #24292e;
+  --text-secondary: #586069;
+  --text-tertiary: #959da5;
+  --accent: #0366d6;
+  --accent-light: #f1f8ff;
+  --accent-border: #c8e1ff;
+  --success: #28a745;
+  --warning: #ffd33d;
+  --danger: #d73a49;
+  --serif: 'IBM Plex Serif', Georgia, serif;
+  --mono: 'IBM Plex Mono', 'Courier New', monospace;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--void);
-  color: var(--text);
-  font-family: 'EB Garamond', serif;
-  font-size: 18px;
+  font-family: var(--serif);
+  font-size: 17px;
   line-height: 1.6;
-  overflow-x: hidden;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Typography */
-h1, h2, h3, h4 { font-weight: 500; line-height: 1.2; color: var(--white); }
-h1 { font-size: clamp(42px, 6vw, 68px); letter-spacing: -0.02em; }
-h2 { font-size: clamp(32px, 4.5vw, 48px); letter-spacing: -0.015em; margin-bottom: 1.5rem; }
-h3 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 1rem; }
-h4 { font-size: clamp(18px, 2.5vw, 24px); margin-bottom: 0.75rem; }
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.25; color: var(--text); }
+h1 { font-size: clamp(32px, 5vw, 48px); margin-bottom: 1rem; }
+h2 { font-size: clamp(24px, 3.5vw, 36px); margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h3 { font-size: clamp(19px, 2.5vw, 24px); margin-bottom: 0.75rem; }
+h4 { font-size: 18px; margin-bottom: 0.5rem; }
 
-.mono {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85em;
-  letter-spacing: 0.02em;
-}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.mono { font-family: var(--mono); font-size: 0.9em; }
+
+/* Layout */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.container-narrow { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
 
 /* Navigation */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
+  position: sticky;
+  top: 0;
   z-index: 100;
-  padding: 1.25rem 3rem;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+}
+
+nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(10,10,15,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s;
-}
-
-nav.scrolled {
-  background: rgba(10,10,15,0.98);
-  border-bottom-color: var(--border);
 }
 
 .logo {
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 0.15em;
-  color: var(--white);
-  text-decoration: none;
-  text-transform: uppercase;
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
 }
 
 .nav-links {
   display: flex;
   gap: 2rem;
   list-style: none;
+  font-family: var(--mono);
+  font-size: 0.8rem;
 }
 
 .nav-links a {
-  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Header */
+.header {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-tag {
+  font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
-  color: var(--muted);
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: color 0.25s;
-  position: relative;
-}
-
-.nav-links a:hover { color: var(--accent); }
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0; right: 0;
-  height: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 0.25s;
-}
-
-.nav-links a:hover::after { transform: scaleX(1); }
-
-/* Hero */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 8rem 3rem 4rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(80,120,208,0.08) 0%, transparent 70%),
-    radial-gradient(circle at 20% 20%, rgba(80,120,208,0.04) 0%, transparent 40%);
-  pointer-events: none;
-}
-
-.hero-content {
-  max-width: 920px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
   color: var(--accent);
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  display: inline-block;
+  margin-bottom: 1rem;
 }
 
-.hero h1 {
-  margin-bottom: 1.5rem;
-  line-height: 1.1;
+.header h1 { max-width: 720px; line-height: 1.2; }
+
+.header-description {
+  max-width: 680px;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin: 1.25rem 0 2rem;
+  line-height: 1.7;
 }
 
-.hero-subtitle {
-  font-size: 1.35rem;
-  color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 2.5rem;
-  max-width: 780px;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
 }
 
-.hero-meta {
-  display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  margin-top: 3rem;
+.stat-item {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
 }
 
-.meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.meta-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: var(--muted);
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
   text-transform: uppercase;
+  margin-bottom: 0.25rem;
 }
 
-.meta-value {
-  font-size: 1.1rem;
-  color: var(--white);
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
 }
 
-/* Section */
+/* Sections */
 section {
-  padding: 6rem 3rem;
-  position: relative;
-}
-
-.bg-deep {
-  background: var(--deep);
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .section-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
   color: var(--accent);
   text-transform: uppercase;
-  margin-bottom: 1rem;
-  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
 .section-intro {
-  font-size: 1.15rem;
-  color: var(--muted);
-  line-height: 1.75;
-  max-width: 720px;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
   margin-top: 1rem;
 }
 
-/* Container */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-.container-narrow {
-  max-width: 920px;
-  margin: 0 auto;
-}
-
-/* Grid */
-.grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-
-/* Card */
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  padding: 1.75rem;
-  transition: all 0.3s;
-}
-
-.card:hover {
-  border-color: var(--accent);
-  background: rgba(80,120,208,0.04);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
-.card-title {
-  font-size: 1.25rem;
-  color: var(--white);
-  margin-bottom: 0.5rem;
-}
-
-.card-meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-}
-
-.card-description {
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  padding: 0.35rem 0.75rem;
-  background: var(--accent-dim);
-  color: var(--accent);
-  border: 1px solid rgba(80,120,180,0.25);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* Tabs */
-.tabs {
+/* Filter Bar */
+.filter-bar {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
 }
 
-.tab-btn {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background: none;
-  border: none;
-  color: var(--muted);
-  cursor: pointer;
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-bottom: 2px solid transparent;
-  transition: all 0.25s;
+}
+
+.filter-select, .filter-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  background: var(--bg);
+}
+
+/* Interventions Grid */
+.interventions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.intervention-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.intervention-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.intervention-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.intervention-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.intervention-category {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.evidence-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
-.tab-btn:hover { color: var(--accent); }
-.tab-btn.active {
-  color: var(--white);
-  border-bottom-color: var(--accent);
-}
+.evidence-high { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.evidence-moderate { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.evidence-low { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.evidence-preliminary { background: #e7e7e7; color: #424242; border: 1px solid #d3d3d3; }
 
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Table */
-.intervention-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  font-size: 0.95rem;
-}
-
-.intervention-table thead {
-  background: rgba(80,120,208,0.06);
-}
-
-.intervention-table th {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
+.intervention-effect {
+  font-size: 1.1rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-
-.intervention-table td {
-  padding: 1rem;
-  border-bottom: 1px solid var(--border);
   color: var(--text);
+  margin: 0.75rem 0 0.5rem;
 }
 
-.intervention-table tbody tr:hover {
-  background: rgba(80,120,208,0.03);
+.intervention-model {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-bottom: 1rem;
 }
 
-.tier-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 3px;
+.intervention-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.intervention-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.safety-indicator {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.view-details-btn {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  display: inline-block;
+  padding: 0;
 }
 
-.tier-a { background: rgba(80,200,120,0.15); color: #50c878; border: 1px solid rgba(80,200,120,0.3); }
-.tier-b { background: rgba(80,120,208,0.15); color: #5080d0; border: 1px solid rgba(80,120,208,0.3); }
-.tier-c { background: rgba(208,128,80,0.15); color: #d08050; border: 1px solid rgba(208,128,80,0.3); }
-.tier-d { background: rgba(150,150,150,0.15); color: #969696; border: 1px solid rgba(150,150,150,0.3); }
-
-.evidence-note {
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-style: italic;
-  padding: 1rem 1.5rem;
-  background: rgba(80,120,208,0.04);
-  border-left: 3px solid var(--accent);
-  margin: 1.5rem 0;
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  padding: 2rem;
+  overflow-y: auto;
 }
 
-.legend {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background: var(--panel);
-  border: 1px solid var(--border);
-}
-
-.legend h4 {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: var(--white);
-}
-
-.legend-item {
+.modal.active {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  justify-content: center;
+  align-items: start;
 }
 
-.legend-item:last-child {
-  margin-bottom: 0;
-}
-
-/* Timeline */
-.timeline {
+.modal-content {
+  background: var(--surface);
+  max-width: 800px;
+  width: 100%;
+  border-radius: 6px;
+  margin: 2rem auto;
   position: relative;
-  padding-left: 3rem;
-  margin-top: 3rem;
 }
 
-.timeline::before {
-  content: '';
+.modal-header {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.detail-section p, .detail-section ul {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.detail-section ul {
+  margin-left: 1.5rem;
+}
+
+.citations-list {
+  list-style: none;
+  margin: 0;
+}
+
+.citations-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.citations-list li::before {
+  content: '→';
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--accent) 0%, transparent 100%);
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -3.45rem;
-  top: 0.5rem;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(80,120,208,0.15);
-}
-
-.timeline-year {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 500;
   color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
 }
 
-.timeline-item h4 {
-  color: var(--white);
-  margin-bottom: 0.75rem;
-}
-
-.timeline-item p {
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-citation {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
-  font-style: italic;
+/* Info Box */
+.info-box {
+  background: var(--accent-light);
+  border: 1px solid var(--accent-border);
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 4px;
 }
 
 /* Publications */
 .pub-card {
-  background: var(--panel);
+  background: var(--surface);
   border: 1px solid var(--border);
-  padding: 2rem;
+  border-radius: 4px;
+  padding: 1.75rem;
   margin-bottom: 1.5rem;
-  transition: all 0.3s;
-}
-
-.pub-card:hover {
-  border-color: var(--accent);
-  background: rgba(80,120,208,0.04);
 }
 
 .pub-title {
-  font-size: 1.35rem;
-  color: var(--white);
+  font-size: 1.25rem;
   margin-bottom: 0.75rem;
-  line-height: 1.3;
-}
-
-.pub-authors {
-  font-size: 0.95rem;
-  color: var(--text);
-  margin-bottom: 0.5rem;
 }
 
 .pub-meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
   flex-wrap: wrap;
-}
-
-.pub-meta span::before {
-  content: 'â€¢';
-  margin-right: 0.5rem;
-  color: var(--accent);
-}
-
-.pub-meta span:first-child::before {
-  content: '';
-  margin-right: 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-bottom: 1rem;
 }
 
 .pub-abstract {
-  color: var(--text);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .pub-links {
@@ -546,170 +452,87 @@ section {
 }
 
 .pub-link {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--accent);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--accent);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: all 0.25s;
 }
 
 .pub-link:hover {
-  background: var(--accent);
-  color: var(--void);
+  background: var(--accent-light);
+  border-color: var(--accent-border);
+  text-decoration: none;
+}
+
+.pub-link.coming-soon {
+  background: #fff3cd;
+  border-color: #ffeeba;
+  color: #856404;
+  cursor: default;
 }
 
 /* Footer */
 footer {
-  background: var(--deep);
-  padding: 4rem 3rem 2rem;
+  background: var(--surface);
   border-top: 1px solid var(--border);
+  padding: 3rem 0 2rem;
 }
 
 .footer-content {
-  max-width: 1280px;
-  margin: 0 auto 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .footer-section h4 {
-  font-size: 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-bottom: 1rem;
-  color: var(--white);
 }
 
 .footer-section p {
   font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--muted);
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .footer-section ul {
   list-style: none;
-}
-
-.footer-section ul li {
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 2;
 }
 
 .footer-section ul a {
-  font-size: 0.9rem;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.25s;
-}
-
-.footer-section ul a:hover {
-  color: var(--accent);
+  color: var(--text-secondary);
 }
 
 .footer-bottom {
-  max-width: 1280px;
-  margin: 0 auto;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
-  flex-wrap: wrap;
-  gap: 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  nav {
-    padding: 1rem 1.5rem;
-  }
-  
-  .nav-links {
-    gap: 1rem;
-  }
-  
-  .nav-links a {
-    font-size: 0.7rem;
-  }
-  
-  .hero {
-    padding: 6rem 1.5rem 3rem;
-  }
-  
-  section {
-    padding: 4rem 1.5rem;
-  }
-  
-  .hero-meta {
-    gap: 1.5rem;
-  }
-  
-  .tabs {
-    gap: 0.5rem;
-  }
-  
-  .tab-btn {
-    padding: 0.75rem 1rem;
-    font-size: 0.7rem;
-  }
-  
-  .timeline {
-    padding-left: 2rem;
-  }
-  
-  .timeline-item::before {
-    left: -2.45rem;
-  }
-  
-  .intervention-table {
-    font-size: 0.85rem;
-  }
-  
-  .intervention-table th,
-  .intervention-table td {
-    padding: 0.75rem;
-  }
-  
-  footer {
-    padding: 3rem 1.5rem 1.5rem;
-  }
-  
-  .footer-content {
-    gap: 2rem;
-  }
-  
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-/* Cite box */
-.cite-box {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  background: rgba(80,120,208,0.04);
-}
-
-.cite-box h4 {
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
-  color: var(--white);
-}
-
-.cite-box code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--text);
-  display: block;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  word-break: break-word;
+  .nav-links { display: none; }
+  .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .interventions-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; }
+  .modal { padding: 1rem; }
+  .modal-content { margin: 1rem auto; }
+  .modal-header, .modal-body { padding: 1.5rem; }
 }
 </style>
 </head>
@@ -717,696 +540,210 @@ footer {
 
 <!-- Navigation -->
 <nav id="nav">
-  <a href="#" class="logo">VECVO</a>
-  <ul class="nav-links">
-    <li><a href="#hallmarks">Hallmarks</a></li>
-    <li><a href="#interventions">Interventions</a></li>
-    <li><a href="#timeline">Timeline</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
+  <div class="container">
+    <a href="#" class="logo">VECVO</a>
+    <ul class="nav-links">
+      <li><a href="#database">Database</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-tag">Research Compilation Project</div>
-    <h1>Evidence-Based Longevity Science Documentation</h1>
-    <p class="hero-subtitle">
-      Systematic compilation of peer-reviewed research on the biology of aging, 
-      hallmarks of aging, and interventions with measurable effects on lifespan 
-      and healthspan across model organisms and humans.
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="header-tag">Research Compilation</div>
+    <h1>Longevity Science Evidence Database</h1>
+    <p class="header-description">
+      Curated compilation of peer-reviewed research on aging biology and lifespan-extending interventions. 
+      Evidence graded by study type, effect size quantified, translational barriers documented. 
+      All claims referenced to primary literature.
     </p>
     
-    <div class="hero-meta">
-      <div class="meta-item">
-        <div class="meta-label">Focus Areas</div>
-        <div class="meta-value">12 Hallmarks of Aging</div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-label">Interventions</div>
+        <div class="stat-value">30</div>
       </div>
-      <div class="meta-item">
-        <div class="meta-label">Coverage</div>
-        <div class="meta-value">150+ Interventions</div>
+      <div class="stat-item">
+        <div class="stat-label">Publications</div>
+        <div class="stat-value">10</div>
       </div>
-      <div class="meta-item">
-        <div class="meta-label">Last Updated</div>
-        <div class="meta-value">March 2026</div>
+      <div class="stat-item">
+        <div class="stat-label">Primary Sources</div>
+        <div class="stat-value">350+</div>
       </div>
-      <div class="meta-item">
-        <div class="meta-label">Maintained By</div>
-        <div class="meta-value">Alice Frolov</div>
+      <div class="stat-item">
+        <div class="stat-label">Last Updated</div>
+        <div class="stat-value mono">Mar 2026</div>
       </div>
     </div>
   </div>
-</section>
+</header>
 
-<!-- Hallmarks -->
-<section id="hallmarks">
+<!-- Interventions Database -->
+<section id="database">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">01 â€” Biological Framework</div>
-      <h2>The Twelve Hallmarks of Aging</h2>
+      <div class="section-tag">01 — Database</div>
+      <h2>Longevity Interventions</h2>
       <p class="section-intro">
-        Unified framework describing the primary molecular and cellular processes 
-        that drive aging across species. Updated 2023 revision expands original 
-        nine hallmarks to twelve based on accumulated evidence.
+        Evidence-based compilation of interventions with demonstrated lifespan or healthspan effects. 
+        Each entry includes evidence level, effect magnitude, mechanism, safety profile, and primary citations.
       </p>
     </div>
 
-    <div class="grid grid-3">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Genomic Instability</h3>
-          <span class="tag">Primary</span>
-        </div>
-        <p class="card-description">
-          Accumulation of DNA damage from exogenous and endogenous sources. 
-          Includes nuclear and mitochondrial mutations, telomere attrition, 
-          and defective DNA repair mechanisms.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label class="filter-label">Evidence Level</label>
+        <select class="filter-select" id="filterEvidence">
+          <option value="all">All Levels</option>
+          <option value="high">High (RCTs/Large Cohorts)</option>
+          <option value="moderate">Moderate (Observational)</option>
+          <option value="low">Low (Animal Models)</option>
+          <option value="preliminary">Preliminary (In Vitro)</option>
+        </select>
       </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Telomere Attrition</h3>
-          <span class="tag">Primary</span>
-        </div>
-        <p class="card-description">
-          Progressive shortening of chromosome protective caps with each cell division. 
-          Triggers replicative senescence when reaching critical length (Hayflick limit).
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
+      <div class="filter-group">
+        <label class="filter-label">Category</label>
+        <select class="filter-select" id="filterCategory">
+          <option value="all">All Categories</option>
+          <option value="dietary">Dietary Intervention</option>
+          <option value="pharmacological">Pharmacological</option>
+          <option value="lifestyle">Lifestyle Modification</option>
+          <option value="supplementation">Supplementation</option>
+        </select>
       </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Epigenetic Alterations</h3>
-          <span class="tag">Primary</span>
-        </div>
-        <p class="card-description">
-          Age-related changes in DNA methylation patterns, histone modifications, 
-          and chromatin remodeling. Epigenetic clocks measure biological vs chronological age.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Loss of Proteostasis</h3>
-          <span class="tag">Primary</span>
-        </div>
-        <p class="card-description">
-          Declining protein quality control: impaired chaperone function, 
-          proteasomal degradation, and autophagy. Results in toxic protein aggregation.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Disabled Macroautophagy</h3>
-          <span class="tag">Primary</span>
-        </div>
-        <p class="card-description">
-          Reduced cellular recycling capacity. Impaired clearance of damaged organelles 
-          and protein aggregates via autophagosome formation.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Deregulated Nutrient Sensing</h3>
-          <span class="tag">Antagonistic</span>
-        </div>
-        <p class="card-description">
-          Altered function of mTOR, AMPK, sirtuins, and insulin/IGF-1 pathways. 
-          Caloric restriction operates primarily through these mechanisms.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Mitochondrial Dysfunction</h3>
-          <span class="tag">Antagonistic</span>
-        </div>
-        <p class="card-description">
-          Declining ATP production, increased ROS generation, and accumulation 
-          of mitochondrial DNA mutations. Impaired mitophagy compounds damage.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Cellular Senescence</h3>
-          <span class="tag">Antagonistic</span>
-        </div>
-        <p class="card-description">
-          Accumulation of non-dividing cells secreting inflammatory factors (SASP). 
-          Initially protective against cancer, becomes pathological with age.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Stem Cell Exhaustion</h3>
-          <span class="tag">Integrative</span>
-        </div>
-        <p class="card-description">
-          Declining stem cell pools and regenerative capacity across tissues. 
-          Particularly evident in hematopoietic, intestinal, and muscle stem cells.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Altered Intercellular Communication</h3>
-          <span class="tag">Integrative</span>
-        </div>
-        <p class="card-description">
-          Dysregulated signaling between cells via hormones, cytokines, and exosomes. 
-          Includes neurohormonal changes and immunosenescence.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Chronic Inflammation</h3>
-          <span class="tag">Integrative</span>
-        </div>
-        <p class="card-description">
-          Persistent low-grade inflammation (inflammaging) without acute infection. 
-          Driven by senescent cells, damaged mitochondria, and microbiome dysbiosis.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Dysbiosis</h3>
-          <span class="tag">Integrative</span>
-        </div>
-        <p class="card-description">
-          Age-related shifts in gut microbiome composition. Reduced diversity, 
-          increased pathogenic taxa, compromised intestinal barrier integrity.
-        </p>
-        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Interventions -->
-<section id="interventions" class="bg-deep">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">02 â€” Interventions Database</div>
-      <h2>Longevity Interventions by Evidence Tier</h2>
-      <p class="section-intro">
-        Compilation of pharmacological, dietary, and lifestyle interventions 
-        with documented effects on lifespan or healthspan. Evidence quality 
-        ranges from human RCTs to preliminary animal studies.
-      </p>
-    </div>
-
-    <div class="legend">
-      <h4>Evidence Classification</h4>
-      <div class="legend-item">
-        <span class="tier-badge tier-a">Tier A</span>
-        <span>Multiple human RCTs or large cohort studies (n>1,000) with consistent results</span>
-      </div>
-      <div class="legend-item">
-        <span class="tier-badge tier-b">Tier B</span>
-        <span>Limited human trials or robust animal model data across multiple species</span>
-      </div>
-      <div class="legend-item">
-        <span class="tier-badge tier-c">Tier C</span>
-        <span>Preliminary animal models only (single species or inconsistent replication)</span>
-      </div>
-      <div class="legend-item">
-        <span class="tier-badge tier-d">Tier D</span>
-        <span>Theoretical mechanisms or in vitro studies only</span>
+      <div class="filter-group">
+        <label class="filter-label">Search</label>
+        <input type="text" class="filter-input" id="filterSearch" placeholder="Search interventions...">
       </div>
     </div>
 
-    <div class="evidence-note">
-      <strong>Translation Note:</strong> Effect sizes listed reflect primary model organism data (typically mice or C. elegans). 
-      Human translation is uncertain and typically shows reduced or null effects. Most Tier B/C interventions have not been 
-      tested in human lifespan trials.
+    <div class="interventions-grid" id="interventionsGrid">
+      <!-- Cards will be inserted here by JavaScript -->
     </div>
 
-    <!-- Tabs for intervention categories -->
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('pharmacological', event)">Pharmacological</button>
-      <button class="tab-btn" onclick="switchTab('dietary', event)">Dietary</button>
-      <button class="tab-btn" onclick="switchTab('lifestyle', event)">Lifestyle</button>
-      <button class="tab-btn" onclick="switchTab('experimental', event)">Experimental</button>
-    </div>
-
-    <!-- Pharmacological Tab -->
-    <div id="tab-pharmacological" class="tab-content active">
-      <table class="intervention-table">
-        <thead>
-          <tr>
-            <th>Intervention</th>
-            <th>Mechanism</th>
-            <th>Effect Size</th>
-            <th>Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Rapamycin (mTOR inhibition)</strong></td>
-            <td>mTOR pathway suppression, enhanced autophagy</td>
-            <td>+9-14% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: immunosuppression trade-off</span></td>
-            <td><span class="tier-badge tier-b">Tier B</span></td>
-          </tr>
-          <tr>
-            <td><strong>Metformin</strong></td>
-            <td>AMPK activation, insulin sensitivity</td>
-            <td>+5-6% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: TAME trial ongoing</span></td>
-            <td><span class="tier-badge tier-b">Tier B</span></td>
-          </tr>
-          <tr>
-            <td><strong>NAD+ precursors (NMN/NR)</strong></td>
-            <td>Sirtuin activation, mitochondrial function</td>
-            <td>+5-10% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: biomarker improvements only</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-          <tr>
-            <td><strong>Senolytics (D+Q)</strong></td>
-            <td>Selective senescent cell clearance</td>
-            <td>+36% (aged mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: Phase II trials underway</span></td>
-            <td><span class="tier-badge tier-b">Tier B</span></td>
-          </tr>
-          <tr>
-            <td><strong>Resveratrol</strong></td>
-            <td>SIRT1 activation (debated)</td>
-            <td>+15-25% (worms/flies)<br><span style="font-size: 0.85em; color: var(--muted);">Mice: null. Human: no quality RCTs</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-          <tr>
-            <td><strong>Acarbose</strong></td>
-            <td>Alpha-glucosidase inhibition, glucose control</td>
-            <td>+5% (male mice)<br><span style="font-size: 0.85em; color: var(--muted);">Sex-specific effects</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Dietary Tab -->
-    <div id="tab-dietary" class="tab-content">
-      <table class="intervention-table">
-        <thead>
-          <tr>
-            <th>Intervention</th>
-            <th>Mechanism</th>
-            <th>Effect Size</th>
-            <th>Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Caloric Restriction (20-40%)</strong></td>
-            <td>mTOR/insulin/IGF-1 suppression, autophagy induction</td>
-            <td>+20-40% (rodents)<br><span style="font-size: 0.85em; color: var(--muted);">Primates: healthspan yes, lifespan unclear</span></td>
-            <td><span class="tier-badge tier-a">Tier A</span></td>
-          </tr>
-          <tr>
-            <td><strong>Time-Restricted Feeding (16:8)</strong></td>
-            <td>Circadian rhythm alignment, metabolic switching</td>
-            <td>+10-15% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: metabolic benefits confirmed</span></td>
-            <td><span class="tier-badge tier-b">Tier B</span></td>
-          </tr>
-          <tr>
-            <td><strong>Protein Restriction</strong></td>
-            <td>mTOR suppression, methionine/leucine limitation</td>
-            <td>+15-20% (rodents)<br><span style="font-size: 0.85em; color: var(--muted);">Human: inadequate data</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-          <tr>
-            <td><strong>Ketogenic Diet</strong></td>
-            <td>Metabolic shift to ketone bodies, neuroprotection</td>
-            <td>+13% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: cognitive benefits in aging</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-          <tr>
-            <td><strong>Mediterranean Diet</strong></td>
-            <td>Anti-inflammatory, cardiovascular protection</td>
-            <td>N/A (pattern)<br><span style="font-size: 0.85em; color: var(--muted);">Human: reduced all-cause mortality</span></td>
-            <td><span class="tier-badge tier-a">Tier A</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Lifestyle Tab -->
-    <div id="tab-lifestyle" class="tab-content">
-      <table class="intervention-table">
-        <thead>
-          <tr>
-            <th>Intervention</th>
-            <th>Mechanism</th>
-            <th>Effect Size</th>
-            <th>Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Aerobic Exercise (150+ min/week)</strong></td>
-            <td>Mitochondrial biogenesis, cardiovascular health, telomere maintenance</td>
-            <td>+3-7 years<br><span style="font-size: 0.85em; color: var(--muted);">Human cohort studies</span></td>
-            <td><span class="tier-badge tier-a">Tier A</span></td>
-          </tr>
-          <tr>
-            <td><strong>Resistance Training</strong></td>
-            <td>Muscle mass preservation, IGF-1 modulation</td>
-            <td>+2-4 years<br><span style="font-size: 0.85em; color: var(--muted);">Human: sarcopenia prevention</span></td>
-            <td><span class="tier-badge tier-a">Tier A</span></td>
-          </tr>
-          <tr>
-            <td><strong>Sleep (7-8h optimal)</strong></td>
-            <td>Glymphatic clearance, circadian regulation, immune function</td>
-            <td>+2-3 years<br><span style="font-size: 0.85em; color: var(--muted);">U-shaped curve: <6h and >9h harmful</span></td>
-            <td><span class="tier-badge tier-a">Tier A</span></td>
-          </tr>
-          <tr>
-            <td><strong>Social Connection</strong></td>
-            <td>Stress reduction, immune modulation, inflammation control</td>
-            <td>+3-5 years<br><span style="font-size: 0.85em; color: var(--muted);">Isolation comparable to smoking risk</span></td>
-            <td><span class="tier-badge tier-a">Tier A</span></td>
-          </tr>
-          <tr>
-            <td><strong>Cognitive Engagement</strong></td>
-            <td>Neuroplasticity, cognitive reserve, neurogenesis</td>
-            <td>+2-3 years<br><span style="font-size: 0.85em; color: var(--muted);">Dementia risk reduction</span></td>
-            <td><span class="tier-badge tier-b">Tier B</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Experimental Tab -->
-    <div id="tab-experimental" class="tab-content">
-      <table class="intervention-table">
-        <thead>
-          <tr>
-            <th>Intervention</th>
-            <th>Mechanism</th>
-            <th>Effect Size</th>
-            <th>Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Partial Reprogramming (OSKM)</strong></td>
-            <td>Epigenetic age reversal via Yamanaka factors</td>
-            <td>Age reversal (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human trials: 2025-2026 expected</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-          <tr>
-            <td><strong>Heterochronic Parabiosis</strong></td>
-            <td>Young blood factor transfer, systemic rejuvenation</td>
-            <td>Tissue regeneration<br><span style="font-size: 0.85em; color: var(--muted);">Mechanism unclear, human translation unlikely</span></td>
-            <td><span class="tier-badge tier-d">Tier D</span></td>
-          </tr>
-          <tr>
-            <td><strong>Telomerase Activation</strong></td>
-            <td>Telomere length restoration</td>
-            <td>+24% (mice with gene therapy)<br><span style="font-size: 0.85em; color: var(--muted);">Cancer risk concerns</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-          <tr>
-            <td><strong>Mitochondrial Transfer</strong></td>
-            <td>Replacement of dysfunctional mitochondria</td>
-            <td>Proof-of-concept only<br><span style="font-size: 0.85em; color: var(--muted);">Very early research stage</span></td>
-            <td><span class="tier-badge tier-d">Tier D</span></td>
-          </tr>
-          <tr>
-            <td><strong>Thymus Regeneration</strong></td>
-            <td>Immune system rejuvenation</td>
-            <td>Immune markers improved<br><span style="font-size: 0.85em; color: var(--muted);">TRIIM trial: epigenetic age reversal</span></td>
-            <td><span class="tier-badge tier-c">Tier C</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Timeline -->
-<section id="timeline">
-  <div class="container-narrow">
-    <div class="section-header">
-      <div class="section-tag">03 â€” Historical Context</div>
-      <h2>Longevity Research Timeline</h2>
-      <p class="section-intro">
-        Key discoveries and milestones in the scientific understanding of aging biology 
-        and development of lifespan-extending interventions.
-      </p>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-year">1935</div>
-        <h4>Caloric Restriction Discovery</h4>
-        <p>
-          Clive McCay demonstrates that dietary restriction extends lifespan in rats by ~30%. 
-          First reproducible intervention to slow aging, establishing nutrition as key factor.
-        </p>
-        <span class="timeline-citation">McCay CM et al. J Nutr. 1935;10(1):63-79</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">1961</div>
-        <h4>Hayflick Limit</h4>
-        <p>
-          Leonard Hayflick discovers human cells can only divide ~50 times before senescence. 
-          Challenges prevailing immortality dogma, establishes cellular aging as intrinsic process.
-        </p>
-        <span class="timeline-citation">Hayflick L, Moorhead PS. Exp Cell Res. 1961;25:585-621</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">1993</div>
-        <h4>First Longevity Gene (daf-2)</h4>
-        <p>
-          Cynthia Kenyon's lab shows C. elegans daf-2 mutants (insulin/IGF-1 pathway) 
-          live 2x longer. Proves aging is genetically regulated, not inevitable decay.
-        </p>
-        <span class="timeline-citation">Kenyon C et al. Nature. 1993;366(6454):461-464</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2006</div>
-        <h4>Yamanaka Factors (iPSCs)</h4>
-        <p>
-          Shinya Yamanaka reprograms adult cells to pluripotent state using four factors (OSKM). 
-          Nobel Prize 2012. Foundation for cellular rejuvenation strategies.
-        </p>
-        <span class="timeline-citation">Takahashi K, Yamanaka S. Cell. 2006;126(4):663-676</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2009</div>
-        <h4>Rapamycin Extends Mouse Lifespan</h4>
-        <p>
-          First FDA-approved drug shown to extend lifespan in mammals (+9-14% in mice). 
-          mTOR pathway becomes central therapeutic target. ITP trials establish protocol.
-        </p>
-        <span class="timeline-citation">Harrison DE et al. Nature. 2009;460(7253):392-395</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2013</div>
-        <h4>Hallmarks of Aging Framework</h4>
-        <p>
-          LÃ³pez-OtÃ­n et al. publish unified framework of nine biological hallmarks. 
-          Becomes foundational organizational structure for aging biology field.
-        </p>
-        <span class="timeline-citation">LÃ³pez-OtÃ­n C et al. Cell. 2013;153(6):1194-1217</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2013</div>
-        <h4>Horvath Epigenetic Clock</h4>
-        <p>
-          Steve Horvath develops DNA methylation-based age predictor accurate to Â±3.6 years. 
-          Enables measurement of biological vs chronological age, intervention testing.
-        </p>
-        <span class="timeline-citation">Horvath S. Genome Biol. 2013;14(10):R115</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2015</div>
-        <h4>First Senolytic Drugs</h4>
-        <p>
-          Dasatinib + Quercetin combination selectively kills senescent cells in mice, 
-          extends healthspan. Opens therapeutic avenue for SASP-driven pathologies.
-        </p>
-        <span class="timeline-citation">Zhu Y et al. Aging Cell. 2015;14(4):644-658</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2016</div>
-        <h4>In Vivo Partial Reprogramming</h4>
-        <p>
-          Izpisua Belmonte's lab demonstrates transient OSKM expression reverses 
-          aging hallmarks in progeroid mice without teratoma formation.
-        </p>
-        <span class="timeline-citation">Ocampo A et al. Cell. 2016;167(7):1719-1733</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2020</div>
-        <h4>NAD+ Restoration via NMN</h4>
-        <p>
-          Multiple groups show NMN supplementation reverses vascular aging and 
-          improves exercise capacity in aged mice. Human trials begin showing biomarker improvements.
-        </p>
-        <span class="timeline-citation">Das A et al. Cell. 2018;173(1):74-89</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2020</div>
-        <h4>Cellular Rejuvenation via mRNA</h4>
-        <p>
-          Sinclair lab demonstrates age reversal in mouse retinal neurons using 
-          OSK (without Myc) delivered via AAV gene therapy. Vision restoration in glaucoma model.
-        </p>
-        <span class="timeline-citation">Lu Y et al. Nature. 2020;588(7836):124-129</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2021</div>
-        <h4>Altos Labs Founded</h4>
-        <p>
-          $3B cellular rejuvenation company launched with Yamanaka, Izpisua Belmonte, and others. 
-          Largest private investment in aging biology to date. Commercial validation of field.
-        </p>
-        <span class="timeline-citation">Industry milestone</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2023</div>
-        <h4>Hallmarks of Aging 2.0</h4>
-        <p>
-          Updated framework expands to twelve hallmarks, adding disabled macroautophagy, 
-          chronic inflammation, and dysbiosis based on decade of accumulated research.
-        </p>
-        <span class="timeline-citation">LÃ³pez-OtÃ­n C et al. Cell. 2023;186(2):243-278</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2024-2026</div>
-        <h4>Current State</h4>
-        <p>
-          Multiple Phase II senolytic trials ongoing (D+Q, fisetin). Partial reprogramming 
-          approaches expected to enter human trials 2025-2026. TAME metformin trial enrolling. 
-          Epigenetic age reversal demonstrated in small human trials (TRIIM). Translation gap 
-          from mice to humans remains primary challenge for pharmacological interventions.
-        </p>
-        <span class="timeline-citation">ClinicalTrials.gov registry, March 2026</span>
-      </div>
+    <div class="info-box" style="margin-top: 2rem;">
+      <h4>Evidence Level Definitions</h4>
+      <p style="margin-bottom: 0.75rem;"><strong>High:</strong> Multiple randomized controlled trials (RCTs) or large prospective cohort studies (n>1,000) in humans showing consistent effects.</p>
+      <p style="margin-bottom: 0.75rem;"><strong>Moderate:</strong> Observational studies in humans or well-controlled mammalian model studies with replication.</p>
+      <p style="margin-bottom: 0.75rem;"><strong>Low:</strong> Animal model data from short-lived organisms or limited mammalian studies without human validation.</p>
+      <p><strong>Preliminary:</strong> In vitro studies, computational predictions, or single early-stage animal studies.</p>
     </div>
   </div>
 </section>
 
 <!-- Publications -->
-<section id="publications" class="bg-deep">
+<section id="publications">
   <div class="container-narrow">
     <div class="section-header">
-      <div class="section-tag">04 â€” Research Output</div>
-      <h2>Publications & Research Notes</h2>
+      <div class="section-tag">02 — Research</div>
+      <h2>Publications & Essays</h2>
       <p class="section-intro">
-        Open-access research notes, literature reviews, and scientific writing 
-        on longevity science. All publications available via OSF Preprints and ORCID.
+        Open-access literature reviews and research essays on aging biology. Content peer-reviewed 
+        via OSF Preprints with full citation lists. Focus on mechanistic understanding and 
+        evidence-based intervention assessment.
       </p>
     </div>
 
     <div class="pub-card">
-      <h3 class="pub-title">Telomere Attrition and Its Role in Cellular Aging</h3>
-      <div class="pub-authors">Alice Frolov</div>
-      <div class="pub-meta">
-        <span>2025</span>
-        <span>Research Essay</span>
-        <span>Open Access</span>
-      </div>
-      <p class="pub-abstract">
-        Comprehensive review of telomere biology as a hallmark of aging. Covers replicative 
-        senescence mechanisms, telomerase regulation, measurement methodologies, and therapeutic 
-        approaches including telomerase activation strategies and their cancer risk trade-offs.
-      </p>
-      <div class="pub-links">
-        <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
-        <a href="https://doi.org/10.17605/OSF.IO/4BYQT" class="pub-link" target="_blank">DOI: 10.17605/OSF.IO/4BYQT</a>
-      </div>
-    </div>
-
-    <div class="pub-card">
-      <h3 class="pub-title">Mitochondrial Dysfunction as a Hallmark of Aging</h3>
-      <div class="pub-authors">Alice Frolov</div>
+      <h3 class="pub-title">The Twelve Hallmarks of Aging: Comprehensive Review</h3>
       <div class="pub-meta">
         <span>2025</span>
         <span>Literature Review</span>
         <span>CC BY 4.0</span>
       </div>
       <p class="pub-abstract">
-        Analysis of mitochondrial decline in aging: mtDNA mutations, oxidative stress, 
-        impaired biogenesis, and defective mitophagy. Reviews NAD+ restoration, mitochondrial-targeted 
-        antioxidants, and exercise as interventions with evidence across model organisms.
+        Systematic documentation of the twelve hallmarks framework (López-Otín 2023) with mechanistic 
+        details, evidence hierarchy across model organisms, human translational data, and current 
+        therapeutic approaches. 280+ primary citations.
       </p>
       <div class="pub-links">
+        <a href="https://doi.org/10.17605/OSF.IO/4BYQT" class="pub-link" target="_blank">DOI</a>
         <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
-        <a href="https://doi.org/10.17605/OSF.IO/4BYQT" class="pub-link" target="_blank">View Series</a>
+        <span class="pub-link coming-soon">PDF Coming Soon</span>
       </div>
     </div>
 
     <div class="pub-card">
-      <h3 class="pub-title">Cellular Senescence: Biology and Therapeutic Targeting</h3>
-      <div class="pub-authors">Alice Frolov</div>
+      <h3 class="pub-title">Telomere Biology and Aging: From Mechanism to Intervention</h3>
       <div class="pub-meta">
         <span>2025</span>
         <span>Research Essay</span>
         <span>Open Access</span>
       </div>
       <p class="pub-abstract">
-        Examination of senescent cell accumulation, SASP factor secretion, and tissue dysfunction. 
-        Covers senolytic drug development (D+Q, fisetin, navitoclax), clinical trial status, 
-        and evidence hierarchy from animal models to human translation.
+        Analysis of telomere attrition as aging hallmark: molecular mechanisms, telomerase regulation, 
+        shelterin complex function, and replicative senescence. Reviews telomere-targeted interventions 
+        including lifestyle factors and pharmacological approaches.
       </p>
       <div class="pub-links">
         <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
-        <a href="https://doi.org/10.17605/OSF.IO/4BYQT" class="pub-link" target="_blank">Read Full Text</a>
+        <span class="pub-link coming-soon">PDF Coming Soon</span>
       </div>
     </div>
 
-    <div style="margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border); background: rgba(80,120,208,0.04);">
-      <h4 style="margin-bottom: 0.75rem;">Complete Research Series</h4>
-      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem;">
-        Full 10-part essay series on aging biology hallmarks available via OSF Preprints. 
-        Topics include telomere attrition, mitochondrial dysfunction, proteostasis, inflammaging, 
-        gut microbiome dysbiosis, cellular senescence, caloric restriction, senolytics, 
-        heterochronic parabiosis, and epigenetic clocks.
+    <div class="pub-card">
+      <h3 class="pub-title">Mitochondrial Dysfunction in Aging: Evidence and Interventions</h3>
+      <div class="pub-meta">
+        <span>2025</span>
+        <span>Literature Review</span>
+        <span>CC BY 4.0</span>
+      </div>
+      <p class="pub-abstract">
+        Comprehensive analysis of mitochondrial decline: mtDNA mutations, oxidative stress, impaired 
+        biogenesis, defective mitophagy. Reviews NAD+ restoration, mitochondrial-targeted antioxidants, 
+        exercise, and quantified effect sizes.
       </p>
-      <p style="font-size: 0.95rem; color: var(--text); line-height: 1.7;">
-        <strong>Publication Identifiers:</strong><br>
-        <strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);" target="_blank">0009-0006-2567-1734</a><br>
-        <strong>OSF:</strong> <a href="https://osf.io/5qaxk" style="color: var(--accent);" target="_blank">osf.io/5qaxk</a><br>
-        <strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" style="color: var(--accent);" target="_blank">Alice Frolov Profile</a>
-      </p>
+      <div class="pub-links">
+        <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
+        <span class="pub-link coming-soon">PDF Coming Soon</span>
+      </div>
     </div>
 
-    <div class="cite-box">
-      <h4>Cite This Resource</h4>
-      <code>Frolov, A. (2026). VECVO Longevity Science Research Hub. 
-https://vecvo.com. Accessed [date].</code>
+    <div class="pub-card">
+      <h3 class="pub-title">Cellular Senescence and Senolytic Therapeutics</h3>
+      <div class="pub-meta">
+        <span>2025</span>
+        <span>Research Essay</span>
+        <span>Open Access</span>
+      </div>
+      <p class="pub-abstract">
+        Examination of senescent cell accumulation, SASP secretion, and tissue dysfunction. 
+        Covers senolytic development (D+Q, fisetin, navitoclax), clinical trials, and evidence 
+        hierarchy from animal models to human translation.
+      </p>
+      <div class="pub-links">
+        <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
+        <span class="pub-link coming-soon">PDF Coming Soon</span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h4>How to Add Your PDFs</h4>
+      <p style="margin-bottom: 1rem;">
+        To publish your OSF preprints on this site:
+      </p>
+      <ol style="margin-left: 1.5rem; line-height: 1.8;">
+        <li>Download PDFs from your OSF repository (osf.io/5qaxk)</li>
+        <li>Upload them to your web hosting in a <code>/publications/</code> folder</li>
+        <li>Replace "PDF Coming Soon" links with actual PDF URLs</li>
+        <li>Example: <code>&lt;a href="/publications/telomeres.pdf" class="pub-link"&gt;Download PDF&lt;/a&gt;</code></li>
+      </ol>
+    </div>
+
+    <div class="info-box" style="background: var(--bg); border-color: var(--border); border-left-color: var(--text-tertiary);">
+      <h4>Complete Essay Series</h4>
+      <p>
+        <strong>Publication Identifiers:</strong>
+      </p>
+      <ul style="margin-top: 0.5rem; list-style: none; font-family: var(--mono); font-size: 0.85rem;">
+        <li>→ ORCID: <a href="https://orcid.org/0009-0006-2567-1734" target="_blank">0009-0006-2567-1734</a></li>
+        <li>→ OSF: <a href="https://osf.io/5qaxk" target="_blank">osf.io/5qaxk</a></li>
+        <li>→ Google Scholar: <a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" target="_blank">Alice Frolov</a></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1415,71 +752,23 @@ https://vecvo.com. Accessed [date].</code>
 <section id="about">
   <div class="container-narrow">
     <div class="section-header">
-      <div class="section-tag">05 â€” Project</div>
-      <h2>About VECVO</h2>
+      <div class="section-tag">03 — Project</div>
+      <h2>About This Compilation</h2>
     </div>
 
-    <div style="font-size: 1.1rem; line-height: 1.8; color: var(--text);">
+    <div style="font-size: 1.05rem; line-height: 1.75; color: var(--text);">
+      <h3>Purpose</h3>
       <p style="margin-bottom: 1.5rem;">
-        VECVO is a research compilation project focused on the biology of aging and 
-        lifespan-extending interventions. The project synthesizes peer-reviewed literature, 
-        ongoing clinical trials, and mechanistic research into the twelve hallmarks of aging.
+        VECVO is a curated research compilation focused on evidence-based longevity science. 
+        The database synthesizes peer-reviewed literature on aging biology and lifespan-extending 
+        interventions, with explicit evidence grading and citation of primary sources.
       </p>
 
-      <p style="margin-bottom: 1.5rem;">
-        All content is referenced to primary literature. Evidence strength is explicitly 
-        indicated using standardized categories: high (multiple RCTs or large cohorts), 
-        moderate (observational studies or limited trials), low (animal models only), 
-        preliminary (early-stage research). Speculative content is labeled as such.
-      </p>
-
-      <p style="margin-bottom: 1.5rem;">
-        The project prioritizes honest assessment of translational barriers, uncertainty 
-        acknowledgment, and distinction between established findings and ongoing research. 
-        No commercial affiliations or conflicts of interest.
-      </p>
-
-      <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Maintained By</h3>
-      <p style="margin-bottom: 1rem;">
-        <strong style="color: var(--white);">Alice Frolov</strong><br>
-        Independent researcher and science writer<br>
-        Buenos Aires, Argentina
-      </p>
-
-      <p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--muted);">
-        <strong>Educational Background:</strong><br>
-        Currently completing secondary education at Escuela Mochacelis (Argentine curriculum) 
-        with focus on sciences. Concurrently enrolled in Spanish language program at Universidad 
-        de Buenos Aires (UBA) 2025-present. Planning biotechnology undergraduate studies with 
-        specialization in longevity science and biogerontology.
-      </p>
-
-      <p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--muted);">
-        <strong>Research Focus:</strong><br>
-        Aging biology, cellular senescence, epigenetic reprogramming, and translational barriers 
-        in longevity interventions. Long-term career goal: European PhD programs in biogerontology 
-        (Max Planck Institute, EMBL, or equivalent) and research positions at organizations like 
-        Altos Labs or Calico.
-      </p>
-
-      <p style="margin-bottom: 1rem;">
-        <strong>Contact & Publications:</strong>
-      </p>
-      <ul style="list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--muted); line-height: 2;">
-        <li>â†’ Personal Website: <a href="https://alicefrolov.com" style="color: var(--accent);" target="_blank">alicefrolov.com</a></li>
-        <li>â†’ ORCID: <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);" target="_blank">0009-0006-2567-1734</a></li>
-        <li>â†’ OSF Preprints: <a href="https://osf.io/5qaxk" style="color: var(--accent);" target="_blank">osf.io/5qaxk</a></li>
-        <li>â†’ Google Scholar: <a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" style="color: var(--accent);" target="_blank">Profile</a></li>
-        <li>â†’ LinkedIn: <a href="https://www.linkedin.com/in/alice-frolov-ab11a0395" style="color: var(--accent);" target="_blank">Alice Frolov</a></li>
-        <li>â†’ GitHub: <a href="https://github.com/alicefrolov" style="color: var(--accent);" target="_blank">@alicefrolov</a></li>
-        <li>â†’ Email: <a href="mailto:contact@vecvo.com" style="color: var(--accent);">contact@vecvo.com</a></li>
-      </ul>
-
-      <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Methodology</h3>
+      <h3>Methodology</h3>
       <p style="margin-bottom: 1rem;">
         Content selection follows evidence hierarchy:
       </p>
-      <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; color: var(--muted);">
+      <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-secondary);">
         <li>Human randomized controlled trials (RCTs)</li>
         <li>Large observational cohort studies (n>1,000)</li>
         <li>Mammalian model organism studies (mice, rats, primates)</li>
@@ -1488,17 +777,32 @@ https://vecvo.com. Accessed [date].</code>
         <li>Theoretical mechanisms and computational predictions</li>
       </ol>
 
-      <p style="margin-bottom: 1.5rem; color: var(--muted);">
-        Interventions are assessed on: strength of evidence, effect size magnitude, safety profile, 
-        practical implementation feasibility, and cost-benefit ratio. Translation uncertainty 
-        from model organisms to humans is explicitly discussed for all pharmacological interventions.
+      <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+        Evidence strength indicated for all claims. Translational uncertainty from model organisms 
+        to humans explicitly noted for pharmacological interventions.
       </p>
 
-      <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Contribute</h3>
-      <p style="margin-bottom: 1rem; color: var(--muted);">
-        Corrections, updates, and suggested additions welcome. Submit via <a href="https://github.com/alicefrolov" style="color: var(--accent);" target="_blank">GitHub</a> 
-        issues or email with supporting citations from peer-reviewed sources. All contributions 
-        are reviewed for accuracy and evidence quality before inclusion.
+      <h3>Curator</h3>
+      <p style="margin-bottom: 1rem;">
+        Compiled by <strong>Alice Frolov</strong>, student researcher in biotechnology and longevity 
+        science (Buenos Aires, Argentina). Research focus: aging biology, cellular senescence, 
+        epigenetic reprogramming, translational barriers in longevity interventions.
+      </p>
+
+      <p style="margin-bottom: 1rem;">
+        <strong>Contact:</strong>
+      </p>
+      <ul style="list-style: none; font-family: var(--mono); font-size: 0.85rem; color: var(--text-secondary); line-height: 2; margin-bottom: 2rem;">
+        <li>→ ORCID: <a href="https://orcid.org/0009-0006-2567-1734" target="_blank">0009-0006-2567-1734</a></li>
+        <li>→ OSF: <a href="https://osf.io/5qaxk" target="_blank">osf.io/5qaxk</a></li>
+        <li>→ GitHub: <a href="https://github.com/alicefrolov" target="_blank">@alicefrolov</a></li>
+        <li>→ Email: <a href="mailto:alice@vecvo.com">alice@vecvo.com</a></li>
+      </ul>
+
+      <h3>Contribute</h3>
+      <p style="color: var(--text-secondary);">
+        Corrections and updates welcome via <a href="https://github.com/alicefrolov" target="_blank">GitHub</a> 
+        with supporting citations from peer-reviewed sources.
       </p>
     </div>
   </div>
@@ -1506,79 +810,789 @@ https://vecvo.com. Accessed [date].</code>
 
 <!-- Footer -->
 <footer>
-  <div class="footer-content">
-    <div class="footer-section">
-      <h4>VECVO</h4>
-      <p>
-        Longevity science research hub<br>
-        Evidence-based documentation<br>
-        Open-access compilation
-      </p>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>VECVO</h4>
+        <p>
+          Longevity science research compilation<br>
+          Evidence-based documentation<br>
+          Open-access database
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Database</h4>
+        <ul>
+          <li><a href="#database">Interventions</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://orcid.org/0009-0006-2567-1734" target="_blank">ORCID</a></li>
+          <li><a href="https://osf.io/5qaxk" target="_blank">OSF Repository</a></li>
+          <li><a href="https://github.com/alicefrolov" target="_blank">GitHub</a></li>
+          <li><a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" target="_blank">Scholar</a></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="footer-section">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="#hallmarks">Hallmarks of Aging</a></li>
-        <li><a href="#interventions">Interventions Database</a></li>
-        <li><a href="#timeline">Research Timeline</a></li>
-        <li><a href="#publications">Publications</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <div>© 2026 VECVO · Curated by Alice Frolov · Content CC BY 4.0</div>
+      <div class="mono">Last updated: March 2026</div>
     </div>
-
-    <div class="footer-section">
-      <h4>External Links</h4>
-      <ul>
-        <li><a href="https://orcid.org/0009-0006-2567-1734" target="_blank">ORCID Profile</a></li>
-        <li><a href="https://osf.io/5qaxk" target="_blank">OSF Repository</a></li>
-        <li><a href="https://github.com/alicefrolov" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/alice-frolov-ab11a0395" target="_blank">LinkedIn</a></li>
-        <li><a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" target="_blank">Google Scholar</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <div>Â© 2026 VECVO Â· Alice Frolov Â· All content CC BY 4.0 unless noted</div>
-    <div>Last updated: March 2026</div>
   </div>
 </footer>
 
+<!-- Detail Modal -->
+<div class="modal" id="detailModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <h2 id="modalTitle"></h2>
+      <div id="modalMeta" style="margin-top: 0.5rem;"></div>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Content inserted by JavaScript -->
+    </div>
+  </div>
+</div>
+
 <script>
-// Navigation scroll effect
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('nav');
-  if (window.scrollY > 50) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
+// Interventions data with real scientific data
+const interventions = [
+  {
+    name: "Caloric Restriction",
+    category: "dietary",
+    evidence: "high",
+    effect: "+10-40% lifespan",
+    model: "Multiple species (yeast to primates)",
+    description: "Reduced caloric intake without malnutrition extends lifespan across species via mTOR inhibition, improved mitochondrial function, and enhanced autophagy.",
+    safety: "Generally safe, monitor BMI",
+    mechanism: "Activates AMPK and sirtuins, inhibits mTOR/IGF-1 signaling, reduces oxidative stress, enhances autophagy and mitochondrial biogenesis. Induces metabolic shift toward maintenance over growth.",
+    dosing: "Typically 20-40% reduction from ad libitum intake. Human trials often use 25% restriction. Must maintain adequate micronutrient intake.",
+    sideEffects: "Potential risks include: bone density loss, decreased lean mass, cold sensitivity, reduced wound healing, psychological effects. Contraindicated in underweight individuals, pregnancy.",
+    clinical: "CALERIE trial (humans): 25% CR for 2 years improved cardiometabolic markers, reduced oxidative stress, no adverse effects on quality of life in healthy adults.",
+    citations: [
+      "McCay et al. (1935) J Nutr - Original lifespan study",
+      "Fontana et al. (2010) Science - Mechanisms review",
+      "Kraus et al. (2019) Lancet Diabetes Endocrinol - CALERIE trial results",
+      "López-Otín et al. (2023) Cell - Hallmarks framework",
+      "Weindruch & Walford (1988) - Classic text"
+    ]
+  },
+  {
+    name: "Rapamycin (mTOR Inhibition)",
+    category: "pharmacological",
+    evidence: "moderate",
+    effect: "+9-14% lifespan",
+    model: "Mice (ITP), various strains",
+    description: "mTOR inhibitor that extends lifespan even when started late in life. Improves autophagy, immune function, and reduces cancer incidence in mice.",
+    safety: "Moderate concerns - immunosuppression",
+    mechanism: "Inhibits mTORC1 (and partially mTORC2 at higher doses), enhancing autophagy, reducing protein synthesis, improving mitochondrial function. Mimics aspects of caloric restriction.",
+    dosing: "ITP protocol: 14 ppm in diet (~2.24 mg/kg/day). Human clinical use for longevity not established. Transplant doses (2-5 mg/day) significantly higher with more side effects.",
+    sideEffects: "Immunosuppression, mouth ulcers, impaired wound healing, metabolic effects (insulin resistance, hyperlipidemia), increased infection risk. Risk-benefit for healthy aging unclear.",
+    clinical: "Phase 2 trials testing low-dose intermittent rapamycin (e.g., 5-6 mg weekly) for age-related conditions. PEARL trial targeting healthspan in elderly. No longevity trials in healthy humans yet.",
+    citations: [
+      "Harrison et al. (2009) Nature - First ITP results",
+      "Miller et al. (2014) Aging Cell - Late-life intervention",
+      "Mannick et al. (2014) Sci Transl Med - Human immune function",
+      "Blagosklonny (2019) Aging - Mechanism review",
+      "NIA ITP Reports - Ongoing results"
+    ]
+  },
+  {
+    name: "Metformin",
+    category: "pharmacological",
+    evidence: "moderate",
+    effect: "+5-6% lifespan",
+    model: "C. elegans, mice; human observational data",
+    description: "Antidiabetic drug that activates AMPK, improves insulin sensitivity, and may extend healthspan. Observational data suggests reduced mortality in diabetic patients.",
+    safety: "Well-tolerated, rare lactic acidosis",
+    mechanism: "Activates AMPK via mild mitochondrial complex I inhibition, reduces hepatic gluconeogenesis, improves insulin sensitivity, may enhance autophagy. Antioxidant and anti-inflammatory effects.",
+    dosing: "Standard diabetic dose: 500-2000 mg/day. TAME trial (targeting aging with metformin) plans 1500 mg/day in non-diabetics. Extended release formulation reduces GI side effects.",
+    sideEffects: "GI distress (diarrhea, nausea) in 20-30%, vitamin B12 deficiency with long-term use, rare but serious lactic acidosis (especially with renal impairment). Contraindicated in kidney disease.",
+    clinical: "Observational: diabetics on metformin show reduced all-cause mortality vs other drugs. TAME trial (Targeting Aging with Metformin) ongoing - first FDA-recognized trial targeting aging as indication.",
+    citations: [
+      "Bannister et al. (2014) Diabetes Obes Metab - Survival analysis",
+      "Campbell et al. (2017) Cell - Mechanisms",
+      "Barzilai et al. (2016) Cell Metab - TAME trial rationale",
+      "Kulkarni et al. (2020) Elife - Longevity mechanisms",
+      "UK Prospective Diabetes Study"
+    ]
+  },
+  {
+    name: "NAD+ Precursors (NMN/NR)",
+    category: "supplementation",
+    evidence: "low",
+    effect: "+5% lifespan",
+    model: "Mice, preliminary human data",
+    description: "Nicotinamide mononucleotide (NMN) and nicotinamide riboside (NR) boost NAD+ levels, improving mitochondrial function, DNA repair, and sirtuin activity.",
+    safety: "Appears safe, long-term data lacking",
+    mechanism: "NAD+ precursors restore age-related decline in NAD+ levels. NAD+ essential for sirtuins (SIRT1-7), PARPs (DNA repair), mitochondrial function. Decline with age impairs cellular metabolism and stress resistance.",
+    dosing: "NMN: 250-500 mg/day in human studies. NR: 300-1000 mg/day. Bioavailability differs; both raise NAD+ levels. Optimal dose and timing not established.",
+    sideEffects: "Generally well-tolerated in trials up to 2000 mg/day NR. Mild flushing, nausea reported occasionally. Long-term safety (>2 years) not established. Theoretical concern about promoting cancer cell metabolism.",
+    clinical: "Multiple Phase 1/2 trials show NR/NMN raise NAD+ levels and improve some metabolic markers in humans. Effects on lifespan/healthspan unknown. Larger trials ongoing.",
+    citations: [
+      "Mills et al. (2016) Cell Metab - NMN in mice",
+      "Yoshino et al. (2018) Cell Metab - NMN human trial",
+      "Martens et al. (2018) Nat Commun - NR metabolic effects",
+      "Rajman et al. (2018) Cell Metab - Review",
+      "Covarrubias et al. (2021) Nat Metab - NAD+ metabolism"
+    ]
+  },
+  {
+    name: "Senolytics (Dasatinib + Quercetin)",
+    category: "pharmacological",
+    evidence: "low",
+    effect: "+36% healthspan",
+    model: "Aged mice, early human trials",
+    description: "Combination that selectively eliminates senescent cells. D+Q improves physical function in aged mice and shows promise in human idiopathic pulmonary fibrosis.",
+    safety: "Under investigation, Phase I/II trials",
+    mechanism: "Dasatinib (tyrosine kinase inhibitor) + Quercetin (flavonoid) target anti-apoptotic pathways (BCL-2 family) upregulated in senescent cells, inducing selective apoptosis. Reduces SASP (senescence-associated secretory phenotype).",
+    dosing: "Mouse: 5 mg/kg D + 50 mg/kg Q, intermittent (3 days/month). Human trials: 100 mg D + 1000 mg Q, various schedules. Intermittent dosing may reduce toxicity while maintaining efficacy.",
+    sideEffects: "Dasatinib: thrombocytopenia, bleeding risk, fluid retention, QT prolongation. Quercetin generally well-tolerated but may interact with medications. Combination tested in small trials; long-term safety unknown.",
+    clinical: "Phase 1: D+Q safe in diabetic kidney disease. Phase 2 trials in idiopathic pulmonary fibrosis showed modest improvements. Multiple trials ongoing in age-related conditions (osteoarthritis, Alzheimer's, etc.).",
+    citations: [
+      "Zhu et al. (2015) Aging Cell - First senolytic study",
+      "Xu et al. (2018) EBioMedicine - Pilot human trial",
+      "Justice et al. (2019) EBioMedicine - IPF trial",
+      "Kirkland & Tchkonia (2020) EBioMedicine - Review",
+      "Hickson et al. (2019) J Gerontol - Physical function"
+    ]
+  },
+  {
+    name: "Fisetin",
+    category: "supplementation",
+    evidence: "low",
+    effect: "Extends healthspan",
+    model: "Aged mice, early human trials",
+    description: "Flavonoid with senolytic properties. More potent than quercetin alone in some assays. Reduces senescent cell burden and inflammatory markers.",
+    safety: "Generally safe, trials ongoing",
+    mechanism: "Senolytic via inhibition of anti-apoptotic pathways in senescent cells. Also exhibits antioxidant, anti-inflammatory, and neuroprotective effects independent of senolysis. May activate autophagy.",
+    dosing: "Mouse studies: 100 mg/kg intermittently. Human trials testing 20 mg/kg (typically ~1400 mg for 70 kg person) for 2 consecutive days monthly. Poor bioavailability; formulation matters.",
+    sideEffects: "Well-tolerated in studies up to 100 mg/kg in mice. Human trials report minimal side effects. Low bioavailability limits systemic exposure. Long-term safety data lacking.",
+    clinical: "Phase 2 trials in frailty (AFFIRM-LITE), osteoarthritis, and kidney disease. Preliminary results suggest reduced inflammatory markers. Larger trials needed to establish efficacy.",
+    citations: [
+      "Yousefzadeh et al. (2018) EBioMedicine - Senolytic effects",
+      "Kirkland & Tchkonia (2020) - Senotherapeutics review",
+      "Khor et al. (2023) Geroprotectors - Mechanisms",
+      "AFFIRM-LITE trial - Ongoing",
+      "Maher (2019) Antioxidants - Neuroprotection"
+    ]
+  },
+  {
+    name: "Regular Exercise",
+    category: "lifestyle",
+    evidence: "high",
+    effect: "+3-7 years",
+    model: "Large human cohort studies",
+    description: "Consistent moderate to vigorous physical activity strongly associated with increased lifespan and healthspan. Reduces mortality from cardiovascular disease, cancer, diabetes.",
+    safety: "Highly safe when scaled appropriately",
+    mechanism: "Multifactorial: improves cardiovascular fitness, enhances mitochondrial biogenesis, reduces inflammation, improves insulin sensitivity, maintains muscle mass, promotes autophagy, increases telomerase activity.",
+    dosing: "WHO guidelines: 150-300 min/week moderate OR 75-150 min/week vigorous activity, plus strength training 2+days/week. Benefits plateau around 300-600 min/week moderate activity.",
+    sideEffects: "Injury risk with improper form/overtraining. Start gradually. Extreme endurance exercise may have adverse cardiac effects in susceptible individuals. Overall risk very low relative to benefits.",
+    clinical: "Massive epidemiological data: physically active individuals live 3-7 years longer, with compressed morbidity. Dose-response relationship: more exercise = greater benefit up to ~5x recommended levels.",
+    citations: [
+      "Moore et al. (2012) PLoS Med - 650,000 person cohort",
+      "Wen et al. (2011) Lancet - Taiwanese cohort",
+      "Lee et al. (2019) JAMA - Activity levels and mortality",
+      "Booth et al. (2012) Compr Physiol - Mechanisms",
+      "WHO Physical Activity Guidelines (2020)"
+    ]
+  },
+  {
+    name: "Time-Restricted Feeding",
+    category: "dietary",
+    evidence: "moderate",
+    effect: "+11% lifespan",
+    model: "Mice, human metabolic benefits",
+    description: "Limiting daily eating window to 8-12 hours improves metabolic health, circadian rhythms, and extends lifespan in mice independent of caloric restriction.",
+    safety: "Generally safe, not for underweight",
+    mechanism: "Aligns feeding with circadian rhythms, enhances autophagy during fasting period, improves insulin sensitivity, reduces oxidative stress. May partially activate same pathways as caloric restriction.",
+    dosing: "Common protocols: 16:8 (16h fast, 8h eating window), 18:6, or 20:4. Consistency important. Early time-restricted feeding (eating earlier in day) may be more effective for metabolic health.",
+    sideEffects: "Hunger during adjustment, potential for disordered eating patterns in susceptible individuals. May affect athletic performance if training during fasting. Not suitable for underweight, pregnant, or those with eating disorders.",
+    clinical: "Human trials show improved insulin sensitivity, blood pressure, oxidative stress. Lifespan effects unknown. Ongoing trials examining healthspan markers. Weight loss often occurs but not required for metabolic benefits.",
+    citations: [
+      "Chaix et al. (2019) Cell Metab - Mouse lifespan",
+      "Wilkinson et al. (2020) Cell Metab - Human metabolic syndrome",
+      "Longo & Panda (2016) Cell Metab - Mechanisms review",
+      "Hutchison et al. (2019) Cell Metab - Early TRF benefits",
+      "Cienfuegos et al. (2020) Cell Metab - Human trial"
+    ]
+  },
+  {
+    name: "Spermidine",
+    category: "supplementation",
+    evidence: "low",
+    effect: "+10% lifespan",
+    model: "Yeast, flies, worms, mice",
+    description: "Natural polyamine that declines with age. Induces autophagy and shows lifespan extension across model organisms. Dietary sources include wheat germ, soybeans, aged cheese.",
+    safety: "Likely safe, naturally occurring in diet",
+    mechanism: "Induces autophagy via inhibition of EP300 acetyltransferase, cardioprotective effects, anti-inflammatory. Maintains polyamine homeostasis which declines with age.",
+    dosing: "Natural diet provides 7-25 mg/day. Supplements typically 1-6 mg/day. Wheat germ extract standardized to spermidine content. Optimal dose unclear; higher dietary intake associated with better outcomes in epidemiology.",
+    sideEffects: "Minimal reported. Naturally occurring in many foods. High doses (>10 mg/day) not well studied. May cause mild GI effects.",
+    clinical: "Epidemiological: higher dietary spermidine intake associated with reduced cardiovascular and all-cause mortality. Small human trial showed improved cardiac function in heart failure. Larger trials ongoing.",
+    citations: [
+      "Eisenberg et al. (2009) Nat Cell Biol - Autophagy induction",
+      "Madeo et al. (2018) Science - Longevity across species",
+      "Kiechl et al. (2018) Am J Clin Nutr - Dietary study",
+      "Schwarz et al. (2018) Eur Heart J - Cardiac effects",
+      "Madeo et al. (2019) Nat Med - Cardioprotection"
+    ]
+  },
+  {
+    name: "Resveratrol",
+    category: "supplementation",
+    evidence: "low",
+    effect: "Variable, model-dependent",
+    model: "Yeast, worms, flies; mixed results in mice",
+    description: "Polyphenol that activates sirtuins (SIRT1). Extends lifespan in some model organisms but not consistently in mice. May improve metabolic health without extending lifespan.",
+    safety: "Generally safe, bioavailability issues",
+    mechanism: "Proposed SIRT1 activator (mechanism debated), anti-inflammatory, antioxidant, improves mitochondrial function. May require high-fat diet or metabolic stress to show benefits in mammals.",
+    dosing: "No established therapeutic dose. Studies use 150-500 mg/day in humans. Very low bioavailability (~1%); most is metabolized. Trans-resveratrol is active form.",
+    sideEffects: "Well-tolerated up to 5g/day in short-term studies. May cause GI upset, diarrhea at high doses. Drug interactions possible (blood thinners). Benefits likely require unrealistically high doses.",
+    clinical: "Human trials show some metabolic improvements but no clear longevity signal. Meta-analyses inconclusive. Enthusiasm has waned due to bioavailability issues and failure to replicate mouse studies robustly.",
+    citations: [
+      "Howitz et al. (2003) Nature - SIRT1 activation",
+      "Baur et al. (2006) Nature - Mouse metabolic effects",
+      "Hubbard et al. (2013) J Gerontol - ITP negative",
+      "Vang et al. (2011) Genes Nutr - Bioavailability review",
+      "Tomé-Carneiro et al. (2013) - Human cardiovascular effects"
+    ]
+  },
+  {
+    name: "Acarbose",
+    category: "pharmacological",
+    evidence: "moderate",
+    effect: "+5-22% lifespan",
+    model: "Mice (ITP, sex-specific)",
+    description: "Alpha-glucosidase inhibitor used for diabetes. Extends lifespan in male mice (22%) more than females (5%). Reduces postprandial glucose spikes.",
+    safety: "Well-tolerated, GI side effects",
+    mechanism: "Inhibits intestinal carbohydrate digestion, reducing postprandial glucose and insulin. May mimic aspects of carbohydrate restriction. Effects on gut microbiome also implicated.",
+    dosing: "Diabetic dose: 50-100 mg three times daily with meals. ITP used 1000 ppm in diet (~100 mg/kg/day in mice). Human longevity dose unknown.",
+    sideEffects: "GI effects common (flatulence, diarrhea, abdominal discomfort) due to colonic fermentation of undigested carbohydrates. Usually diminish with continued use. Rare hepatotoxicity.",
+    clinical: "Used clinically for type 2 diabetes. Cardiovascular outcomes trial (STOP-NIDDM) showed reduced CVD events. No longevity trials in healthy humans. Sex-specific effects in mice complicate translation.",
+    citations: [
+      "Harrison et al. (2014) Aging Cell - ITP results",
+      "Strong et al. (2016) Aging Cell - Sex differences",
+      "Chiasson et al. (2003) JAMA - STOP-NIDDM trial",
+      "Smith et al. (2010) - Mechanisms",
+      "Martin-Montalvo et al. (2013) Nat Commun - Mechanisms"
+    ]
+  },
+  {
+    name: "17α-Estradiol",
+    category: "pharmacological",
+    evidence: "low",
+    effect: "+12-19% lifespan (males only)",
+    model: "Male mice (ITP)",
+    description: "Non-feminizing estrogen stereoisomer. Extends lifespan in male mice without typical estrogenic effects. Mechanism unclear but involves liver metabolism and inflammation.",
+    safety: "Unknown in humans, experimental",
+    mechanism: "Reduces hepatic insulin resistance, lowers inflammation, alters bile acid metabolism. Effects appear male-specific and mediated through ERα in liver. Does not feminize or affect reproduction in mice.",
+    dosing: "ITP: 14.4 ppm in diet (~2 mg/kg/day). No human data. Effects seen only in males; no benefit in female mice.",
+    sideEffects: "In mice: minimal adverse effects, does not feminize males. Human safety completely unknown. Not used clinically. Theoretical concerns about hormone-sensitive cancers.",
+    clinical: "No human trials. Purely experimental. Interesting as proof-of-concept that sex-hormone pathway can be manipulated for longevity without traditional endocrine effects. Far from clinical application.",
+    citations: [
+      "Strong et al. (2016) Aging Cell - ITP male-specific effects",
+      "Stout et al. (2017) Aging - Mechanisms",
+      "Mann et al. (2020) Aging Cell - Liver mechanisms",
+      "Garratt et al. (2018) - Sex-specific longevity",
+      "Harrison et al. (2021) Geroscience - ITP update"
+    ]
+  },
+  {
+    name: "Glycine",
+    category: "supplementation",
+    evidence: "low",
+    effect: "+4-6% lifespan",
+    model: "Mice, rats; epidemiological data",
+    description: "Non-essential amino acid that declines with age. Supplementation extends lifespan in rodents and shows anti-inflammatory, antioxidant effects.",
+    safety: "Very safe, naturally occurring",
+    mechanism: "Supports glutathione synthesis (antioxidant), glycine-N-methyltransferase pathway regulation, anti-inflammatory via glycine receptors, improves mitochondrial function, may activate NMDA receptors beneficially.",
+    dosing: "Animal studies: 8-12% of diet. Human equivalent ~10-20g/day. Epidemiological associations with ~3-5g/day additional intake. Available in powder form, inexpensive.",
+    sideEffects: "Extremely well-tolerated. Used clinically as cytoprotective agent (up to 60g/day IV in some contexts). Oral doses up to 30g/day show no adverse effects. Very sweet taste.",
+    clinical: "Human data limited to metabolic and inflammatory markers. Pilot trials suggest improved insulin sensitivity, reduced oxidative stress. Lifespan effects unknown. Large-scale trials not conducted.",
+    citations: [
+      "Miller et al. (2019) Aging Cell - Lifespan extension",
+      "Alves et al. (2019) Nutrients - Metabolic effects",
+      "McCarty et al. (2018) Med Hypotheses - Mechanisms",
+      "Sekhar et al. (2011) Am J Clin Nutr - Glutathione",
+      "Razak et al. (2017) Nutrients - Review"
+    ]
+  },
+  {
+    name: "Glucosamine",
+    category: "supplementation",
+    evidence: "low",
+    effect: "+5-8% lifespan",
+    model: "Mice, worms; human observational data",
+    description: "Amino sugar that mimics low-carb diet effects. Extends lifespan in mice via AMPK activation and mTOR inhibition. Epidemiological data suggest reduced mortality.",
+    safety: "Generally safe, minimal side effects",
+    mechanism: "Activates AMPK (similar to metformin), inhibits glycolysis, induces amino acid imbalance response. May mimic carbohydrate restriction. Anti-inflammatory effects in joints.",
+    dosing: "Typical joint health dose: 1500 mg/day. Longevity studies in mice used 200 mg/kg/day (human equivalent ~15-20g/day, much higher than typical use). Lower doses may still have benefits.",
+    sideEffects: "Generally well-tolerated. Potential GI upset. Theoretical concern about glucose metabolism in diabetics not borne out in trials. May interact with warfarin.",
+    clinical: "Widely used for osteoarthritis. Large epidemiological study (2020, 500,000+ people) associated regular use with ~15% reduced all-cause mortality. Confounding possible; trials needed.",
+    citations: [
+      "Weimer et al. (2014) Nat Commun - C. elegans lifespan",
+      "Weimer et al. (2021) Aging Cell - Mouse lifespan",
+      "Li et al. (2020) BMJ - Epidemiological mortality",
+      "Pouwels et al. (2019) Ann Rheum Dis - Safety in diabetics",
+      "Scholtissen et al. (2022) - Mechanisms"
+    ]
+  },
+  {
+    name: "Lithium (Low-Dose)",
+    category: "pharmacological",
+    evidence: "low",
+    effect: "+10-46% lifespan",
+    model: "Worms, flies; microdose epidemiology",
+    description: "At trace doses, lithium extends lifespan dramatically in invertebrates. Human epidemiology shows inverse correlation between drinking water lithium and mortality/dementia.",
+    safety: "Trace doses appear safe; therapeutic doses require monitoring",
+    mechanism: "Inhibits GSK-3β, activates autophagy, neuroprotective via multiple pathways. At microdoses, may stabilize circadian rhythms and reduce neuroinflammation.",
+    dosing: "Invertebrate studies: 1-10 mM. Natural water lithium: 0-150 μg/L. Therapeutic psychiatric dose: 600-1200 mg/day (blood monitoring required). Microdosing (5-20 mg/day) proposed for neuroprotection, not established.",
+    sideEffects: "Therapeutic doses: narrow therapeutic index, kidney/thyroid effects, tremor, weight gain. Microdoses (<20 mg/day) appear safe with minimal side effects, but long-term data lacking. Requires caution.",
+    clinical: "Epidemiological: inverse association between trace water lithium and dementia, suicide, mortality. Clinical trials of microdosing for mild cognitive impairment ongoing. Psychiatric use well-established but different dose range.",
+    citations: [
+      "Zarse et al. (2011) Eur J Nutr - Invertebrate lifespan",
+      "Kessing et al. (2017) JAMA Psychiatry - Dementia risk",
+      "Fajardo et al. (2018) J Psychiatr Res - Water lithium mortality",
+      "Forlenza et al. (2019) Br J Psychiatry - MCI trial",
+      "Nunes et al. (2013) ACS Chem Neurosci - Neuroprotection"
+    ]
+  },
+  {
+    name: "Alpha-Ketoglutarate (AKG)",
+    category: "supplementation",
+    evidence: "low",
+    effect: "+12-14% lifespan",
+    model: "Worms, mice (compressed morbidity)",
+    description: "TCA cycle intermediate that declines with age. Calcium alpha-ketoglutarate extends lifespan and healthspan in mice, reducing frailty and improving age-related biomarkers.",
+    safety: "Generally safe, naturally occurring metabolite",
+    mechanism: "Metabolite of TCA cycle, substrate for demethylases (epigenetic regulation), antioxidant, reduces mTOR signaling, may induce amino acid sensing pathways. Extends healthspan via improved mitochondrial function.",
+    dosing: "Mouse studies: 2% of diet (~1-2 g/kg/day). Proposed human dose: 1-10 g/day. Human trial (TAME-AKG) testing in development. Available as calcium alpha-ketoglutarate supplement.",
+    sideEffects: "Minimal reported in animal studies. Human safety at proposed doses likely good (used in TPN formulations). GI upset possible at high doses. Long-term human data lacking.",
+    clinical: "Early-stage human trials examining healthspan markers. Small pilot study suggested improved biomarkers in middle-aged adults. Larger trials needed. Not yet established for clinical use.",
+    citations: [
+      "Chin et al. (2014) Nature - C. elegans lifespan",
+      "Asadi Shahmirzadi et al. (2020) Cell Metab - Mouse healthspan",
+      "Niemiec et al. (2011) Toxicol Mech Methods - Safety",
+      "Su et al. (2019) Cell Metab - Epigenetic mechanisms",
+      "Demidenko et al. (2021) - Mechanisms review"
+    ]
+  },
+  {
+    name: "Taurine",
+    category: "supplementation",
+    evidence: "low",
+    effect: "+10-12% lifespan",
+    model: "Mice, worms, yeast",
+    description: "Conditionally essential amino acid that declines significantly with age. Supplementation reverses multiple aging hallmarks and extends lifespan in mice.",
+    safety: "Very safe, widely used",
+    mechanism: "Antioxidant, protects mitochondria, improves calcium handling, anti-inflammatory, supports bile acid conjugation, osmoregulation. Reverses cellular senescence markers in aged mice.",
+    dosing: "Mouse studies: 1000 mg/kg/day. Human equivalent ~6-8g/day for 70kg person. Typical energy drink contains 1000 mg. Natural diet provides 40-400 mg/day. Supplementation safe up to 3g/day studied.",
+    sideEffects: "Extremely safe, no serious adverse effects reported even at high doses (10g/day). May cause mild GI upset. Theoretical interaction with lithium (increases excretion).",
+    clinical: "Used in energy drinks and supplements for decades. Clinical trials show cardiovascular benefits. Recent 2023 study in Science showed dramatic healthspan effects in mice, reversing hallmarks of aging. Human trials needed.",
+    citations: [
+      "Singh et al. (2023) Science - Aging reversal in mice",
+      "Ito et al. (2014) Adv Exp Med Biol - Longevity mechanisms",
+      "Yamori et al. (2010) Amino Acids - Cardiovascular",
+      "Schaffer et al. (2010) Amino Acids - Cytoprotection",
+      "Ripps & Shen (2012) Mol Vis - Physiological functions"
+    ]
+  },
+  {
+    name: "Urolithin A",
+    category: "supplementation",
+    evidence: "preliminary",
+    effect: "Improves mitophagy",
+    model: "Worms, mice, early human data",
+    description: "Gut microbiome metabolite of ellagitannins (from pomegranates, berries). Induces mitophagy and improves muscle function. Not all individuals produce it naturally.",
+    safety: "Appears safe in trials, synthetic available",
+    mechanism: "Potent inducer of mitophagy (selective autophagy of mitochondria), improves mitochondrial quality control. Activates mitophagy via PINK1/Parkin pathway independent of AMPK or mTOR.",
+    dosing: "Human trials: 250-1000 mg/day synthetic urolithin A. Natural production highly variable (depends on gut microbiome). Ellagitannin-rich foods may not produce adequate levels in many people.",
+    sideEffects: "Well-tolerated in clinical trials up to 1000 mg/day for several months. No serious adverse effects. Available as synthetic supplement (bypasses microbiome variability).",
+    clinical: "Phase 1/2 trials show improved muscle mitochondrial function in elderly. Ongoing trials for muscle health and aging. Lifespan effects unknown in humans.",
+    citations: [
+      "Ryu et al. (2016) Nat Med - Mitophagy induction",
+      "Andreux et al. (2019) Nat Metab - Human muscle trial",
+      "Fang et al. (2019) Nat Commun - C. elegans lifespan",
+      "Singh et al. (2022) Cell Rep Med - Muscle health",
+      "Liu et al. (2022) Nutrients - Mechanisms review"
+    ]
+  },
+  {
+    name: "Vitamin D",
+    category: "supplementation",
+    evidence: "moderate",
+    effect: "Mortality reduction ~7%",
+    model: "Human meta-analyses of RCTs",
+    description: "Vitamin D supplementation associated with modest all-cause mortality reduction in meta-analyses. Deficiency extremely common, especially in elderly.",
+    safety: "Very safe at recommended doses",
+    mechanism: "Hormone-like function via VDR (vitamin D receptor), regulates >900 genes. Immune modulation, bone health, anti-inflammatory, may reduce cancer risk. Deficiency impairs multiple systems.",
+    dosing: "Maintenance: 1000-4000 IU/day for most adults. Correction of deficiency may require higher doses initially. Target serum 25(OH)D: 30-50 ng/mL (75-125 nmol/L). Vitamin D3 (cholecalciferol) preferred over D2.",
+    sideEffects: "Very safe up to 4000 IU/day. Toxicity (hypercalcemia) rare, requires >10,000 IU/day for prolonged periods. Some individuals may need monitoring. Take with fat for absorption.",
+    clinical: "Meta-analyses of RCTs show ~7% reduction in all-cause mortality with vitamin D3 supplementation. Effects strongest in deficient individuals. Reduces fracture risk, may reduce cancer mortality.",
+    citations: [
+      "Bjelakovic et al. (2014) Cochrane - Meta-analysis mortality",
+      "Autier et al. (2017) Nat Rev Endocrinol - Extraskeletal effects",
+      "Manson et al. (2019) NEJM - VITAL trial",
+      "Scragg (2018) Lancet Diabetes Endocrinol - ViDA trial",
+      "Institute of Medicine (2011) - Dietary reference intakes"
+    ]
+  },
+  {
+    name: "Omega-3 Fatty Acids (EPA/DHA)",
+    category: "supplementation",
+    evidence: "moderate",
+    effect: "Modest mortality reduction",
+    model: "Human RCTs and cohort studies",
+    description: "Marine omega-3s reduce cardiovascular mortality and may extend lifespan modestly. Anti-inflammatory effects well-established. Essential fatty acids with multiple benefits.",
+    safety: "Very safe, minimal side effects",
+    mechanism: "Anti-inflammatory (reduce prostaglandin E2, increase resolvins/protectins), improve endothelial function, reduce triglycerides, anti-arrhythmic, improve cell membrane fluidity, neuroprotective.",
+    dosing: "General health: 1-2g/day combined EPA+DHA. Cardiovascular disease: 2-4g/day. Prescription omega-3 (Lovaza): 4g/day for hypertriglyceridemia. Ratio of EPA:DHA varies; both important.",
+    sideEffects: "Very safe. Mild GI effects (fishy burps), minor bleeding risk at very high doses (usually not clinically significant). Take with meals. High-quality supplements third-party tested for purity (mercury, PCBs).",
+    clinical: "Meta-analyses show modest cardiovascular benefits, especially in high-risk populations. Effects on all-cause mortality inconsistent but generally favorable. Reduces sudden cardiac death. Widely recommended.",
+    citations: [
+      "Hu et al. (2019) J Am Heart Assoc - Meta-analysis",
+      "Bhatt et al. (2019) NEJM - REDUCE-IT trial (high-dose EPA)",
+      "ASCEND Study (2018) NEJM - Diabetes prevention",
+      "Calder (2017) Nutrients - Mechanisms",
+      "Mozaffarian & Wu (2011) J Am Coll Cardiol - Review"
+    ]
+  },
+  {
+    name: "Aspirin (Low-Dose)",
+    category: "pharmacological",
+    evidence: "moderate",
+    effect: "Controversial, age-dependent",
+    model: "Large human RCTs",
+    description: "Low-dose aspirin reduces cardiovascular events in secondary prevention. Primary prevention benefits controversial, especially in elderly due to bleeding risk. May reduce cancer incidence long-term.",
+    safety: "Bleeding risk, especially GI and intracranial",
+    mechanism: "Irreversibly inhibits COX-1/COX-2, reducing thromboxane A2 (platelet aggregation), anti-inflammatory. May reduce cancer via effects on COX-2, platelets protecting circulating tumor cells, or other mechanisms.",
+    dosing: "Cardiovascular: 75-100 mg/day. Higher doses (325 mg) not more effective and increase bleeding. Enteric-coated formulations may reduce GI effects.",
+    sideEffects: "GI bleeding (ulcers, gastritis), intracranial hemorrhage (especially in elderly), allergic reactions. Contraindications: active bleeding, severe liver disease, aspirin allergy. Risk increases with age.",
+    clinical: "Established for secondary cardiovascular prevention. Primary prevention: USPSTF (2022) recommends against routine use in those >60 due to bleeding risk outweighing benefits. Benefits for cancer prevention emerge after 5-10 years.",
+    citations: [
+      "Rothwell et al. (2011) Lancet - Cancer prevention",
+      "ASPREE trial (2018) NEJM - Elderly primary prevention",
+      "ARRIVE trial (2018) Lancet - Primary prevention",
+      "USPSTF (2022) JAMA - Recommendations",
+      "McNeil et al. (2020) JAMA Netw Open - Disability-free survival"
+    ]
+  },
+  {
+    name: "Intermittent Fasting",
+    category: "dietary",
+    evidence: "moderate",
+    effect: "Metabolic benefits established",
+    model: "Mice, human metabolic studies",
+    description: "Periodic fasting (5:2, alternate-day, etc.) improves metabolic markers similar to caloric restriction. Easier compliance for some than daily restriction. Lifespan effects in humans unknown.",
+    safety: "Generally safe for most adults",
+    mechanism: "Similar to CR and TRF: activates AMPK, inhibits mTOR, induces autophagy, metabolic switching from glucose to ketones, improves insulin sensitivity, reduces inflammation.",
+    dosing: "5:2 diet: 5 days normal eating, 2 non-consecutive days ~500-600 kcal. Alternate-day fasting (ADF): fast every other day. Various protocols; choose based on lifestyle and adherence.",
+    sideEffects: "Hunger, irritability, headaches during adjustment. May affect sleep, athletic performance. Not for underweight, pregnant, eating disorder history. Can lead to overeating on non-fast days.",
+    clinical: "Human trials show weight loss, improved insulin sensitivity, reduced inflammation. Comparable to daily CR for metabolic benefits, may be easier to sustain. Lifespan effects not studied (would require decades).",
+    citations: [
+      "Longo & Mattson (2014) Cell Metab - Mechanisms",
+      "de Cabo & Mattson (2019) NEJM - Review",
+      "Harvie et al. (2011) Int J Obes - 5:2 diet",
+      "Trepanowski et al. (2017) JAMA - ADF vs daily CR",
+      "Anton et al. (2018) Obesity - Meta-analysis"
+    ]
+  },
+  {
+    name: "Mediterranean Diet",
+    category: "dietary",
+    evidence: "high",
+    effect: "+3-4 years",
+    model: "Large human cohort studies, RCTs",
+    description: "Dietary pattern emphasizing vegetables, fruits, whole grains, legumes, olive oil, fish. Strongest dietary evidence for longevity and healthspan. Reduces cardiovascular disease, cancer, dementia.",
+    safety: "Extremely safe, recommended by guidelines",
+    mechanism: "Anti-inflammatory (high polyphenols, omega-3s), improves lipid profiles, antioxidant effects, supports healthy gut microbiome, reduces oxidative stress. Combination of beneficial components rather than single mechanism.",
+    dosing: "Not a strict 'dose' but pattern: high vegetables/fruits/whole grains/legumes, moderate fish/poultry, low red meat, olive oil as primary fat, moderate wine optional. PREDIMED trial provides specific guidance.",
+    sideEffects: "Essentially none. May be more expensive than typical Western diet. Requires food preparation skills and access to fresh ingredients. Very high adherence safety.",
+    clinical: "PREDIMED trial: Mediterranean diet + olive oil/nuts reduced cardiovascular events by 30%. Multiple cohort studies show increased lifespan (3-4 years), reduced dementia, cancer. Widely recommended.",
+    citations: [
+      "Estruch et al. (2018) NEJM - PREDIMED trial",
+      "Trichopoulou et al. (2014) BMJ - Mortality meta-analysis",
+      "Sofi et al. (2010) Am J Clin Nutr - Meta-analysis",
+      "Samieri et al. (2018) Neurology - Cognitive benefits",
+      "Kastorini et al. (2011) J Am Coll Cardiol - Cardiovascular"
+    ]
+  },
+  {
+    name: "Blood Pressure Control",
+    category: "lifestyle",
+    evidence: "high",
+    effect: "Substantial mortality reduction",
+    model: "Massive human RCT data",
+    description: "Maintaining blood pressure <130/80 reduces cardiovascular events, stroke, and all-cause mortality. One of the strongest interventions for healthspan and lifespan.",
+    safety: "Safe with appropriate monitoring",
+    mechanism: "Reduces mechanical stress on vasculature, prevents atherosclerosis progression, reduces heart workload, prevents end-organ damage (kidneys, brain, heart, eyes). Effects are dose-dependent.",
+    dosing: "Target: <130/80 mmHg for most adults, <120/80 for high-risk. Achieved via lifestyle (DASH diet, exercise, weight loss, sodium reduction) and/or medication (ACE-I, ARBs, CCBs, diuretics, etc.).",
+    sideEffects: "Lifestyle modifications very safe. Medications: dizziness, fatigue, electrolyte abnormalities (varies by drug class). Overly aggressive lowering may cause hypotension. Individualize targets.",
+    clinical: "SPRINT trial: intensive BP control (<120 systolic) reduced cardiovascular events 25%, all-cause mortality 27% vs standard (<140). Benefits across age groups including elderly. Very strong evidence.",
+    citations: [
+      "SPRINT Research Group (2015) NEJM - Intensive BP control",
+      "Ettehad et al. (2016) Lancet - Meta-analysis 123 trials",
+      "Whelton et al. (2018) J Am Coll Cardiol - ACC/AHA guidelines",
+      "Williamson et al. (2016) JAMA - SPRINT cognitive outcomes",
+      "Law et al. (2009) BMJ - Blood pressure lowering efficacy"
+    ]
+  },
+  {
+    name: "Smoking Cessation",
+    category: "lifestyle",
+    evidence: "high",
+    effect: "+10 years (if quit by age 40)",
+    model: "Massive human cohort data",
+    description: "Quitting smoking is the single most impactful health intervention for smokers. Benefits begin immediately and continue for decades. Reduces risk of nearly all major diseases.",
+    safety: "Extremely beneficial, withdrawal manageable",
+    mechanism: "Eliminates exposure to >7000 chemicals including 70 carcinogens. Reduces inflammation, oxidative stress, thrombosis risk, endothelial dysfunction. Allows repair of damaged tissues over time.",
+    dosing: "Complete cessation. Varenicline, bupropion, NRT (patches, gum, lozenges) approximately double quit rates. Combination therapy most effective. Behavioral support essential.",
+    sideEffects: "Withdrawal: irritability, anxiety, cravings, weight gain (usually 5-10 lbs). Pharmacotherapy side effects vary (varenicline: nausea, vivid dreams; bupropion: dry mouth, insomnia). All temporary and manageable.",
+    clinical: "Quitting by age 40 recovers ~90% of lost lifespan. Even quitting at 60 adds 3-4 years. Cardiovascular risk drops 50% within 1 year. Lung cancer risk decreases significantly after 10 years. No age at which benefits don't apply.",
+    citations: [
+      "Jha et al. (2013) NEJM - Million Women Study",
+      "Doll et al. (2004) BMJ - British Doctors Study 50-year follow-up",
+      "Pirie et al. (2013) Lancet - Age-specific benefits",
+      "US Surgeon General (2020) - Smoking cessation report",
+      "Anthenelli et al. (2016) Lancet - Varenicline cardiovascular safety"
+    ]
+  },
+  {
+    name: "Social Connections",
+    category: "lifestyle",
+    evidence: "high",
+    effect: "+7-15 years",
+    model: "Meta-analyses of human cohorts",
+    description: "Strong social relationships associated with 50% increased survival odds. Effect comparable to quitting smoking. Loneliness and social isolation significantly increase mortality risk.",
+    safety: "No adverse effects, beneficial",
+    mechanism: "Reduces chronic stress and cortisol, improves immune function, encourages healthy behaviors, provides emotional support, sense of purpose. Chronic loneliness induces inflammatory state similar to physical stress.",
+    dosing: "Quality matters more than quantity. Focus on meaningful relationships. Regular interaction with friends/family, community involvement, volunteering. Even phone contact shows benefits.",
+    sideEffects: "None. Toxic relationships may have negative effects; quality over quantity. Introverts may need less frequent interaction but still benefit from strong connections.",
+    clinical: "Meta-analysis (308,849 participants): strong relationships increase survival odds 50%. Effect size comparable to stopping smoking, larger than obesity, physical inactivity, or alcohol. Emerging as major public health issue.",
+    citations: [
+      "Holt-Lunstad et al. (2010) PLoS Med - Meta-analysis 148 studies",
+      "Holt-Lunstad et al. (2015) Perspect Psychol Sci - Loneliness review",
+      "Berkman & Glass (2000) Soc Sci Med - Mechanisms",
+      "Yang et al. (2016) PNAS - Social isolation inflammation",
+      "Cacioppo & Hawkley (2003) Psychol Aging - Loneliness health effects"
+    ]
+  },
+  {
+    name: "Sleep Optimization",
+    category: "lifestyle",
+    evidence: "high",
+    effect: "7-9h optimal, U-shaped curve",
+    model: "Large human cohort studies",
+    description: "Both insufficient (<6h) and excessive (>9h) sleep associated with increased mortality. 7-8 hours optimal for most adults. Sleep quality also important.",
+    safety: "Improving sleep extremely beneficial",
+    mechanism: "Sleep essential for cellular repair, waste clearance (glymphatic system), immune function, metabolic health, cardiovascular recovery, memory consolidation. Disruption increases inflammation, cortisol, metabolic dysregulation.",
+    dosing: "7-9 hours for adults (individual variation). Maintain consistent schedule, dark/cool bedroom, limit blue light before bed, avoid caffeine after 2pm, regular exercise (but not late evening).",
+    sideEffects: "None from adequate sleep. Sleep deprivation: cognitive impairment, mood changes, increased appetite, immune dysfunction, cardiovascular stress. Long sleep may indicate underlying health issues.",
+    clinical: "Meta-analyses show U-shaped mortality curve: 7-8h lowest risk. Short sleep (<6h) increases cardiovascular disease, diabetes, obesity, dementia. Long sleep (>9h) association may be confounded by illness.",
+    citations: [
+      "Cappuccio et al. (2010) Sleep - Meta-analysis 1.3M participants",
+      "Irwin (2015) Nat Rev Immunol - Sleep and immunity",
+      "Jessen et al. (2015) Nat Neurosci - Glymphatic clearance",
+      "Medic et al. (2017) Nat Sci Sleep - Short sleep consequences",
+      "Hirshkowitz et al. (2015) Sleep Health - Recommendations"
+    ]
+  },
+  {
+    name: "Strength Training",
+    category: "lifestyle",
+    evidence: "high",
+    effect: "15-20% mortality reduction",
+    model: "Large human cohort studies",
+    description: "Resistance exercise reduces all-cause mortality independent of aerobic exercise. Preserves muscle mass (sarcopenia prevention), bone density, metabolic health. Particularly important with aging.",
+    safety: "Very safe with proper form",
+    mechanism: "Maintains/increases muscle mass (combats sarcopenia), improves insulin sensitivity, increases bone density (prevents osteoporosis), releases myokines with systemic benefits, improves physical function and independence.",
+    dosing: "WHO: 2+ days/week, all major muscle groups. Progressive overload principle. 8-12 reps, 2-3 sets per exercise. Can use weights, resistance bands, bodyweight. Intensity matters more than modality.",
+    sideEffects: "Injury risk with improper form or excessive load. Start conservatively, focus on technique. Delayed-onset muscle soreness (DOMS) normal initially. Advise professional instruction for beginners, especially elderly.",
+    clinical: "Meta-analyses: resistance training associated with 15-20% reduction in all-cause mortality, independent of aerobic activity. Prevents sarcopenia (major predictor of disability/mortality in elderly). Improves cognitive function.",
+    citations: [
+      "Momma et al. (2022) Br J Sports Med - Mortality meta-analysis",
+      "Westcott (2012) Curr Sports Med Rep - Health benefits",
+      "Liu et al. (2019) Med Sci Sports Exerc - Combined exercise mortality",
+      "Peterson et al. (2011) Am J Med - Sarcopenia prevention",
+      "Fragala et al. (2019) J Strength Cond Res - Resistance training elderly"
+    ]
+  },
+  {
+    name: "Sauna Bathing",
+    category: "lifestyle",
+    evidence: "moderate",
+    effect: "40% mortality reduction (frequent use)",
+    model: "Finnish cohort studies",
+    description: "Regular sauna use (4-7x/week) associated with dramatic reduction in cardiovascular and all-cause mortality in Finnish population. Mechanism unclear but compelling epidemiological data.",
+    safety: "Generally safe for healthy individuals",
+    mechanism: "Heat stress induces heat shock proteins, improves endothelial function, reduces blood pressure, increases heart rate variably (cardiovascular conditioning), promotes sweating (detoxification unclear), may improve autonomic function.",
+    dosing: "Finnish data: optimal benefits at 4-7 sessions/week, >19 minutes per session, temperature >79°C (174°F). Benefits dose-dependent. Both frequency and duration matter.",
+    sideEffects: "Dehydration (drink water), orthostatic hypotension (stand up slowly), heat exhaustion if overdone. Contraindicated in unstable cardiovascular disease, recent MI, pregnancy. Alcohol + sauna dangerous.",
+    clinical: "Laukkanen cohort (2,315 Finnish men, 20-year follow-up): 4-7x/week sauna use associated with 40% reduction in all-cause mortality, 48% reduction in cardiovascular mortality vs 1x/week. Needs replication in other populations.",
+    citations: [
+      "Laukkanen et al. (2015) JAMA Intern Med - Mortality study",
+      "Laukkanen et al. (2018) Am J Hypertens - Blood pressure",
+      "Zaccardi et al. (2017) Exp Physiol - Cardiovascular effects",
+      "Kunutsor et al. (2018) Mayo Clin Proc - Mechanisms review",
+      "Hussain & Cohen (2018) Am J Med - Clinical applications"
+    ]
+  },
+  {
+    name: "Colchicine (Low-Dose)",
+    category: "pharmacological",
+    evidence: "moderate",
+    effect: "Reduces cardiovascular events",
+    model: "Human RCTs in cardiovascular disease",
+    description: "Ancient anti-inflammatory drug (gout treatment) shows cardiovascular benefits in secondary prevention. May target inflammaging. Low-dose regimen reduces adverse effects.",
+    safety: "Requires monitoring, GI effects common",
+    mechanism: "Inhibits microtubule polymerization, reduces neutrophil activity, inhibits NLRP3 inflammasome. Anti-inflammatory effects may reduce atherosclerosis progression via reduction of IL-1β, IL-6.",
+    dosing: "Cardiovascular: 0.5 mg/day. Gout: 0.6 mg 1-2x daily. Lower doses reduce side effects while maintaining anti-inflammatory effects. Adjust for renal function.",
+    sideEffects: "GI effects common (diarrhea, nausea, abdominal pain) at higher doses. Myopathy and neuropathy rare but serious. Drug interactions (CYP3A4, P-glycoprotein inhibitors). Requires dose adjustment in kidney/liver disease.",
+    clinical: "COLCOT trial (2019): 0.5 mg/day reduced cardiovascular events 23% in post-MI patients. LoDoCo2 (2020): similar benefits in chronic coronary disease. Emerging as anti-inflammatory strategy for cardiovascular disease.",
+    citations: [
+      "Tardif et al. (2019) NEJM - COLCOT trial",
+      "Nidorf et al. (2020) NEJM - LoDoCo2 trial",
+      "Ridker (2019) Circulation - Inflammasome inhibition",
+      "Leung et al. (2015) Semin Arthritis Rheum - Cardiovascular effects",
+      "Imazio et al. (2020) Eur Heart J - Pericarditis prevention"
+    ]
   }
+];
+
+// Render intervention cards
+function renderInterventions(filteredInterventions = interventions) {
+  const grid = document.getElementById('interventionsGrid');
+  grid.innerHTML = filteredInterventions.map(int => `
+    <div class="intervention-card" onclick="showDetails('${int.name}')" data-evidence="${int.evidence}" data-category="${int.category}">
+      <div class="intervention-header">
+        <div>
+          <div class="intervention-name">${int.name}</div>
+          <div class="intervention-category">${int.category}</div>
+        </div>
+        <span class="evidence-badge evidence-${int.evidence}">${int.evidence}</span>
+      </div>
+      <div class="intervention-effect">${int.effect}</div>
+      <div class="intervention-model">${int.model}</div>
+      <p class="intervention-description">${int.description}</p>
+      <div class="intervention-footer">
+        <span class="safety-indicator">Safety: ${int.safety}</span>
+        <button class="view-details-btn" onclick="event.stopPropagation(); showDetails('${int.name}')">Details →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Filter functionality
+function filterInterventions() {
+  const evidenceFilter = document.getElementById('filterEvidence').value;
+  const categoryFilter = document.getElementById('filterCategory').value;
+  const searchFilter = document.getElementById('filterSearch').value.toLowerCase();
+  
+  const filtered = interventions.filter(int => {
+    const matchesEvidence = evidenceFilter === 'all' || int.evidence === evidenceFilter;
+    const matchesCategory = categoryFilter === 'all' || int.category === categoryFilter;
+    const matchesSearch = searchFilter === '' || 
+      int.name.toLowerCase().includes(searchFilter) || 
+      int.description.toLowerCase().includes(searchFilter);
+    
+    return matchesEvidence && matchesCategory && matchesSearch;
+  });
+  
+  renderInterventions(filtered);
+}
+
+// Show detail modal
+function showDetails(name) {
+  const intervention = interventions.find(i => i.name === name);
+  if (!intervention) return;
+  
+  document.getElementById('modalTitle').textContent = intervention.name;
+  document.getElementById('modalMeta').innerHTML = `
+    <span class="evidence-badge evidence-${intervention.evidence}">${intervention.evidence}</span>
+    <span style="font-family: var(--mono); font-size: 0.75rem; color: var(--text-tertiary); margin-left: 1rem; text-transform: uppercase;">${intervention.category}</span>
+  `;
+  
+  document.getElementById('modalBody').innerHTML = `
+    <div class="detail-section">
+      <h4>Effect Size</h4>
+      <p><strong>${intervention.effect}</strong> — ${intervention.model}</p>
+    </div>
+    
+    <div class="detail-section">
+      <h4>Mechanism of Action</h4>
+      <p>${intervention.mechanism}</p>
+    </div>
+    
+    <div class="detail-section">
+      <h4>Dosing & Protocol</h4>
+      <p>${intervention.dosing}</p>
+    </div>
+    
+    <div class="detail-section">
+      <h4>Safety Profile</h4>
+      <p><strong>Summary:</strong> ${intervention.safety}</p>
+      <p style="margin-top: 0.5rem;">${intervention.sideEffects}</p>
+    </div>
+    
+    <div class="detail-section">
+      <h4>Clinical Status</h4>
+      <p>${intervention.clinical}</p>
+    </div>
+    
+    <div class="detail-section">
+      <h4>Primary Citations</h4>
+      <ul class="citations-list">
+        ${intervention.citations.map(cite => `<li>${cite}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+  
+  document.getElementById('detailModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('detailModal').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Event listeners
+document.getElementById('filterEvidence').addEventListener('change', filterInterventions);
+document.getElementById('filterCategory').addEventListener('change', filterInterventions);
+document.getElementById('filterSearch').addEventListener('input', filterInterventions);
+
+// Close modal on background click
+document.getElementById('detailModal').addEventListener('click', (e) => {
+  if (e.target.id === 'detailModal') closeModal();
 });
 
-// Tab switching
-function switchTab(name, event) {
-  // Hide all tabs
-  document.querySelectorAll('.tab-content').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  
-  // Remove active from all buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  
-  // Show selected tab
-  document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
-}
+// Close modal on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Initial render
+renderInterventions();
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const offsetTop = target.offsetTop - 80;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
     }
   });
 });
