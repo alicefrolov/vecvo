@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VECVO — Longevity Science Research Hub</title>
+<title>VECVO â€” Longevity Science Research Hub</title>
 <meta name="description" content="Systematic documentation of aging biology, lifespan-extending interventions, and translational research. Evidence-based longevity science compilation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
   --accent-dim: rgba(80,120,180,0.15);
   --white: #f5f7fa;
   --text: #c8d0e0;
-  --muted: #7a8599;
+  --muted: #96a2b8;
   --warning: #d08050;
   --success: #50c878;
 }
@@ -191,6 +191,10 @@ section {
   position: relative;
 }
 
+.bg-deep {
+  background: var(--deep);
+}
+
 .section-header {
   margin-bottom: 3.5rem;
 }
@@ -266,119 +270,56 @@ section {
   letter-spacing: 0.05em;
 }
 
-.card-body {
-  font-size: 0.95rem;
-  line-height: 1.7;
+.card-description {
   color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1rem;
 }
 
-/* Badge */
-.badge {
-  display: inline-block;
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
-  letter-spacing: 0.08em;
   padding: 0.35rem 0.75rem;
-  border-radius: 3px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(80,120,180,0.25);
   text-transform: uppercase;
-  font-weight: 400;
-}
-
-.badge-high {
-  background: rgba(80,200,120,0.15);
-  color: var(--success);
-  border: 1px solid rgba(80,200,120,0.3);
-}
-
-.badge-medium {
-  background: rgba(80,120,208,0.15);
-  color: var(--accent);
-  border: 1px solid rgba(80,120,208,0.3);
-}
-
-.badge-low {
-  background: rgba(208,128,80,0.15);
-  color: var(--warning);
-  border: 1px solid rgba(208,128,80,0.3);
-}
-
-.badge-prelim {
-  background: rgba(122,133,153,0.15);
-  color: var(--muted);
-  border: 1px solid rgba(122,133,153,0.3);
-}
-
-/* Evidence Table */
-.evidence-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  background: var(--panel);
-}
-
-.evidence-table thead {
-  background: rgba(80,120,208,0.08);
-}
-
-.evidence-table th {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-
-.evidence-table td {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(80,120,180,0.06);
-  vertical-align: top;
-}
-
-.evidence-table tr:hover {
-  background: rgba(80,120,208,0.03);
-}
-
-.evidence-table code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8em;
-  background: rgba(80,120,208,0.1);
-  padding: 0.15rem 0.4rem;
-  border-radius: 2px;
-  color: var(--accent);
+  letter-spacing: 0.05em;
 }
 
 /* Tabs */
 .tabs {
   display: flex;
-  gap: 0;
+  gap: 1rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 2.5rem;
   overflow-x: auto;
 }
 
 .tab-btn {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   background: none;
   border: none;
   color: var(--muted);
   cursor: pointer;
-  transition: all 0.25s;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
+  transition: all 0.25s;
   white-space: nowrap;
 }
 
 .tab-btn:hover { color: var(--accent); }
 .tab-btn.active {
-  color: var(--accent);
+  color: var(--white);
   border-bottom-color: var(--accent);
 }
 
@@ -388,73 +329,167 @@ section {
 
 .tab-content.active {
   display: block;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Table */
+.intervention-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+
+.intervention-table thead {
+  background: rgba(80,120,208,0.06);
+}
+
+.intervention-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.intervention-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.intervention-table tbody tr:hover {
+  background: rgba(80,120,208,0.03);
+}
+
+.tier-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.tier-a { background: rgba(80,200,120,0.15); color: #50c878; border: 1px solid rgba(80,200,120,0.3); }
+.tier-b { background: rgba(80,120,208,0.15); color: #5080d0; border: 1px solid rgba(80,120,208,0.3); }
+.tier-c { background: rgba(208,128,80,0.15); color: #d08050; border: 1px solid rgba(208,128,80,0.3); }
+.tier-d { background: rgba(150,150,150,0.15); color: #969696; border: 1px solid rgba(150,150,150,0.3); }
+
+.evidence-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: 1rem 1.5rem;
+  background: rgba(80,120,208,0.04);
+  border-left: 3px solid var(--accent);
+  margin: 1.5rem 0;
+}
+
+.legend {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.legend h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
 }
 
 /* Timeline */
 .timeline {
   position: relative;
   padding-left: 3rem;
+  margin-top: 3rem;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 0.5rem;
+  left: 0;
   top: 0;
   bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent) 0%, transparent 100%);
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: -2.5rem;
-  top: 0.4rem;
-  width: 9px;
-  height: 9px;
+  left: -3.45rem;
+  top: 0.5rem;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--accent);
-  border: 2px solid var(--void);
+  box-shadow: 0 0 0 4px rgba(80,120,208,0.15);
 }
 
 .timeline-year {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
 }
 
 .timeline-item h4 {
+  color: var(--white);
   margin-bottom: 0.75rem;
-  font-size: 1.25rem;
 }
 
 .timeline-item p {
-  color: var(--muted);
+  color: var(--text);
   line-height: 1.7;
-  max-width: 680px;
+  margin-bottom: 0.5rem;
 }
 
 .timeline-citation {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--muted);
-  margin-top: 0.5rem;
-  display: block;
+  font-style: italic;
 }
 
-/* Publication Card */
+/* Publications */
 .pub-card {
   background: var(--panel);
   border: 1px solid var(--border);
-  padding: 1.75rem;
+  padding: 2rem;
   margin-bottom: 1.5rem;
   transition: all 0.3s;
 }
@@ -465,35 +500,43 @@ section {
 }
 
 .pub-title {
-  font-size: 1.3rem;
-  font-weight: 500;
+  font-size: 1.35rem;
   color: var(--white);
   margin-bottom: 0.75rem;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .pub-authors {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--muted);
+  font-size: 0.95rem;
+  color: var(--text);
   margin-bottom: 0.5rem;
 }
 
 .pub-meta {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--muted);
-  margin-bottom: 1rem;
   display: flex;
   gap: 1.5rem;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
 }
 
+.pub-meta span::before {
+  content: 'â€¢';
+  margin-right: 0.5rem;
+  color: var(--accent);
+}
+
+.pub-meta span:first-child::before {
+  content: '';
+  margin-right: 0;
+}
+
 .pub-abstract {
-  font-size: 0.95rem;
-  line-height: 1.7;
   color: var(--text);
-  margin-bottom: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
 }
 
 .pub-links {
@@ -504,12 +547,13 @@ section {
 
 .pub-link {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
+  font-size: 0.7rem;
   color: var(--accent);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border: 1px solid var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   transition: all 0.25s;
 }
 
@@ -521,15 +565,15 @@ section {
 /* Footer */
 footer {
   background: var(--deep);
+  padding: 4rem 3rem 2rem;
   border-top: 1px solid var(--border);
-  padding: 3rem;
 }
 
 .footer-content {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 3rem;
 }
 
@@ -539,69 +583,133 @@ footer {
   color: var(--white);
 }
 
-.footer-section p,
-.footer-section li {
+.footer-section p {
   font-size: 0.9rem;
-  color: var(--muted);
   line-height: 1.7;
+  color: var(--muted);
 }
 
 .footer-section ul {
   list-style: none;
 }
 
-.footer-section a {
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul a {
+  font-size: 0.9rem;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.25s;
 }
 
-.footer-section a:hover {
+.footer-section ul a:hover {
   color: var(--accent);
 }
 
 .footer-bottom {
   max-width: 1280px;
-  margin: 2rem auto 0;
+  margin: 0 auto;
   padding-top: 2rem;
-  border-top: 1px solid rgba(80,120,180,0.08);
+  border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--muted);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-
-/* Utilities */
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }
 
 /* Responsive */
 @media (max-width: 768px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-  section { padding: 4rem 1.5rem; }
-  .hero { padding: 6rem 1.5rem 3rem; }
-  .footer-content { grid-template-columns: 1fr; }
-  .timeline { padding-left: 2rem; }
-  .timeline-item::before { left: -1.75rem; }
+  nav {
+    padding: 1rem 1.5rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .nav-links a {
+    font-size: 0.7rem;
+  }
+  
+  .hero {
+    padding: 6rem 1.5rem 3rem;
+  }
+  
+  section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .hero-meta {
+    gap: 1.5rem;
+  }
+  
+  .tabs {
+    gap: 0.5rem;
+  }
+  
+  .tab-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.7rem;
+  }
+  
+  .timeline {
+    padding-left: 2rem;
+  }
+  
+  .timeline-item::before {
+    left: -2.45rem;
+  }
+  
+  .intervention-table {
+    font-size: 0.85rem;
+  }
+  
+  .intervention-table th,
+  .intervention-table td {
+    padding: 0.75rem;
+  }
+  
+  footer {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+  
+  .footer-content {
+    gap: 2rem;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-/* Dark mode optimization */
-@media (prefers-color-scheme: light) {
-  :root {
-    --void: #ffffff;
-    --deep: #f8f9fa;
-    --panel: #ffffff;
-    --border: rgba(80,120,180,0.15);
-    --accent: #4070c0;
-    --white: #1a1a24;
-    --text: #2a2a36;
-    --muted: #5a6070;
-  }
+/* Cite box */
+.cite-box {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  background: rgba(80,120,208,0.04);
+}
+
+.cite-box h4 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--white);
+}
+
+.cite-box code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text);
+  display: block;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 </style>
 </head>
@@ -622,24 +730,30 @@ footer {
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">Longevity Science Research Hub</div>
-    <h1>Systematic documentation of aging biology and lifespan-extending interventions</h1>
+    <div class="hero-tag">Research Compilation Project</div>
+    <h1>Evidence-Based Longevity Science Documentation</h1>
     <p class="hero-subtitle">
-      Evidence-based compilation of research on the biological mechanisms of aging, 
-      therapeutic interventions, and translational barriers between model organisms and humans.
+      Systematic compilation of peer-reviewed research on the biology of aging, 
+      hallmarks of aging, and interventions with measurable effects on lifespan 
+      and healthspan across model organisms and humans.
     </p>
+    
     <div class="hero-meta">
       <div class="meta-item">
-        <span class="meta-label">Evidence Basis</span>
-        <span class="meta-value">Peer-reviewed literature</span>
+        <div class="meta-label">Focus Areas</div>
+        <div class="meta-value">12 Hallmarks of Aging</div>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Scope</span>
-        <span class="meta-value">12 hallmarks · 40+ interventions</span>
+        <div class="meta-label">Coverage</div>
+        <div class="meta-value">150+ Interventions</div>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Maintained By</span>
-        <span class="meta-value">Alice Frolov</span>
+        <div class="meta-label">Last Updated</div>
+        <div class="meta-value">March 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Maintained By</div>
+        <div class="meta-value">Alice Frolov</div>
       </div>
     </div>
   </div>
@@ -649,497 +763,412 @@ footer {
 <section id="hallmarks">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">01 — Foundations</div>
+      <div class="section-tag">01 â€” Biological Framework</div>
       <h2>The Twelve Hallmarks of Aging</h2>
       <p class="section-intro">
-        The hallmarks framework, established by López-Otín et al. (2013, updated 2023), 
-        organizes aging research into twelve mechanistic categories. Each hallmark represents 
-        a distinct but interconnected pathway of age-related deterioration.
+        Unified framework describing the primary molecular and cellular processes 
+        that drive aging across species. Updated 2023 revision expands original 
+        nine hallmarks to twelve based on accumulated evidence.
       </p>
     </div>
 
     <div class="grid grid-3">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Genomic Instability</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Genomic Instability</h3>
+          <span class="tag">Primary</span>
         </div>
-        <p class="card-body">
-          Accumulation of DNA damage from endogenous and exogenous sources. 
-          Double-strand breaks, chromosomal aberrations, and telomere attrition 
-          contribute to cellular senescence and dysfunction.
+        <p class="card-description">
+          Accumulation of DNA damage from exogenous and endogenous sources. 
+          Includes nuclear and mitochondrial mutations, telomere attrition, 
+          and defective DNA repair mechanisms.
         </p>
-        <p class="card-meta mt-1">Key interventions: DNA repair enhancement, genoprotective compounds</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Telomere Attrition</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Telomere Attrition</h3>
+          <span class="tag">Primary</span>
         </div>
-        <p class="card-body">
-          Progressive shortening of telomeres with each cell division. 
-          Critical shortening triggers replicative senescence. Telomerase 
-          activity varies across tissue types and correlates with regenerative capacity.
+        <p class="card-description">
+          Progressive shortening of chromosome protective caps with each cell division. 
+          Triggers replicative senescence when reaching critical length (Hayflick limit).
         </p>
-        <p class="card-meta mt-1">Key interventions: Telomerase activation (experimental), lifestyle factors</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Epigenetic Alterations</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Epigenetic Alterations</h3>
+          <span class="tag">Primary</span>
         </div>
-        <p class="card-body">
+        <p class="card-description">
           Age-related changes in DNA methylation patterns, histone modifications, 
-          and chromatin remodeling. Epigenetic clocks quantify biological age 
-          with high accuracy across tissues.
+          and chromatin remodeling. Epigenetic clocks measure biological vs chronological age.
         </p>
-        <p class="card-meta mt-1">Key interventions: Partial reprogramming, epigenetic modulation</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Loss of Proteostasis</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Loss of Proteostasis</h3>
+          <span class="tag">Primary</span>
         </div>
-        <p class="card-body">
-          Declining efficiency of protein synthesis, folding, and degradation systems. 
-          Accumulation of misfolded proteins and reduced autophagy contribute to 
-          neurodegenerative diseases and functional decline.
+        <p class="card-description">
+          Declining protein quality control: impaired chaperone function, 
+          proteasomal degradation, and autophagy. Results in toxic protein aggregation.
         </p>
-        <p class="card-meta mt-1">Key interventions: Autophagy induction, proteasome enhancement</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Disabled Macroautophagy</h4>
-          <span class="badge badge-medium">Moderate Evidence</span>
+          <h3 class="card-title">Disabled Macroautophagy</h3>
+          <span class="tag">Primary</span>
         </div>
-        <p class="card-body">
-          Age-related reduction in autophagy flux impairs cellular waste clearance. 
-          Mitophagy decline leads to accumulation of dysfunctional mitochondria. 
-          Autophagy stimulation extends lifespan in model organisms.
+        <p class="card-description">
+          Reduced cellular recycling capacity. Impaired clearance of damaged organelles 
+          and protein aggregates via autophagosome formation.
         </p>
-        <p class="card-meta mt-1">Key interventions: mTOR inhibition, caloric restriction, spermidine</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Deregulated Nutrient Sensing</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Deregulated Nutrient Sensing</h3>
+          <span class="tag">Antagonistic</span>
         </div>
-        <p class="card-body">
-          Dysregulation of insulin/IGF-1, mTOR, AMPK, and sirtuin pathways. 
-          Reduced metabolic flexibility and impaired response to nutrient availability. 
-          Strong animal evidence for longevity benefits of pathway modulation.
+        <p class="card-description">
+          Altered function of mTOR, AMPK, sirtuins, and insulin/IGF-1 pathways. 
+          Caloric restriction operates primarily through these mechanisms.
         </p>
-        <p class="card-meta mt-1">Key interventions: Metformin, rapamycin, NAD+ precursors</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Mitochondrial Dysfunction</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Mitochondrial Dysfunction</h3>
+          <span class="tag">Antagonistic</span>
         </div>
-        <p class="card-body">
-          Declining mitochondrial efficiency, increased ROS production, and 
-          accumulation of mtDNA mutations. Impaired mitochondrial biogenesis 
-          and reduced oxidative capacity with age.
+        <p class="card-description">
+          Declining ATP production, increased ROS generation, and accumulation 
+          of mitochondrial DNA mutations. Impaired mitophagy compounds damage.
         </p>
-        <p class="card-meta mt-1">Key interventions: Exercise, mitochondrial-targeted antioxidants, NAD+ boost</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Cellular Senescence</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Cellular Senescence</h3>
+          <span class="tag">Antagonistic</span>
         </div>
-        <p class="card-body">
-          Accumulation of senescent cells secreting pro-inflammatory factors (SASP). 
-          Senescent cells resist apoptosis and contribute to tissue dysfunction. 
-          Senolytic interventions show promise in preclinical and early clinical studies.
+        <p class="card-description">
+          Accumulation of non-dividing cells secreting inflammatory factors (SASP). 
+          Initially protective against cancer, becomes pathological with age.
         </p>
-        <p class="card-meta mt-1">Key interventions: Senolytics (dasatinib+quercetin, fisetin)</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Stem Cell Exhaustion</h4>
-          <span class="badge badge-medium">Moderate Evidence</span>
+          <h3 class="card-title">Stem Cell Exhaustion</h3>
+          <span class="tag">Integrative</span>
         </div>
-        <p class="card-body">
-          Age-related decline in stem cell number and regenerative capacity. 
-          Reduced tissue repair and homeostasis. Niche alterations impair 
-          stem cell function independent of intrinsic aging.
+        <p class="card-description">
+          Declining stem cell pools and regenerative capacity across tissues. 
+          Particularly evident in hematopoietic, intestinal, and muscle stem cells.
         </p>
-        <p class="card-meta mt-1">Key interventions: Young blood factors, rejuvenation protocols (experimental)</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Altered Intercellular Communication</h4>
-          <span class="badge badge-medium">Moderate Evidence</span>
+          <h3 class="card-title">Altered Intercellular Communication</h3>
+          <span class="tag">Integrative</span>
         </div>
-        <p class="card-body">
-          Chronic inflammation (inflammaging), impaired neuroendocrine signaling, 
-          and altered extracellular matrix. Systemic factors influence aging 
-          across tissues via paracrine and endocrine mechanisms.
+        <p class="card-description">
+          Dysregulated signaling between cells via hormones, cytokines, and exosomes. 
+          Includes neurohormonal changes and immunosenescence.
         </p>
-        <p class="card-meta mt-1">Key interventions: Anti-inflammatory compounds, parabiosis (experimental)</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Chronic Inflammation</h4>
-          <span class="badge badge-high">High Evidence</span>
+          <h3 class="card-title">Chronic Inflammation</h3>
+          <span class="tag">Integrative</span>
         </div>
-        <p class="card-body">
-          Low-grade systemic inflammation driven by SASP, immunosenescence, 
-          and gut dysbiosis. Elevated IL-6, TNF-α, and CRP correlate with 
-          age-related disease and mortality.
+        <p class="card-description">
+          Persistent low-grade inflammation (inflammaging) without acute infection. 
+          Driven by senescent cells, damaged mitochondria, and microbiome dysbiosis.
         </p>
-        <p class="card-meta mt-1">Key interventions: Lifestyle modification, senolytic therapy, rapamycin</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Dysbiosis</h4>
-          <span class="badge badge-medium">Moderate Evidence</span>
+          <h3 class="card-title">Dysbiosis</h3>
+          <span class="tag">Integrative</span>
         </div>
-        <p class="card-body">
-          Age-related changes in gut microbiome composition and diversity. 
-          Reduced beneficial bacteria, increased pathobionts, and compromised 
-          gut barrier integrity. Links to systemic inflammation unclear.
+        <p class="card-description">
+          Age-related shifts in gut microbiome composition. Reduced diversity, 
+          increased pathogenic taxa, compromised intestinal barrier integrity.
         </p>
-        <p class="card-meta mt-1">Key interventions: Probiotics, prebiotics, dietary fiber (evidence mixed)</p>
+        <div class="card-meta">LÃ³pez-OtÃ­n et al. Cell 2023</div>
       </div>
-    </div>
-
-    <div class="mt-2">
-      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.7; max-width: 780px;">
-        <strong>Citation:</strong> López-Otín C, Blasco MA, Partridge L, Serrano M, Kroemer G. 
-        Hallmarks of aging: An expanding universe. Cell. 2023;186(2):243-278. 
-        <code>doi:10.1016/j.cell.2022.11.001</code>
-      </p>
     </div>
   </div>
 </section>
 
 <!-- Interventions -->
-<section id="interventions" style="background: var(--deep);">
+<section id="interventions" class="bg-deep">
   <div class="container">
     <div class="section-header">
-      <div class="section-tag">02 — Therapeutics</div>
-      <h2>Lifespan-Extending Interventions</h2>
+      <div class="section-tag">02 â€” Interventions Database</div>
+      <h2>Longevity Interventions by Evidence Tier</h2>
       <p class="section-intro">
-        Interventions ranked by strength of evidence across model organisms and humans. 
-        Translation from short-lived species to humans remains a critical uncertainty. 
-        Most interventions lack adequate long-term safety data.
+        Compilation of pharmacological, dietary, and lifestyle interventions 
+        with documented effects on lifespan or healthspan. Evidence quality 
+        ranges from human RCTs to preliminary animal studies.
       </p>
     </div>
 
+    <div class="legend">
+      <h4>Evidence Classification</h4>
+      <div class="legend-item">
+        <span class="tier-badge tier-a">Tier A</span>
+        <span>Multiple human RCTs or large cohort studies (n>1,000) with consistent results</span>
+      </div>
+      <div class="legend-item">
+        <span class="tier-badge tier-b">Tier B</span>
+        <span>Limited human trials or robust animal model data across multiple species</span>
+      </div>
+      <div class="legend-item">
+        <span class="tier-badge tier-c">Tier C</span>
+        <span>Preliminary animal models only (single species or inconsistent replication)</span>
+      </div>
+      <div class="legend-item">
+        <span class="tier-badge tier-d">Tier D</span>
+        <span>Theoretical mechanisms or in vitro studies only</span>
+      </div>
+    </div>
+
+    <div class="evidence-note">
+      <strong>Translation Note:</strong> Effect sizes listed reflect primary model organism data (typically mice or C. elegans). 
+      Human translation is uncertain and typically shows reduced or null effects. Most Tier B/C interventions have not been 
+      tested in human lifespan trials.
+    </div>
+
+    <!-- Tabs for intervention categories -->
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('pharmacological', event)">Pharmacological</button>
-      <button class="tab-btn" onclick="switchTab('cellular', event)">Cellular</button>
+      <button class="tab-btn" onclick="switchTab('dietary', event)">Dietary</button>
       <button class="tab-btn" onclick="switchTab('lifestyle', event)">Lifestyle</button>
       <button class="tab-btn" onclick="switchTab('experimental', event)">Experimental</button>
     </div>
 
-    <!-- Pharmacological -->
+    <!-- Pharmacological Tab -->
     <div id="tab-pharmacological" class="tab-content active">
-      <table class="evidence-table">
+      <table class="intervention-table">
         <thead>
           <tr>
             <th>Intervention</th>
             <th>Mechanism</th>
-            <th>Mouse Evidence</th>
-            <th>Human Evidence</th>
-            <th>Safety Profile</th>
+            <th>Effect Size</th>
+            <th>Evidence</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Rapamycin</strong></td>
-            <td>mTOR inhibition, autophagy induction</td>
-            <td><span class="badge badge-high">+15% median lifespan</span><br>
-                <small style="color: var(--muted);">Harrison 2009, ITP studies</small></td>
-            <td><span class="badge badge-prelim">Phase II trials ongoing</span><br>
-                <small style="color: var(--muted);">NCT02874924, PEARL trial</small></td>
-            <td style="color: var(--warning);">Immunosuppressant<br>Long-term safety unknown</td>
+            <td><strong>Rapamycin (mTOR inhibition)</strong></td>
+            <td>mTOR pathway suppression, enhanced autophagy</td>
+            <td>+9-14% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: immunosuppression trade-off</span></td>
+            <td><span class="tier-badge tier-b">Tier B</span></td>
           </tr>
           <tr>
             <td><strong>Metformin</strong></td>
-            <td>AMPK activation, mitochondrial complex I inhibition</td>
-            <td><span class="badge badge-medium">Mixed results</span><br>
-                <small style="color: var(--muted);">Strain-dependent effects</small></td>
-            <td><span class="badge badge-prelim">TAME trial enrolling</span><br>
-                <small style="color: var(--muted);">Diabetes data inconclusive</small></td>
-            <td style="color: var(--success);">Well-tolerated<br>Decades of clinical use</td>
+            <td>AMPK activation, insulin sensitivity</td>
+            <td>+5-6% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: TAME trial ongoing</span></td>
+            <td><span class="tier-badge tier-b">Tier B</span></td>
           </tr>
           <tr>
-            <td><strong>NAD+ Precursors</strong><br><small>(NMN, NR)</small></td>
-            <td>NAD+ restoration, sirtuin activation</td>
-            <td><span class="badge badge-medium">Modest benefits</span><br>
-                <small style="color: var(--muted);">Metabolic improvements</small></td>
-            <td><span class="badge badge-low">Biomarker changes only</span><br>
-                <small style="color: var(--muted);">No longevity data</small></td>
-            <td style="color: var(--muted);">Generally safe<br>Limited long-term data</td>
+            <td><strong>NAD+ precursors (NMN/NR)</strong></td>
+            <td>Sirtuin activation, mitochondrial function</td>
+            <td>+5-10% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: biomarker improvements only</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
           </tr>
           <tr>
-            <td><strong>Senolytics</strong><br><small>(D+Q, Fisetin)</small></td>
-            <td>Selective elimination of senescent cells</td>
-            <td><span class="badge badge-high">+36% remaining lifespan</span><br>
-                <small style="color: var(--muted);">When started late-life</small></td>
-            <td><span class="badge badge-prelim">Phase I/II completed</span><br>
-                <small style="color: var(--muted);">Safety established, efficacy TBD</small></td>
-            <td style="color: var(--warning);">Intermittent dosing<br>Safety profile emerging</td>
+            <td><strong>Senolytics (D+Q)</strong></td>
+            <td>Selective senescent cell clearance</td>
+            <td>+36% (aged mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: Phase II trials underway</span></td>
+            <td><span class="tier-badge tier-b">Tier B</span></td>
           </tr>
           <tr>
             <td><strong>Resveratrol</strong></td>
-            <td>SIRT1 activation (disputed)</td>
-            <td><span class="badge badge-low">No consistent effect</span><br>
-                <small style="color: var(--muted);">Negative in rigorous studies</small></td>
-            <td><span class="badge badge-low">No benefit demonstrated</span><br>
-                <small style="color: var(--muted);">Despite early hype</small></td>
-            <td style="color: var(--muted);">Generally safe<br>No efficacy signal</td>
+            <td>SIRT1 activation (debated)</td>
+            <td>+15-25% (worms/flies)<br><span style="font-size: 0.85em; color: var(--muted);">Mice: null. Human: no quality RCTs</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
+          </tr>
+          <tr>
+            <td><strong>Acarbose</strong></td>
+            <td>Alpha-glucosidase inhibition, glucose control</td>
+            <td>+5% (male mice)<br><span style="font-size: 0.85em; color: var(--muted);">Sex-specific effects</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Cellular -->
-    <div id="tab-cellular" class="tab-content">
-      <div class="grid grid-2">
-        <div class="card">
-          <h4 class="card-title">Partial Cellular Reprogramming</h4>
-          <div class="mb-1">
-            <span class="badge badge-medium">Preclinical</span>
-            <span class="badge badge-prelim">Human trials 2025+</span>
-          </div>
-          <p class="card-body">
-            Transient expression of Yamanaka factors (OSK, OSKM) resets epigenetic age 
-            without dedifferentiation. Proof-of-concept demonstrated in mice (Ocampo 2016, 
-            Lu 2020). Altos Labs, Turn Bio, and others developing clinical applications.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Mechanism:</strong> Epigenetic clock reversal, cellular rejuvenation<br>
-            <strong>Risk:</strong> Teratoma formation if dedifferentiation occurs<br>
-            <strong>Timeline:</strong> First human trials expected 2025-2026
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Stem Cell Therapies</h4>
-          <div class="mb-1">
-            <span class="badge badge-medium">Limited Clinical Data</span>
-          </div>
-          <p class="card-body">
-            Mesenchymal stem cells (MSCs) and induced pluripotent stem cells (iPSCs) 
-            for tissue regeneration. Safety established for MSCs; efficacy remains unclear. 
-            iPSC-derived cells show promise but face regulatory hurdles.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Mechanism:</strong> Tissue regeneration, paracrine signaling<br>
-            <strong>Evidence:</strong> Mixed results in clinical trials<br>
-            <strong>Status:</strong> MSCs approved for specific indications; longevity claims unproven
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Mitochondrial Transfer</h4>
-          <div class="mb-1">
-            <span class="badge badge-prelim">Experimental</span>
-          </div>
-          <p class="card-body">
-            Replacement of dysfunctional mitochondria with healthy mitochondria from 
-            young donors or autologous sources. Proof-of-concept in cell culture; 
-            in vivo delivery remains challenging.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Mechanism:</strong> Restoration of mitochondrial function<br>
-            <strong>Challenge:</strong> Delivery method, immune response<br>
-            <strong>Status:</strong> Early research stage
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Telomerase Gene Therapy</h4>
-          <div class="mb-1">
-            <span class="badge badge-prelim">Experimental</span>
-          </div>
-          <p class="card-body">
-            AAV-mediated TERT expression to restore telomerase activity. 
-            Demonstrated safety in mice without increased cancer incidence (Bernardes de Jesus 2012). 
-            Human applications face cancer risk concerns.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Mechanism:</strong> Telomere extension, enhanced proliferative capacity<br>
-            <strong>Risk:</strong> Theoretical cancer promotion<br>
-            <strong>Status:</strong> Preclinical only
-          </p>
-        </div>
-      </div>
+    <!-- Dietary Tab -->
+    <div id="tab-dietary" class="tab-content">
+      <table class="intervention-table">
+        <thead>
+          <tr>
+            <th>Intervention</th>
+            <th>Mechanism</th>
+            <th>Effect Size</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Caloric Restriction (20-40%)</strong></td>
+            <td>mTOR/insulin/IGF-1 suppression, autophagy induction</td>
+            <td>+20-40% (rodents)<br><span style="font-size: 0.85em; color: var(--muted);">Primates: healthspan yes, lifespan unclear</span></td>
+            <td><span class="tier-badge tier-a">Tier A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Time-Restricted Feeding (16:8)</strong></td>
+            <td>Circadian rhythm alignment, metabolic switching</td>
+            <td>+10-15% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: metabolic benefits confirmed</span></td>
+            <td><span class="tier-badge tier-b">Tier B</span></td>
+          </tr>
+          <tr>
+            <td><strong>Protein Restriction</strong></td>
+            <td>mTOR suppression, methionine/leucine limitation</td>
+            <td>+15-20% (rodents)<br><span style="font-size: 0.85em; color: var(--muted);">Human: inadequate data</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ketogenic Diet</strong></td>
+            <td>Metabolic shift to ketone bodies, neuroprotection</td>
+            <td>+13% (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human: cognitive benefits in aging</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mediterranean Diet</strong></td>
+            <td>Anti-inflammatory, cardiovascular protection</td>
+            <td>N/A (pattern)<br><span style="font-size: 0.85em; color: var(--muted);">Human: reduced all-cause mortality</span></td>
+            <td><span class="tier-badge tier-a">Tier A</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Lifestyle -->
+    <!-- Lifestyle Tab -->
     <div id="tab-lifestyle" class="tab-content">
-      <div class="grid grid-2">
-        <div class="card">
-          <h4 class="card-title">Exercise</h4>
-          <div class="mb-1">
-            <span class="badge badge-high">Strongest Human Evidence</span>
-          </div>
-          <p class="card-body">
-            Regular physical activity reduces all-cause mortality by ~30% (150 min/week moderate intensity). 
-            VO<sub>2</sub>max is strongest single predictor of longevity. Both aerobic and resistance 
-            training provide independent benefits.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Effect size:</strong> 1 MET increase → 10-25% mortality reduction<br>
-            <strong>Mechanism:</strong> Multi-system (cardiovascular, metabolic, neurological)<br>
-            <strong>Dose-response:</strong> Benefits continue beyond current guidelines
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Caloric Restriction</h4>
-          <div class="mb-1">
-            <span class="badge badge-high">Strong Animal Data</span>
-            <span class="badge badge-medium">Limited Human Data</span>
-          </div>
-          <p class="card-body">
-            20-40% caloric restriction extends lifespan in most model organisms. 
-            Human data from CALERIE trial shows metabolic benefits but no longevity endpoint. 
-            Compliance extremely difficult; potential for malnutrition and bone loss.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Animal effect:</strong> +20-40% lifespan extension<br>
-            <strong>Human benefit:</strong> Unclear; surrogate markers improve<br>
-            <strong>Practical limitation:</strong> Adherence, quality of life trade-off
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Sleep Optimization</h4>
-          <div class="mb-1">
-            <span class="badge badge-high">Strong Epidemiological Evidence</span>
-          </div>
-          <p class="card-body">
-            7-8 hours sleep duration associated with lowest mortality (U-shaped curve). 
-            Sleep fragmentation independently predicts cognitive decline and cardiovascular events. 
-            Circadian alignment critical for metabolic and immune function.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Optimal duration:</strong> 7-8 hours (both short and long sleep harmful)<br>
-            <strong>Quality markers:</strong> Sleep efficiency, deep sleep percentage<br>
-            <strong>Implementation:</strong> Consistent schedule, environment optimization
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Social Connection</h4>
-          <div class="mb-1">
-            <span class="badge badge-high">Strong Evidence</span>
-          </div>
-          <p class="card-body">
-            Social isolation increases mortality risk by ~50%, equivalent to smoking 15 cigarettes daily. 
-            Quality of relationships more important than quantity. Mechanisms include stress reduction, 
-            immune function, and health behaviors.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Effect size:</strong> Comparable to major clinical risk factors<br>
-            <strong>Mechanism:</strong> HPA axis regulation, inflammation reduction<br>
-            <strong>Evidence quality:</strong> Multiple large cohort studies
-          </p>
-        </div>
-      </div>
+      <table class="intervention-table">
+        <thead>
+          <tr>
+            <th>Intervention</th>
+            <th>Mechanism</th>
+            <th>Effect Size</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aerobic Exercise (150+ min/week)</strong></td>
+            <td>Mitochondrial biogenesis, cardiovascular health, telomere maintenance</td>
+            <td>+3-7 years<br><span style="font-size: 0.85em; color: var(--muted);">Human cohort studies</span></td>
+            <td><span class="tier-badge tier-a">Tier A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Resistance Training</strong></td>
+            <td>Muscle mass preservation, IGF-1 modulation</td>
+            <td>+2-4 years<br><span style="font-size: 0.85em; color: var(--muted);">Human: sarcopenia prevention</span></td>
+            <td><span class="tier-badge tier-a">Tier A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sleep (7-8h optimal)</strong></td>
+            <td>Glymphatic clearance, circadian regulation, immune function</td>
+            <td>+2-3 years<br><span style="font-size: 0.85em; color: var(--muted);">U-shaped curve: <6h and >9h harmful</span></td>
+            <td><span class="tier-badge tier-a">Tier A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Social Connection</strong></td>
+            <td>Stress reduction, immune modulation, inflammation control</td>
+            <td>+3-5 years<br><span style="font-size: 0.85em; color: var(--muted);">Isolation comparable to smoking risk</span></td>
+            <td><span class="tier-badge tier-a">Tier A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cognitive Engagement</strong></td>
+            <td>Neuroplasticity, cognitive reserve, neurogenesis</td>
+            <td>+2-3 years<br><span style="font-size: 0.85em; color: var(--muted);">Dementia risk reduction</span></td>
+            <td><span class="tier-badge tier-b">Tier B</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Experimental -->
+    <!-- Experimental Tab -->
     <div id="tab-experimental" class="tab-content">
-      <div class="grid grid-2">
-        <div class="card">
-          <h4 class="card-title">Parabiosis / Young Plasma</h4>
-          <div class="mb-1">
-            <span class="badge badge-prelim">Experimental Only</span>
-          </div>
-          <p class="card-body">
-            Heterochronic parabiosis (young-old blood sharing) reverses aging markers in old mice. 
-            Young plasma infusions show mixed results. GDF11, oxytocin, and other factors implicated. 
-            Clinical trials by Alkahest showed no cognitive benefit in Alzheimer's patients.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Mechanism:</strong> Circulating rejuvenation factors vs. dilution of pro-aging factors<br>
-            <strong>Status:</strong> Human trials disappointing; mechanism unclear<br>
-            <strong>Recommendation:</strong> Not supported by evidence
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Thymus Regeneration</h4>
-          <div class="mb-1">
-            <span class="badge badge-medium">Early Clinical Data</span>
-          </div>
-          <p class="card-body">
-            TRIIM trial (Fahy 2019): growth hormone, DHEA, metformin cocktail regenerated 
-            thymic tissue and reversed epigenetic age. Small n=9 study requires replication. 
-            Thymus regeneration could restore immune function in aging.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Result:</strong> 2.5 year epigenetic age reversal over 1 year<br>
-            <strong>Limitation:</strong> Tiny sample, no control group, surrogate endpoint<br>
-            <strong>Status:</strong> Larger trials needed
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Hyperbaric Oxygen</h4>
-          <div class="mb-1">
-            <span class="badge badge-low">Weak Evidence</span>
-          </div>
-          <p class="card-body">
-            Claims of telomere lengthening and senescent cell clearance from small Israeli study 
-            (Hachmo 2020, n=35). No replication; surrogate markers only. Mechanism unclear. 
-            Expensive intervention with no mortality or hard clinical endpoint data.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Evidence quality:</strong> Single small study, biomarker endpoints<br>
-            <strong>Cost:</strong> Prohibitive for most individuals<br>
-            <strong>Recommendation:</strong> Insufficient evidence to recommend
-          </p>
-        </div>
-
-        <div class="card">
-          <h4 class="card-title">Cryonics</h4>
-          <div class="mb-1">
-            <span class="badge badge-prelim">No Revival Technology</span>
-          </div>
-          <p class="card-body">
-            Preservation of legally dead individuals at -196°C with intent of future revival. 
-            Vitrification prevents ice crystal formation but causes chemical damage. 
-            No demonstrated ability to reverse preservation damage or revive complex organisms.
-          </p>
-          <p class="card-meta mt-1">
-            <strong>Status:</strong> Speculative; no proof of concept for revival<br>
-            <strong>Organizations:</strong> Alcor, Cryonics Institute<br>
-            <strong>Assessment:</strong> Unknown feasibility; last-resort option
-          </p>
-        </div>
-      </div>
+      <table class="intervention-table">
+        <thead>
+          <tr>
+            <th>Intervention</th>
+            <th>Mechanism</th>
+            <th>Effect Size</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Partial Reprogramming (OSKM)</strong></td>
+            <td>Epigenetic age reversal via Yamanaka factors</td>
+            <td>Age reversal (mice)<br><span style="font-size: 0.85em; color: var(--muted);">Human trials: 2025-2026 expected</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
+          </tr>
+          <tr>
+            <td><strong>Heterochronic Parabiosis</strong></td>
+            <td>Young blood factor transfer, systemic rejuvenation</td>
+            <td>Tissue regeneration<br><span style="font-size: 0.85em; color: var(--muted);">Mechanism unclear, human translation unlikely</span></td>
+            <td><span class="tier-badge tier-d">Tier D</span></td>
+          </tr>
+          <tr>
+            <td><strong>Telomerase Activation</strong></td>
+            <td>Telomere length restoration</td>
+            <td>+24% (mice with gene therapy)<br><span style="font-size: 0.85em; color: var(--muted);">Cancer risk concerns</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mitochondrial Transfer</strong></td>
+            <td>Replacement of dysfunctional mitochondria</td>
+            <td>Proof-of-concept only<br><span style="font-size: 0.85em; color: var(--muted);">Very early research stage</span></td>
+            <td><span class="tier-badge tier-d">Tier D</span></td>
+          </tr>
+          <tr>
+            <td><strong>Thymus Regeneration</strong></td>
+            <td>Immune system rejuvenation</td>
+            <td>Immune markers improved<br><span style="font-size: 0.85em; color: var(--muted);">TRIIM trial: epigenetic age reversal</span></td>
+            <td><span class="tier-badge tier-c">Tier C</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<!-- Research Timeline -->
+<!-- Timeline -->
 <section id="timeline">
   <div class="container-narrow">
     <div class="section-header">
-      <div class="section-tag">03 — History</div>
+      <div class="section-tag">03 â€” Historical Context</div>
       <h2>Longevity Research Timeline</h2>
       <p class="section-intro">
-        Major milestones in aging biology and translational research. 
-        Timeline reflects established discoveries, not speculative projections.
+        Key discoveries and milestones in the scientific understanding of aging biology 
+        and development of lifespan-extending interventions.
       </p>
     </div>
 
@@ -1148,68 +1177,68 @@ footer {
         <div class="timeline-year">1935</div>
         <h4>Caloric Restriction Discovery</h4>
         <p>
-          Clive McCay demonstrates that caloric restriction extends lifespan in rats by up to 50%. 
-          Establishes dietary intervention as fundamental aging research paradigm.
+          Clive McCay demonstrates that dietary restriction extends lifespan in rats by ~30%. 
+          First reproducible intervention to slow aging, establishing nutrition as key factor.
         </p>
         <span class="timeline-citation">McCay CM et al. J Nutr. 1935;10(1):63-79</span>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">1993</div>
-        <h4>First Genetic Lifespan Extension</h4>
+        <div class="timeline-year">1961</div>
+        <h4>Hayflick Limit</h4>
         <p>
-          Cynthia Kenyon's lab discovers age-1 mutation doubles C. elegans lifespan. 
-          Demonstrates aging is genetically malleable, not fixed developmental program.
+          Leonard Hayflick discovers human cells can only divide ~50 times before senescence. 
+          Challenges prevailing immortality dogma, establishes cellular aging as intrinsic process.
+        </p>
+        <span class="timeline-citation">Hayflick L, Moorhead PS. Exp Cell Res. 1961;25:585-621</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1993</div>
+        <h4>First Longevity Gene (daf-2)</h4>
+        <p>
+          Cynthia Kenyon's lab shows C. elegans daf-2 mutants (insulin/IGF-1 pathway) 
+          live 2x longer. Proves aging is genetically regulated, not inevitable decay.
         </p>
         <span class="timeline-citation">Kenyon C et al. Nature. 1993;366(6454):461-464</span>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">2000</div>
-        <h4>Sirtuins and Longevity</h4>
+        <div class="timeline-year">2006</div>
+        <h4>Yamanaka Factors (iPSCs)</h4>
         <p>
-          Leonard Guarente identifies Sir2 (sirtuin) as mediator of caloric restriction benefits 
-          in yeast. Launches NAD+ and resveratrol research programs (later findings more nuanced).
+          Shinya Yamanaka reprograms adult cells to pluripotent state using four factors (OSKM). 
+          Nobel Prize 2012. Foundation for cellular rejuvenation strategies.
         </p>
-        <span class="timeline-citation">Lin SJ et al. Science. 2000;289(5487):2126-2128</span>
+        <span class="timeline-citation">Takahashi K, Yamanaka S. Cell. 2006;126(4):663-676</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-year">2009</div>
         <h4>Rapamycin Extends Mouse Lifespan</h4>
         <p>
-          NIH Interventions Testing Program demonstrates rapamycin extends median lifespan 
-          by 14% in mice, even when started late-life. First drug shown to extend mammalian lifespan.
+          First FDA-approved drug shown to extend lifespan in mammals (+9-14% in mice). 
+          mTOR pathway becomes central therapeutic target. ITP trials establish protocol.
         </p>
         <span class="timeline-citation">Harrison DE et al. Nature. 2009;460(7253):392-395</span>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-year">2011</div>
-        <h4>Senescent Cell Removal Extends Healthspan</h4>
-        <p>
-          Baker et al. show genetic elimination of senescent cells delays age-related pathology 
-          in progeroid mice. Establishes senolytic therapy rationale.
-        </p>
-        <span class="timeline-citation">Baker DJ et al. Nature. 2011;479(7372):232-236</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-year">2013</div>
         <h4>Hallmarks of Aging Framework</h4>
         <p>
-          López-Otín et al. publish comprehensive framework organizing aging research into 
-          nine mechanistic hallmarks (later expanded to twelve in 2023 update).
+          LÃ³pez-OtÃ­n et al. publish unified framework of nine biological hallmarks. 
+          Becomes foundational organizational structure for aging biology field.
         </p>
-        <span class="timeline-citation">López-Otín C et al. Cell. 2013;153(6):1194-1217</span>
+        <span class="timeline-citation">LÃ³pez-OtÃ­n C et al. Cell. 2013;153(6):1194-1217</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-year">2013</div>
-        <h4>Epigenetic Clocks</h4>
+        <h4>Horvath Epigenetic Clock</h4>
         <p>
-          Steve Horvath develops DNA methylation-based aging clock accurate across tissues. 
-          Enables quantification of biological age and intervention testing.
+          Steve Horvath develops DNA methylation-based age predictor accurate to Â±3.6 years. 
+          Enables measurement of biological vs chronological age, intervention testing.
         </p>
         <span class="timeline-citation">Horvath S. Genome Biol. 2013;14(10):R115</span>
       </div>
@@ -1218,38 +1247,38 @@ footer {
         <div class="timeline-year">2015</div>
         <h4>First Senolytic Drugs</h4>
         <p>
-          Dasatinib + quercetin combination identified as senolytic. Launches clinical 
-          trial programs for age-related disease intervention.
+          Dasatinib + Quercetin combination selectively kills senescent cells in mice, 
+          extends healthspan. Opens therapeutic avenue for SASP-driven pathologies.
         </p>
         <span class="timeline-citation">Zhu Y et al. Aging Cell. 2015;14(4):644-658</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-year">2016</div>
-        <h4>Partial Reprogramming Reverses Aging</h4>
+        <h4>In Vivo Partial Reprogramming</h4>
         <p>
-          Juan Carlos Izpisua Belmonte demonstrates transient Yamanaka factor expression 
-          reverses aging markers in progeroid mice without teratoma formation.
+          Izpisua Belmonte's lab demonstrates transient OSKM expression reverses 
+          aging hallmarks in progeroid mice without teratoma formation.
         </p>
         <span class="timeline-citation">Ocampo A et al. Cell. 2016;167(7):1719-1733</span>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">2019</div>
-        <h4>Thymus Regeneration Trial</h4>
+        <div class="timeline-year">2020</div>
+        <h4>NAD+ Restoration via NMN</h4>
         <p>
-          TRIIM trial reports thymic regeneration and epigenetic age reversal with 
-          growth hormone + DHEA + metformin. Small study (n=9) requires replication.
+          Multiple groups show NMN supplementation reverses vascular aging and 
+          improves exercise capacity in aged mice. Human trials begin showing biomarker improvements.
         </p>
-        <span class="timeline-citation">Fahy GM et al. Aging Cell. 2019;18(6):e13028</span>
+        <span class="timeline-citation">Das A et al. Cell. 2018;173(1):74-89</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-year">2020</div>
-        <h4>In Vivo Reprogramming Restores Vision</h4>
+        <h4>Cellular Rejuvenation via mRNA</h4>
         <p>
-          Sinclair lab demonstrates OSK reprogramming reverses glaucoma-induced vision loss 
-          in mice, resetting epigenetic age without dedifferentiation.
+          Sinclair lab demonstrates age reversal in mouse retinal neurons using 
+          OSK (without Myc) delivered via AAV gene therapy. Vision restoration in glaucoma model.
         </p>
         <span class="timeline-citation">Lu Y et al. Nature. 2020;588(7836):124-129</span>
       </div>
@@ -1259,7 +1288,7 @@ footer {
         <h4>Altos Labs Founded</h4>
         <p>
           $3B cellular rejuvenation company launched with Yamanaka, Izpisua Belmonte, and others. 
-          Largest private investment in aging biology to date.
+          Largest private investment in aging biology to date. Commercial validation of field.
         </p>
         <span class="timeline-citation">Industry milestone</span>
       </div>
@@ -1269,87 +1298,115 @@ footer {
         <h4>Hallmarks of Aging 2.0</h4>
         <p>
           Updated framework expands to twelve hallmarks, adding disabled macroautophagy, 
-          chronic inflammation, and dysbiosis based on decade of research.
+          chronic inflammation, and dysbiosis based on decade of accumulated research.
         </p>
-        <span class="timeline-citation">López-Otín C et al. Cell. 2023;186(2):243-278</span>
+        <span class="timeline-citation">LÃ³pez-OtÃ­n C et al. Cell. 2023;186(2):243-278</span>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-year">2024-2025</div>
+        <div class="timeline-year">2024-2026</div>
         <h4>Current State</h4>
         <p>
-          Multiple Phase II senolytic trials ongoing. Partial reprogramming approaches 
-          expected to enter human trials 2025-2026. TAME metformin trial enrolling. 
-          Translation gap from mice to humans remains primary challenge.
+          Multiple Phase II senolytic trials ongoing (D+Q, fisetin). Partial reprogramming 
+          approaches expected to enter human trials 2025-2026. TAME metformin trial enrolling. 
+          Epigenetic age reversal demonstrated in small human trials (TRIIM). Translation gap 
+          from mice to humans remains primary challenge for pharmacological interventions.
         </p>
-        <span class="timeline-citation">ClinicalTrials.gov registry</span>
+        <span class="timeline-citation">ClinicalTrials.gov registry, March 2026</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Publications -->
-<section id="publications" style="background: var(--deep);">
+<section id="publications" class="bg-deep">
   <div class="container-narrow">
     <div class="section-header">
-      <div class="section-tag">04 — Research Output</div>
+      <div class="section-tag">04 â€” Research Output</div>
       <h2>Publications & Research Notes</h2>
       <p class="section-intro">
         Open-access research notes, literature reviews, and scientific writing 
-        on longevity science. All publications available via OSF and ORCID.
+        on longevity science. All publications available via OSF Preprints and ORCID.
       </p>
     </div>
 
-    <!-- Placeholder for your actual publications -->
     <div class="pub-card">
-      <h3 class="pub-title">Evidence-Based Longevity Framework: What Actually Matters</h3>
-      <div class="pub-authors">Alice Frolov</div>
-      <div class="pub-meta">
-        <span>2026</span>
-        <span>Research Note</span>
-        <span>Open Access</span>
-      </div>
-      <p class="pub-abstract">
-        Critical analysis of longevity interventions filtering for human evidence strength. 
-        Systematic review of hallmarks of aging, pharmacological interventions, and 
-        translational barriers between model organisms and humans. Emphasizes harm avoidance 
-        over optimization and behavioral sustainability over perfect execution.
-      </p>
-      <div class="pub-links">
-        <a href="#" class="pub-link">OSF Repository</a>
-        <a href="#" class="pub-link">PDF Download</a>
-        <a href="#" class="pub-link">DOI: [pending]</a>
-      </div>
-    </div>
-
-    <div class="pub-card">
-      <h3 class="pub-title">Visual Guide to Cellular Senescence Mechanisms</h3>
+      <h3 class="pub-title">Telomere Attrition and Its Role in Cellular Aging</h3>
       <div class="pub-authors">Alice Frolov</div>
       <div class="pub-meta">
         <span>2025</span>
-        <span>Scientific Illustration</span>
+        <span>Research Essay</span>
+        <span>Open Access</span>
+      </div>
+      <p class="pub-abstract">
+        Comprehensive review of telomere biology as a hallmark of aging. Covers replicative 
+        senescence mechanisms, telomerase regulation, measurement methodologies, and therapeutic 
+        approaches including telomerase activation strategies and their cancer risk trade-offs.
+      </p>
+      <div class="pub-links">
+        <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
+        <a href="https://doi.org/10.17605/OSF.IO/4BYQT" class="pub-link" target="_blank">DOI: 10.17605/OSF.IO/4BYQT</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <h3 class="pub-title">Mitochondrial Dysfunction as a Hallmark of Aging</h3>
+      <div class="pub-authors">Alice Frolov</div>
+      <div class="pub-meta">
+        <span>2025</span>
+        <span>Literature Review</span>
         <span>CC BY 4.0</span>
       </div>
       <p class="pub-abstract">
-        Comprehensive visual documentation of senescent cell accumulation pathways, 
-        SASP factor secretion, and senolytic intervention mechanisms. Includes molecular 
-        pathway diagrams and annotated cellular cross-sections.
+        Analysis of mitochondrial decline in aging: mtDNA mutations, oxidative stress, 
+        impaired biogenesis, and defective mitophagy. Reviews NAD+ restoration, mitochondrial-targeted 
+        antioxidants, and exercise as interventions with evidence across model organisms.
       </p>
       <div class="pub-links">
-        <a href="#" class="pub-link">View Gallery</a>
-        <a href="#" class="pub-link">High-Res Download</a>
-        <a href="#" class="pub-link">Citation Info</a>
+        <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
+        <a href="https://doi.org/10.17605/OSF.IO/4BYQT" class="pub-link" target="_blank">View Series</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <h3 class="pub-title">Cellular Senescence: Biology and Therapeutic Targeting</h3>
+      <div class="pub-authors">Alice Frolov</div>
+      <div class="pub-meta">
+        <span>2025</span>
+        <span>Research Essay</span>
+        <span>Open Access</span>
+      </div>
+      <p class="pub-abstract">
+        Examination of senescent cell accumulation, SASP factor secretion, and tissue dysfunction. 
+        Covers senolytic drug development (D+Q, fisetin, navitoclax), clinical trial status, 
+        and evidence hierarchy from animal models to human translation.
+      </p>
+      <div class="pub-links">
+        <a href="https://osf.io/5qaxk" class="pub-link" target="_blank">OSF Repository</a>
+        <a href="https://doi.org/10.17605/OSF.IO/4BYQT" class="pub-link" target="_blank">Read Full Text</a>
       </div>
     </div>
 
     <div style="margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border); background: rgba(80,120,208,0.04);">
-      <h4 style="margin-bottom: 0.75rem;">Full Publication List</h4>
-      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.7;">
-        Complete list of research notes, literature reviews, and scientific illustrations 
-        available via:<br><br>
-        <strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);">0009-0006-2567-1734</a><br>
-        <strong>OSF:</strong> <a href="#" style="color: var(--accent);">osf.io/[your-profile]</a>
+      <h4 style="margin-bottom: 0.75rem;">Complete Research Series</h4>
+      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem;">
+        Full 10-part essay series on aging biology hallmarks available via OSF Preprints. 
+        Topics include telomere attrition, mitochondrial dysfunction, proteostasis, inflammaging, 
+        gut microbiome dysbiosis, cellular senescence, caloric restriction, senolytics, 
+        heterochronic parabiosis, and epigenetic clocks.
       </p>
+      <p style="font-size: 0.95rem; color: var(--text); line-height: 1.7;">
+        <strong>Publication Identifiers:</strong><br>
+        <strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);" target="_blank">0009-0006-2567-1734</a><br>
+        <strong>OSF:</strong> <a href="https://osf.io/5qaxk" style="color: var(--accent);" target="_blank">osf.io/5qaxk</a><br>
+        <strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" style="color: var(--accent);" target="_blank">Alice Frolov Profile</a>
+      </p>
+    </div>
+
+    <div class="cite-box">
+      <h4>Cite This Resource</h4>
+      <code>Frolov, A. (2026). VECVO Longevity Science Research Hub. 
+https://vecvo.com. Accessed [date].</code>
     </div>
   </div>
 </section>
@@ -1358,7 +1415,7 @@ footer {
 <section id="about">
   <div class="container-narrow">
     <div class="section-header">
-      <div class="section-tag">05 — Project</div>
+      <div class="section-tag">05 â€” Project</div>
       <h2>About VECVO</h2>
     </div>
 
@@ -1385,24 +1442,37 @@ footer {
       <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Maintained By</h3>
       <p style="margin-bottom: 1rem;">
         <strong style="color: var(--white);">Alice Frolov</strong><br>
-        Science writer, scientific illustrator, and student researcher<br>
+        Independent researcher and science writer<br>
         Buenos Aires, Argentina
       </p>
 
       <p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--muted);">
-        Current focus: aging biology, cellular senescence, CRISPR applications, 
-        and epigenetic reprogramming. Pursuing university study in biotechnology 
-        with emphasis on longevity science research.
+        <strong>Educational Background:</strong><br>
+        Currently completing secondary education at Escuela Mochacelis (Argentine curriculum) 
+        with focus on sciences. Concurrently enrolled in Spanish language program at Universidad 
+        de Buenos Aires (UBA) 2025-present. Planning biotechnology undergraduate studies with 
+        specialization in longevity science and biogerontology.
+      </p>
+
+      <p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--muted);">
+        <strong>Research Focus:</strong><br>
+        Aging biology, cellular senescence, epigenetic reprogramming, and translational barriers 
+        in longevity interventions. Long-term career goal: European PhD programs in biogerontology 
+        (Max Planck Institute, EMBL, or equivalent) and research positions at organizations like 
+        Altos Labs or Calico.
       </p>
 
       <p style="margin-bottom: 1rem;">
-        <strong>Publications & Contact:</strong>
+        <strong>Contact & Publications:</strong>
       </p>
       <ul style="list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--muted); line-height: 2;">
-        <li>→ ORCID: <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);">0009-0006-2567-1734</a></li>
-        <li>→ OSF: <a href="#" style="color: var(--accent);">osf.io/[profile]</a></li>
-        <li>→ Website: <a href="https://vecvo.com" style="color: var(--accent);">vecvo.com</a></li>
-        <li>→ LinkedIn: <a href="#" style="color: var(--accent);">[profile]</a></li>
+        <li>â†’ Personal Website: <a href="https://alicefrolov.com" style="color: var(--accent);" target="_blank">alicefrolov.com</a></li>
+        <li>â†’ ORCID: <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);" target="_blank">0009-0006-2567-1734</a></li>
+        <li>â†’ OSF Preprints: <a href="https://osf.io/5qaxk" style="color: var(--accent);" target="_blank">osf.io/5qaxk</a></li>
+        <li>â†’ Google Scholar: <a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" style="color: var(--accent);" target="_blank">Profile</a></li>
+        <li>â†’ LinkedIn: <a href="https://www.linkedin.com/in/alice-frolov-ab11a0395" style="color: var(--accent);" target="_blank">Alice Frolov</a></li>
+        <li>â†’ GitHub: <a href="https://github.com/alicefrolov" style="color: var(--accent);" target="_blank">@alicefrolov</a></li>
+        <li>â†’ Email: <a href="mailto:contact@vecvo.com" style="color: var(--accent);">contact@vecvo.com</a></li>
       </ul>
 
       <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Methodology</h3>
@@ -1411,24 +1481,24 @@ footer {
       </p>
       <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; color: var(--muted);">
         <li>Human randomized controlled trials (RCTs)</li>
-        <li>Large observational cohort studies</li>
-        <li>Mammalian model organism studies</li>
+        <li>Large observational cohort studies (n>1,000)</li>
+        <li>Mammalian model organism studies (mice, rats, primates)</li>
         <li>Short-lived model organisms (C. elegans, Drosophila)</li>
-        <li>In vitro studies</li>
-        <li>Theoretical mechanisms</li>
+        <li>In vitro studies and cellular models</li>
+        <li>Theoretical mechanisms and computational predictions</li>
       </ol>
 
       <p style="margin-bottom: 1.5rem; color: var(--muted);">
-        Interventions are assessed on: strength of evidence, effect size, safety profile, 
+        Interventions are assessed on: strength of evidence, effect size magnitude, safety profile, 
         practical implementation feasibility, and cost-benefit ratio. Translation uncertainty 
-        from model organisms to humans is explicitly discussed.
+        from model organisms to humans is explicitly discussed for all pharmacological interventions.
       </p>
 
       <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Contribute</h3>
       <p style="margin-bottom: 1rem; color: var(--muted);">
-        Corrections, updates, and suggested additions welcome. Submit via GitHub issues 
-        or email with supporting citations. All contributions are reviewed for accuracy 
-        and evidence quality before inclusion.
+        Corrections, updates, and suggested additions welcome. Submit via <a href="https://github.com/alicefrolov" style="color: var(--accent);" target="_blank">GitHub</a> 
+        issues or email with supporting citations from peer-reviewed sources. All contributions 
+        are reviewed for accuracy and evidence quality before inclusion.
       </p>
     </div>
   </div>
@@ -1460,15 +1530,16 @@ footer {
       <h4>External Links</h4>
       <ul>
         <li><a href="https://orcid.org/0009-0006-2567-1734" target="_blank">ORCID Profile</a></li>
-        <li><a href="#" target="_blank">OSF Repository</a></li>
-        <li><a href="#" target="_blank">GitHub</a></li>
-        <li><a href="#" target="_blank">LinkedIn</a></li>
+        <li><a href="https://osf.io/5qaxk" target="_blank">OSF Repository</a></li>
+        <li><a href="https://github.com/alicefrolov" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/alice-frolov-ab11a0395" target="_blank">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=0M3Dc78AAAAJ" target="_blank">Google Scholar</a></li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <div>© 2026 VECVO · Alice Frolov · All content CC BY 4.0 unless noted</div>
+    <div>Â© 2026 VECVO Â· Alice Frolov Â· All content CC BY 4.0 unless noted</div>
     <div>Last updated: March 2026</div>
   </div>
 </footer>
