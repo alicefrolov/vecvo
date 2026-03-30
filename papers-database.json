@@ -1,0 +1,370 @@
+{
+  "papers": [
+    {
+      "id": "lopez-otin-2013",
+      "title": "The Hallmarks of Aging",
+      "authors": [
+        "López-Otín C",
+        "Blasco MA",
+        "Partridge L",
+        "Serrano M",
+        "Kroemer G"
+      ],
+      "journal": "Cell",
+      "year": 2013,
+      "volume": "153",
+      "issue": "6",
+      "pages": "1194-1217",
+      "doi": "10.1016/j.cell.2013.05.039",
+      "pmid": "23746838",
+      "type": "review",
+      "impact_factor": 64.5,
+      "citations": 12000,
+      "evidence_level": "landmark",
+      "key_findings": [
+        "Established framework of 9 hallmarks of aging",
+        "Organized aging research into mechanistic categories",
+        "Distinguished primary, antagonistic, and integrative hallmarks"
+      ],
+      "abstract": "Aging is characterized by a progressive loss of physiological integrity, leading to impaired function and increased vulnerability to death. This deterioration is the primary risk factor for major human pathologies, including cancer, diabetes, cardiovascular disorders, and neurodegenerative diseases. Aging research has experienced an unprecedented advance over recent years, particularly with the discovery that the rate of aging is controlled, at least to some extent, by genetic pathways and biochemical processes conserved in evolution. This Review enumerates nine tentative hallmarks that represent common denominators of aging in different organisms, with special emphasis on mammalian aging.",
+      "vecvo_notes": "Foundational framework paper. Expanded to 12 hallmarks in 2023 update. Essential reading for understanding current aging biology paradigm.",
+      "tags": ["hallmarks", "framework", "aging-biology", "review"]
+    },
+    {
+      "id": "lopez-otin-2023",
+      "title": "Hallmarks of aging: An expanding universe",
+      "authors": [
+        "López-Otín C",
+        "Blasco MA",
+        "Partridge L",
+        "Serrano M",
+        "Kroemer G"
+      ],
+      "journal": "Cell",
+      "year": 2023,
+      "volume": "186",
+      "issue": "2",
+      "pages": "243-278",
+      "doi": "10.1016/j.cell.2022.11.001",
+      "pmid": "36599349",
+      "type": "review",
+      "impact_factor": 64.5,
+      "citations": 1800,
+      "evidence_level": "landmark",
+      "key_findings": [
+        "Updated framework to 12 hallmarks",
+        "Added: disabled macroautophagy, chronic inflammation, dysbiosis",
+        "Incorporated decade of research progress since 2013"
+      ],
+      "abstract": "Aging is driven by hallmarks that functionally and mechanistically interconnect and are manifested at the organismal, histological, cellular, and molecular levels. Ten years ago, we proposed nine hallmarks of aging. Here, we update the candidate hallmarks to twelve, which are genomic instability, telomere attrition, epigenetic alterations, loss of proteostasis, disabled macroautophagy, deregulated nutrient sensing, mitochondrial dysfunction, cellular senescence, stem cell exhaustion, altered intercellular communication, chronic inflammation, and dysbiosis.",
+      "vecvo_notes": "Current standard framework. Reflects state-of-the-art understanding as of 2023. All twelve hallmarks covered in VECVO.",
+      "tags": ["hallmarks", "framework", "aging-biology", "review", "2023-update"]
+    },
+    {
+      "id": "harrison-2009",
+      "title": "Rapamycin fed late in life extends lifespan in genetically heterogeneous mice",
+      "authors": [
+        "Harrison DE",
+        "Strong R",
+        "Sharp ZD",
+        "et al."
+      ],
+      "journal": "Nature",
+      "year": 2009,
+      "volume": "460",
+      "issue": "7253",
+      "pages": "392-395",
+      "doi": "10.1038/nature08221",
+      "pmid": "19587680",
+      "type": "research_article",
+      "impact_factor": 64.8,
+      "citations": 2500,
+      "evidence_level": "high",
+      "key_findings": [
+        "Rapamycin extends median lifespan 14% in mice (9% males, 14% females)",
+        "Effective even when started at 20 months (equivalent to ~60 human years)",
+        "First pharmacological intervention to extend lifespan in mammals"
+      ],
+      "abstract": "Inhibition of the nutrient response pathway defined by the target of rapamycin (TOR) increases lifespan in invertebrates, but effects in mammals are unknown. Here we show that rapamycin extends median and maximal lifespan of both male and female mice when fed beginning at 20 months of age. The effect was similar in four genetically heterogeneous stocks, although higher longevity was observed in males than in females.",
+      "vecvo_notes": "Landmark study. Part of NIH Interventions Testing Program. Most replicated pharmacological intervention. Human trials ongoing.",
+      "tags": ["rapamycin", "mTOR", "lifespan-extension", "ITP", "pharmacological"]
+    },
+    {
+      "id": "kenyon-1993",
+      "title": "A C. elegans mutant that lives twice as long as wild type",
+      "authors": [
+        "Kenyon C",
+        "Chang J",
+        "Gensch E",
+        "Rudner A",
+        "Tabtiang R"
+      ],
+      "journal": "Nature",
+      "year": 1993,
+      "volume": "366",
+      "issue": "6454",
+      "pages": "461-464",
+      "doi": "10.1038/366461a0",
+      "pmid": "8247153",
+      "type": "research_article",
+      "impact_factor": 64.8,
+      "citations": 4200,
+      "evidence_level": "landmark",
+      "key_findings": [
+        "age-1 mutation doubles C. elegans lifespan",
+        "Demonstrated aging is genetically malleable",
+        "Established C. elegans as premier aging research model"
+      ],
+      "abstract": "We have identified a mutation, age-1, that increases mean lifespan by 65% and maximum lifespan by 110% in the nematode Caenorhabditis elegans. The mutation also confers thermotolerance and resistance to ultraviolet irradiation. Age-1 mutant animals move and metabolize normally for their extended life. These results indicate that aging in C. elegans is not simply a consequence of entropic decay but is influenced by specific biological processes.",
+      "vecvo_notes": "Proved aging is not fixed but genetically controlled. Foundational for modern aging research. Inspired IIS pathway research.",
+      "tags": ["genetics", "c-elegans", "lifespan-extension", "IIS-pathway", "landmark"]
+    },
+    {
+      "id": "horvath-2013",
+      "title": "DNA methylation age of human tissues and cell types",
+      "authors": ["Horvath S"],
+      "journal": "Genome Biology",
+      "year": 2013,
+      "volume": "14",
+      "issue": "10",
+      "pages": "R115",
+      "doi": "10.1186/gb-2013-14-10-r115",
+      "pmid": "24138928",
+      "type": "research_article",
+      "impact_factor": 17.9,
+      "citations": 5000,
+      "evidence_level": "high",
+      "key_findings": [
+        "Developed multi-tissue DNA methylation aging clock",
+        "Accurate across 51 healthy tissues and cell types",
+        "Enables quantification of biological age vs chronological age"
+      ],
+      "abstract": "It is not yet known whether DNA methylation levels can be used to accurately predict age across a broad spectrum of human tissues and cell types, nor whether this property is conserved across individuals. I generated DNA methylation data from 7,844 samples from 82 different studies and show that one can estimate the ages of blood, brain, breast, and other tissues using DNA methylation profiles. The resulting 'epigenetic clock' consists of 353 CpG sites.",
+      "vecvo_notes": "Revolutionized aging measurement. Epigenetic clocks now standard biomarker in aging research. Used to assess intervention efficacy.",
+      "tags": ["epigenetics", "biomarkers", "aging-clock", "DNA-methylation"]
+    },
+    {
+      "id": "baker-2011",
+      "title": "Clearance of p16Ink4a-positive senescent cells delays ageing-associated disorders",
+      "authors": [
+        "Baker DJ",
+        "Wijshake T",
+        "Tchkonia T",
+        "et al."
+      ],
+      "journal": "Nature",
+      "year": 2011,
+      "volume": "479",
+      "issue": "7372",
+      "pages": "232-236",
+      "doi": "10.1038/nature10600",
+      "pmid": "22048312",
+      "type": "research_article",
+      "impact_factor": 64.8,
+      "citations": 3000,
+      "evidence_level": "high",
+      "key_findings": [
+        "Genetic elimination of senescent cells delays aging phenotypes",
+        "Removes cells expressing p16Ink4a in progeroid mouse model",
+        "Established proof-of-concept for senolytic therapy"
+      ],
+      "abstract": "Cellular senescence is a stress response that is thought to contribute to aging and age-related disease. Here we show that lifelong clearance of senescent cells delays age-related phenotypes. These data provide the first proof that senescent cells are causally implicated in generating age-related phenotypes and the first demonstration that healthspan can be enhanced by senescent cell clearance.",
+      "vecvo_notes": "Launched senolytic research field. Proof that removing senescent cells improves healthspan. Multiple senolytics now in trials.",
+      "tags": ["senescence", "senolytics", "p16Ink4a", "healthspan", "proof-of-concept"]
+    },
+    {
+      "id": "zhu-2015",
+      "title": "The Achilles' heel of senescent cells: from transcriptome to senolytic drugs",
+      "authors": [
+        "Zhu Y",
+        "Tchkonia T",
+        "Pirtskhalava T",
+        "et al."
+      ],
+      "journal": "Aging Cell",
+      "year": 2015,
+      "volume": "14",
+      "issue": "4",
+      "pages": "644-658",
+      "doi": "10.1111/acel.12344",
+      "pmid": "25754370",
+      "type": "research_article",
+      "impact_factor": 8.8,
+      "citations": 1400,
+      "evidence_level": "high",
+      "key_findings": [
+        "Identified dasatinib + quercetin as first senolytic drug combination",
+        "Senescent cells upregulate pro-survival pathways (SCAPs)",
+        "D+Q selectively induces senescent cell apoptosis"
+      ],
+      "abstract": "We hypothesized that senescent cells (SC) up-regulate pathways that render them resistant to apoptosis. We used DNA damage-induced senescent human cell transcriptomes to identify senescent cell anti-apoptotic pathways (SCAPs). We then identified drugs that target SCAPs. We found that dasatinib (D) or quercetin (Q) alone or in combination (D+Q) selectively induced apoptosis in senescent cells in vitro.",
+      "vecvo_notes": "First senolytic drugs identified. D+Q now in multiple human trials. Mechanism-based drug discovery approach.",
+      "tags": ["senolytics", "dasatinib", "quercetin", "apoptosis", "drug-discovery"]
+    },
+    {
+      "id": "ocampo-2016",
+      "title": "In Vivo Amelioration of Age-Associated Hallmarks by Partial Reprogramming",
+      "authors": [
+        "Ocampo A",
+        "Reddy P",
+        "Martinez-Redondo P",
+        "et al."
+      ],
+      "journal": "Cell",
+      "year": 2016,
+      "volume": "167",
+      "issue": "7",
+      "pages": "1719-1733.e12",
+      "doi": "10.1016/j.cell.2016.11.052",
+      "pmid": "27984723",
+      "type": "research_article",
+      "impact_factor": 64.5,
+      "citations": 1200,
+      "evidence_level": "high",
+      "key_findings": [
+        "Cyclic OSK expression ameliorates aging in progeria mice",
+        "Extends lifespan without teratoma formation",
+        "Reverses epigenetic age while maintaining cell identity"
+      ],
+      "abstract": "Cellular reprogramming can reverse some aspects of aging in mice. Here, we show that cyclic short-term expression of Oct4, Sox2, and Klf4 (OSK) in adult mice ameliorates age-associated phenotypes and extends lifespan in a model of progeria. OSK induction reverses DNA damage, improves mitochondrial function, and increases histone marks associated with a younger epigenetic state without compromising cellular or organismal viability.",
+      "vecvo_notes": "Breakthrough paper. Launched partial reprogramming field. Altos Labs, Turn Bio pursuing clinical translation. Revolutionary approach.",
+      "tags": ["reprogramming", "Yamanaka-factors", "epigenetics", "rejuvenation", "OSK"]
+    },
+    {
+      "id": "lu-2020",
+      "title": "Reprogramming to recover youthful epigenetic information and restore vision",
+      "authors": [
+        "Lu Y",
+        "Brommer B",
+        "Tian X",
+        "et al."
+      ],
+      "journal": "Nature",
+      "year": 2020,
+      "volume": "588",
+      "issue": "7836",
+      "pages": "124-129",
+      "doi": "10.1038/s41586-020-2975-4",
+      "pmid": "33268865",
+      "type": "research_article",
+      "impact_factor": 64.8,
+      "citations": 600,
+      "evidence_level": "high",
+      "key_findings": [
+        "OSK reprogramming restores vision in glaucoma mice",
+        "Reverses age-related DNA methylation changes",
+        "Demonstrates in vivo age reversal in specific tissue"
+      ],
+      "abstract": "We show that ectopic expression of Oct4, Sox2, and Klf4 genes (OSK) in mice resets youthful DNA methylation patterns, transcriptomes, and restored vision loss in glaucoma. OSK-induced age reversal is dependent on DNA demethylation. These findings identify DNA methylation as a key determinant of aging and demonstrate that mammalian aging is amenable to reversal through epigenetic reprogramming.",
+      "vecvo_notes": "Proof that epigenetic age can be reversed in vivo in complex tissue. Sinclair lab landmark paper. Vision restoration impressive.",
+      "tags": ["reprogramming", "epigenetics", "vision", "OSK", "age-reversal"]
+    },
+    {
+      "id": "wen-2011",
+      "title": "Minimum amount of physical activity for reduced mortality and extended life expectancy",
+      "authors": [
+        "Wen CP",
+        "Wai JPM",
+        "Tsai MK",
+        "et al."
+      ],
+      "journal": "The Lancet",
+      "year": 2011,
+      "volume": "378",
+      "issue": "9798",
+      "pages": "1244-1253",
+      "doi": "10.1016/S0140-6736(11)60749-6",
+      "pmid": "21846575",
+      "type": "cohort_study",
+      "impact_factor": 168.9,
+      "citations": 3500,
+      "evidence_level": "very_high",
+      "key_findings": [
+        "15 min/day exercise reduces all-cause mortality by 14%",
+        "Every additional 15 min/day reduces mortality by further 4%",
+        "3 years life expectancy gain from minimal exercise"
+      ],
+      "abstract": "We assessed the health benefits of different amounts of exercise in 416,175 individuals in Taiwan, with mean follow-up of 8.05 years. Compared with individuals in the inactive group, those in the low-volume activity group, who exercised for an average of 92 min per week (15 min a day) or did the equivalent of 1 h of brisk walking, had a 14% reduced risk of all-cause mortality and had a 3 year longer life expectancy.",
+      "vecvo_notes": "Largest exercise-longevity cohort. Minimal dose (15min/day) sufficient for major benefit. Universal intervention recommendation.",
+      "tags": ["exercise", "mortality", "cohort-study", "lifespan", "dose-response"]
+    },
+    {
+      "id": "mandsager-2018",
+      "title": "Association of Cardiorespiratory Fitness With Long-term Mortality Among Adults",
+      "authors": [
+        "Mandsager K",
+        "Harb S",
+        "Cremer P",
+        "Phelan D",
+        "Nissen SE",
+        "Jaber W"
+      ],
+      "journal": "JAMA Network Open",
+      "year": 2018,
+      "volume": "1",
+      "issue": "6",
+      "pages": "e183605",
+      "doi": "10.1001/jamanetworkopen.2018.3605",
+      "pmid": "30646074",
+      "type": "cohort_study",
+      "impact_factor": 13.8,
+      "citations": 900,
+      "evidence_level": "very_high",
+      "key_findings": [
+        "VO2max is strongest predictor of all-cause mortality",
+        "Each 1-MET increase associated with 10-25% mortality reduction",
+        "No upper limit observed for fitness benefit"
+      ],
+      "abstract": "In a cohort of 122,007 consecutive patients, cardiorespiratory fitness was inversely associated with long-term mortality, with no observed upper limit of benefit. Extremely high aerobic fitness was associated with the greatest survival and was associated with benefit in older patients and in those with hypertension.",
+      "vecvo_notes": "VO2max strongest single biomarker for longevity. Justifies aerobic exercise emphasis. No ceiling effect on benefits.",
+      "tags": ["VO2max", "cardiorespiratory-fitness", "mortality", "exercise", "biomarker"]
+    },
+    {
+      "id": "fahy-2019",
+      "title": "Reversal of epigenetic aging and immunosenescent trends in humans",
+      "authors": [
+        "Fahy GM",
+        "Brooke RT",
+        "Watson JP",
+        "et al."
+      ],
+      "journal": "Aging Cell",
+      "year": 2019,
+      "volume": "18",
+      "issue": "6",
+      "pages": "e13028",
+      "doi": "10.1111/acel.13028",
+      "pmid": "31496122",
+      "type": "clinical_trial",
+      "impact_factor": 8.8,
+      "citations": 400,
+      "evidence_level": "preliminary",
+      "key_findings": [
+        "Growth hormone + DHEA + metformin regenerates thymus tissue",
+        "2.5 year epigenetic age reversal over 1 year",
+        "Improved immune function markers"
+      ],
+      "abstract": "The TRIIM trial was designed to test the hypothesis that regenerating the thymus could reverse immunosenescence. Nine subjects (ages 51-65) were treated with growth hormone, DHEA, and metformin. Epigenetic aging, as measured by the Horvath clock, reversed by an average of 2.5 years. Thymic regeneration was observed by MRI.",
+      "vecvo_notes": "Provocative small study. Needs replication in larger controlled trial. Epigenetic age reversal impressive but surrogate endpoint.",
+      "tags": ["thymus", "epigenetic-age", "growth-hormone", "TRIIM", "pilot-study"]
+    }
+  ],
+  "meta": {
+    "total_papers": 12,
+    "version": "1.0",
+    "last_updated": "2026-03-29",
+    "evidence_levels": {
+      "landmark": "Foundational papers that defined research directions",
+      "very_high": "Large RCTs or multiple consistent cohort studies",
+      "high": "Well-designed RCTs or large observational studies",
+      "moderate": "Limited RCT data or smaller cohort studies",
+      "preliminary": "Early-stage trials or small sample sizes"
+    },
+    "paper_types": {
+      "review": "Comprehensive literature review",
+      "research_article": "Original research findings",
+      "cohort_study": "Longitudinal observational study",
+      "clinical_trial": "Interventional human study"
+    }
+  }
+}
