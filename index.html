@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VECVO — The Science of Not Dying</title>
-<meta name="description" content="VECVO is a longevity science research hub dedicated to conquering biological aging. Founded by Alice Frolov.">
+<title>VECVO — Longevity Science Research Hub</title>
+<meta name="description" content="Systematic documentation of aging biology, lifespan-extending interventions, and translational research. Evidence-based longevity science compilation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --void: #03040a;
-  --deep: #07090f;
-  --panel: #0b0e18;
-  --border: rgba(0,210,220,0.09);
-  --accent: #00d4dc;
-  --accent2: #00ffcc;
-  --gold: #c9a84c;
-  --white: #eef2ff;
-  --muted: #6b7a94;
-  --text: #b8c4da;
+  --void: #0a0a0f;
+  --deep: #12121a;
+  --panel: #1a1a24;
+  --border: rgba(80,120,180,0.12);
+  --accent: #5080d0;
+  --accent-dim: rgba(80,120,180,0.15);
+  --white: #f5f7fa;
+  --text: #c8d0e0;
+  --muted: #7a8599;
+  --warning: #d08050;
+  --success: #50c878;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,1066 +29,1489 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--void);
   color: var(--text);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 18px;
+  line-height: 1.6;
   overflow-x: hidden;
-  cursor: none;
-}
-@media (pointer: coarse) {
-  body { cursor: auto; }
-  #cursor, #cursorRing { display: none; }
 }
 
-/* ── CURSOR ── */
-#cursor {
-  width: 6px; height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: screen;
-  transition: transform 0.1s;
-}
-#cursorRing {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(0,212,220,0.35);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transition: all 0.14s ease;
-  transform: translate(-50%,-50%);
+/* Typography */
+h1, h2, h3, h4 { font-weight: 500; line-height: 1.2; color: var(--white); }
+h1 { font-size: clamp(42px, 6vw, 68px); letter-spacing: -0.02em; }
+h2 { font-size: clamp(32px, 4.5vw, 48px); letter-spacing: -0.015em; margin-bottom: 1.5rem; }
+h3 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 1rem; }
+h4 { font-size: clamp(18px, 2.5vw, 24px); margin-bottom: 0.75rem; }
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
 }
 
-/* ── NOISE ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  opacity: 0.5; pointer-events: none; z-index: 1;
-}
-
-/* ── NAV ── */
+/* Navigation */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 22px 56px;
+  padding: 1.25rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(3,4,10,0.96), transparent);
+  background: rgba(10,10,15,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+nav.scrolled {
+  background: rgba(10,10,15,0.98);
+  border-bottom-color: var(--border);
 }
 
 .logo {
-  font-family: 'DM Mono', monospace;
-  font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 0.5em;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
   color: var(--white);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 14px;
   text-transform: uppercase;
-}
-
-/* VECVO logo mark — the V mirror symbol */
-.vecvo-mark {
-  width: 34px; height: 34px;
-  position: relative;
-  flex-shrink: 0;
-}
-.vecvo-mark svg {
-  width: 100%; height: 100%;
 }
 
 .nav-links {
-  display: flex; gap: 36px; list-style: none;
+  display: flex;
+  gap: 2rem;
+  list-style: none;
 }
+
 .nav-links a {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.2em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   color: var(--muted);
-  text-decoration: none; text-transform: uppercase;
+  text-decoration: none;
+  text-transform: uppercase;
   transition: color 0.25s;
+  position: relative;
 }
+
 .nav-links a:hover { color: var(--accent); }
 
-/* ── HERO ── */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+}
+
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* Hero */
 .hero {
   min-height: 100vh;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
-  position: relative; overflow: hidden;
-  padding: 130px 40px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 3rem 4rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-bg {
-  position: absolute; inset: 0;
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 105%, rgba(0,80,90,0.45) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 35% at 15% 15%, rgba(0,212,220,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 25% at 85% 25%, rgba(0,255,204,0.03) 0%, transparent 50%),
-    var(--void);
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(80,120,208,0.08) 0%, transparent 70%),
+    radial-gradient(circle at 20% 20%, rgba(80,120,208,0.04) 0%, transparent 40%);
+  pointer-events: none;
 }
 
-.grid-overlay {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(0,212,220,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,212,220,0.025) 1px, transparent 1px);
-  background-size: 72px 72px;
-  animation: gridDrift 24s linear infinite;
-}
-@keyframes gridDrift {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(72px); }
+.hero-content {
+  max-width: 920px;
+  position: relative;
+  z-index: 2;
 }
 
-/* Big VECVO hero mark */
-.hero-symbol {
-  position: relative; z-index: 2;
-  margin-bottom: 52px;
-  animation: riseIn 1s 0.1s both;
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: inline-block;
 }
 
-.hero-vecvo-ring {
-  width: 140px; height: 140px;
-  margin: 0 auto 28px;
+.hero h1 {
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.35rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+  max-width: 780px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.meta-value {
+  font-size: 1.1rem;
+  color: var(--white);
+}
+
+/* Section */
+section {
+  padding: 6rem 3rem;
   position: relative;
 }
 
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.45em;
-  color: var(--accent); text-transform: uppercase;
-  margin-bottom: 28px;
-  position: relative; z-index: 2;
-  animation: riseIn 1s 0.2s both;
+.section-header {
+  margin-bottom: 3.5rem;
 }
-.hero-eyebrow::before { content: '◇ '; }
-.hero-eyebrow::after  { content: ' ◇'; }
-
-h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 11vw, 156px);
-  font-weight: 400;
-  line-height: 0.88;
-  color: var(--white);
-  position: relative; z-index: 2;
-  animation: riseIn 1s 0.35s both;
-  letter-spacing: 0.06em;
-}
-h1 .accent-word {
-  color: var(--accent);
-  display: block;
-  font-size: 0.7em;
-  letter-spacing: 0.12em;
-}
-
-.hero-sub {
-  max-width: 560px;
-  margin: 36px auto 0;
-  font-size: 19px; font-weight: 300;
-  color: var(--muted); line-height: 1.9;
-  position: relative; z-index: 2;
-  animation: riseIn 1s 0.5s both;
-}
-
-.hero-cta {
-  display: flex; gap: 18px;
-  margin-top: 56px;
-  position: relative; z-index: 2;
-  animation: riseIn 1s 0.7s both;
-  flex-wrap: wrap; justify-content: center;
-}
-
-.btn-primary {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px; letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 15px 38px;
-  background: var(--accent); color: var(--void);
-  border: none; text-decoration: none;
-  font-weight: 400; transition: all 0.28s;
-  position: relative; overflow: hidden;
-}
-.btn-primary::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: var(--accent2);
-  transform: translateX(-100%);
-  transition: transform 0.28s;
-}
-.btn-primary:hover::before { transform: translateX(0); }
-.btn-primary span { position: relative; z-index: 1; }
-
-.btn-ghost {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px; letter-spacing: 0.22em;
-  text-transform: uppercase;
-  padding: 15px 38px;
-  background: transparent; color: var(--white);
-  border: 1px solid rgba(255,255,255,0.14);
-  text-decoration: none; transition: all 0.28s;
-}
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-.scroll-hint {
-  position: absolute; bottom: 36px; left: 50%;
-  transform: translateX(-50%);
-  z-index: 2; display: flex; flex-direction: column;
-  align-items: center; gap: 8px;
-  animation: riseIn 1s 1.1s both;
-}
-.scroll-bar {
-  width: 1px; height: 56px;
-  background: linear-gradient(to bottom, transparent, var(--accent));
-  animation: scrollPulse 2.2s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-  0%   { transform: scaleY(0); transform-origin: top; }
-  50%  { transform: scaleY(1); transform-origin: top; }
-  51%  { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-@keyframes riseIn {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── STAT BAR ── */
-.stat-bar {
-  background: var(--deep);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 36px 60px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-}
-.stat-item {
-  text-align: center;
-  padding: 8px 24px;
-  border-right: 1px solid var(--border);
-}
-.stat-item:last-child { border-right: none; }
-.stat-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(36px, 4.5vw, 60px);
-  color: var(--white); display: block;
-  letter-spacing: 0.04em; line-height: 1;
-}
-.stat-num b { color: var(--accent); }
-.stat-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.22em;
-  color: var(--muted); text-transform: uppercase;
-  display: block; margin-top: 6px;
-}
-
-/* ── GENERIC SECTION ── */
-section { padding: 120px 60px; position: relative; }
 
 .section-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.35em;
-  color: var(--accent); text-transform: uppercase;
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 28px;
-}
-.section-tag::after {
-  content: ''; flex: 1; max-width: 48px;
-  height: 1px; background: var(--accent); opacity: 0.35;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: inline-block;
 }
 
-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 5.5vw, 76px);
-  font-weight: 300; color: var(--white);
-  line-height: 1; margin-bottom: 56px;
-  letter-spacing: -0.015em;
-}
-h2 em { font-style: italic; color: var(--accent); }
-
-/* ── ABOUT ── */
-.about-section {
-  background: var(--deep);
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
-}
-.about-text p {
-  font-size: 20px; line-height: 1.95;
-  color: var(--text); margin-bottom: 22px; font-weight: 300;
-}
-.founder-block {
-  border-left: 1px solid rgba(0,212,220,0.2);
-  padding-left: 36px; margin-top: 44px;
-}
-.founder-name {
-  font-family: 'DM Mono', monospace;
-  font-size: 14px; font-weight: 400;
-  color: var(--white); letter-spacing: 0.18em; text-transform: uppercase;
-}
-.founder-role {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.2em;
-  color: var(--accent); text-transform: uppercase;
-  margin-top: 5px; display: block;
-}
-.founder-bio {
-  font-size: 15px; color: var(--muted);
-  line-height: 1.85; margin-top: 14px;
+.section-intro {
+  font-size: 1.15rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 720px;
+  margin-top: 1rem;
 }
 
-/* About visual — animated molecule */
-.about-visual {
-  position: relative; height: 480px;
-  display: flex; align-items: center; justify-content: center;
-}
-.molecule {
-  position: relative;
-  width: 220px; height: 380px;
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-/* ── HALLMARKS ── */
-.hallmarks-section { background: var(--void); }
-.hallmarks-grid {
+.container-narrow {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* Grid */
+.grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 1.5rem;
 }
-.hallmark-card {
-  background: var(--void);
-  padding: 36px;
-  position: relative; overflow: hidden;
-  transition: background 0.3s;
-}
-.hallmark-card::after {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 2px; background: var(--accent);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.35s;
-}
-.hallmark-card:hover { background: var(--panel); }
-.hallmark-card:hover::after { transform: scaleX(1); }
-.hallmark-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; color: var(--accent);
-  letter-spacing: 0.2em; margin-bottom: 18px; opacity: 0.55;
-}
-.hallmark-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 23px; font-weight: 400;
-  color: var(--white); margin-bottom: 14px; line-height: 1.2;
-}
-.hallmark-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-/* ── INTERVENTIONS ── */
-.interventions-section { background: var(--deep); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+/* Card */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  background: rgba(80,120,208,0.04);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.card-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.card-body {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.badge-high {
+  background: rgba(80,200,120,0.15);
+  color: var(--success);
+  border: 1px solid rgba(80,200,120,0.3);
+}
+
+.badge-medium {
+  background: rgba(80,120,208,0.15);
+  color: var(--accent);
+  border: 1px solid rgba(80,120,208,0.3);
+}
+
+.badge-low {
+  background: rgba(208,128,80,0.15);
+  color: var(--warning);
+  border: 1px solid rgba(208,128,80,0.3);
+}
+
+.badge-prelim {
+  background: rgba(122,133,153,0.15);
+  color: var(--muted);
+  border: 1px solid rgba(122,133,153,0.3);
+}
+
+/* Evidence Table */
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: var(--panel);
+}
+
+.evidence-table thead {
+  background: rgba(80,120,208,0.08);
+}
+
+.evidence-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.evidence-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(80,120,180,0.06);
+  vertical-align: top;
+}
+
+.evidence-table tr:hover {
+  background: rgba(80,120,208,0.03);
+}
+
+.evidence-table code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8em;
+  background: rgba(80,120,208,0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  color: var(--accent);
+}
+
+/* Tabs */
 .tabs {
-  display: flex; gap: 0;
-  margin-bottom: 56px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
   overflow-x: auto;
 }
+
 .tab-btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.18em;
-  text-transform: uppercase; padding: 14px 28px;
-  background: none; border: none; color: var(--muted);
-  cursor: pointer; transition: all 0.25s; white-space: nowrap;
-  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.25s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
 }
-.tab-btn.active, .tab-btn:hover { color: var(--accent); border-bottom-color: var(--accent); }
-.tab-content { display: none; }
-.tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-.intervention-info h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px; font-weight: 300;
-  color: var(--white); margin-bottom: 22px; line-height: 1;
+
+.tab-btn:hover { color: var(--accent); }
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
-.intervention-info p { font-size: 17px; color: var(--text); line-height: 1.85; margin-bottom: 18px; }
-.intervention-meta {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 16px; margin-top: 36px;
+
+.tab-content {
+  display: none;
 }
-.meta-item {
-  padding: 18px;
-  border: 1px solid rgba(0,212,220,0.09);
-  background: rgba(0,212,220,0.02);
+
+.tab-content.active {
+  display: block;
 }
-.meta-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.2em;
-  color: var(--accent); text-transform: uppercase;
-  display: block; margin-bottom: 7px;
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 3rem;
 }
-.meta-value {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px; color: var(--white);
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
 }
-.intervention-cards { display: flex; flex-direction: column; gap: 14px; }
-.intervention-card {
-  padding: 22px;
-  border: 1px solid rgba(255,255,255,0.055);
-  background: rgba(0,212,220,0.018);
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 0.4rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--void);
+}
+
+.timeline-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item h4 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.timeline-item p {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+.timeline-citation {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Publication Card */
+.pub-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.pub-card:hover {
+  border-color: var(--accent);
+  background: rgba(80,120,208,0.04);
+}
+
+.pub-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.pub-authors {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.pub-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pub-abstract {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.pub-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pub-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
   transition: all 0.25s;
 }
-.intervention-card:hover {
-  border-color: rgba(0,212,220,0.18);
-  background: rgba(0,212,220,0.035);
-}
-.intervention-card h4 {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px; font-weight: 400; color: var(--white);
-  letter-spacing: 0.12em; margin-bottom: 7px; text-transform: uppercase;
-}
-.intervention-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
 
-/* ── ROADMAP ── */
-.roadmap-section { background: var(--void); }
-.timeline { position: relative; padding-left: 76px; }
-.timeline::before {
-  content: ''; position: absolute;
-  left: 14px; top: 0; bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--accent), rgba(0,212,220,0.05));
-}
-.timeline-item { position: relative; margin-bottom: 56px; }
-.timeline-item::before {
-  content: ''; position: absolute;
-  left: -70px; top: 8px;
-  width: 9px; height: 9px;
-  border-radius: 50%; background: var(--accent);
-  box-shadow: 0 0 14px rgba(0,212,220,0.65);
-}
-.timeline-year {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--accent);
-  letter-spacing: 0.22em; margin-bottom: 10px;
-}
-.timeline-item h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px; font-weight: 400;
-  color: var(--white); margin-bottom: 14px; line-height: 1.1;
-}
-.timeline-item p { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 580px; }
-
-/* ── FAQ ── */
-.faq-section { background: var(--deep); }
-.accordion-item { border-bottom: 1px solid rgba(255,255,255,0.055); }
-.accordion-header {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 26px 0; cursor: pointer; transition: color 0.25s;
-}
-.accordion-header:hover h4 { color: var(--accent); }
-.accordion-header h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 400;
-  color: var(--white); transition: color 0.25s;
-  line-height: 1.3; padding-right: 36px;
-}
-.accordion-icon {
-  font-family: 'DM Mono', monospace;
-  font-size: 18px; color: var(--accent);
-  transition: transform 0.3s; flex-shrink: 0;
-}
-.accordion-item.open .accordion-icon { transform: rotate(45deg); }
-.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.accordion-item.open .accordion-body { max-height: 400px; }
-.accordion-body-inner {
-  padding-bottom: 26px;
-  font-size: 16px; color: var(--muted); line-height: 1.9;
+.pub-link:hover {
+  background: var(--accent);
+  color: var(--void);
 }
 
-/* ── COMPANIES ── */
-.companies-section { background: var(--void); text-align: center; }
-.companies-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 2px; background: var(--border);
-  border: 1px solid var(--border); margin-top: 56px;
-}
-.company-cell {
-  background: var(--void); padding: 28px 22px;
-  display: flex; flex-direction: column; gap: 7px;
-  transition: background 0.25s; text-align: left;
-}
-.company-cell:hover { background: var(--panel); }
-.company-name {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px; font-weight: 400;
-  color: var(--white); letter-spacing: 0.18em; text-transform: uppercase;
-}
-.company-focus {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; color: var(--accent);
-  letter-spacing: 0.15em; text-transform: uppercase;
-}
-.company-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-top: 4px; }
-
-/* ── MANIFESTO ── */
-.manifesto {
-  background: var(--panel);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 120px 60px; text-align: center;
-}
-.manifesto-inner { max-width: 780px; margin: 0 auto; }
-.manifesto-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(26px, 3.6vw, 44px);
-  font-weight: 300; color: var(--white);
-  line-height: 1.45; margin-bottom: 36px;
-  font-style: italic;
-}
-.manifesto-quote em {
-  font-style: normal; color: var(--accent);
-  text-decoration: underline;
-  text-decoration-color: rgba(0,212,220,0.28);
-}
-.manifesto-sub {
-  color: var(--muted); font-size: 15px;
-  max-width: 480px; margin: 0 auto 40px;
-  font-family: 'DM Mono', monospace;
-  letter-spacing: 0.05em; line-height: 1.9;
-}
-
-/* ── FOOTER ── */
+/* Footer */
 footer {
-  background: var(--void);
-  padding: 56px 60px;
-  border-top: 1px solid rgba(255,255,255,0.04);
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 3rem;
+}
+
+.footer-content {
+  max-width: 1280px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 36px; align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
 }
-.footer-logo {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px; font-weight: 400;
-  color: var(--white); letter-spacing: 0.48em;
-  display: flex; align-items: center; gap: 12px; text-transform: uppercase;
+
+.footer-section h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--white);
 }
-.footer-logo .f-dot {
-  width: 7px; height: 7px;
-  background: var(--accent); border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,212,220,0.6);
+
+.footer-section p,
+.footer-section li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
 }
-.footer-logo span { color: var(--accent); }
-.footer-center {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; color: var(--muted);
-  letter-spacing: 0.1em; line-height: 1.85;
-  text-align: center;
+
+.footer-section ul {
+  list-style: none;
 }
-.footer-founder {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; color: var(--muted);
-  letter-spacing: 0.18em; text-align: right;
-}
-.footer-founder strong {
-  color: var(--white); display: block;
-  font-size: 12px; letter-spacing: 0.22em;
-  margin-bottom: 3px; text-transform: uppercase;
-}
-.footer-nav {
-  display: flex; gap: 28px; justify-content: center;
-  margin-top: 36px; grid-column: 1 / -1;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  padding-top: 28px;
-}
-.footer-nav a {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.22em;
-  color: var(--muted); text-decoration: none; text-transform: uppercase;
+
+.footer-section a {
+  color: var(--muted);
+  text-decoration: none;
   transition: color 0.25s;
 }
-.footer-nav a:hover { color: var(--accent); }
 
-/* ── FADE IN ── */
-.fade-in {
-  opacity: 0; transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+.footer-section a:hover {
+  color: var(--accent);
 }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* ── MOBILE ── */
+.footer-bottom {
+  max-width: 1280px;
+  margin: 2rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(80,120,180,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Utilities */
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+
+/* Responsive */
 @media (max-width: 768px) {
-  nav { padding: 18px 22px; }
+  nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
-  section { padding: 80px 22px; }
-  .stat-bar { padding: 28px 22px; grid-template-columns: repeat(2,1fr); }
-  .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 22px; }
-  .stat-item:nth-child(3), .stat-item:last-child { border-bottom: none; }
-  .about-section { grid-template-columns: 1fr; gap: 36px; }
-  .about-visual { height: 180px; }
-  .hallmarks-grid { grid-template-columns: 1fr; }
-  .tab-content.active { grid-template-columns: 1fr; }
-  .companies-grid { grid-template-columns: repeat(2,1fr); }
-  footer { grid-template-columns: 1fr; text-align: center; }
-  .footer-founder { text-align: center; }
-  h1 { font-size: clamp(64px, 16vw, 120px); }
+  section { padding: 4rem 1.5rem; }
+  .hero { padding: 6rem 1.5rem 3rem; }
+  .footer-content { grid-template-columns: 1fr; }
+  .timeline { padding-left: 2rem; }
+  .timeline-item::before { left: -1.75rem; }
 }
 
-/* VECVO logo animation */
-@keyframes vecvoSpin1 { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-@keyframes vecvoSpin2 { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
-@keyframes vecvoGlow  {
-  0%,100% { opacity:1; r:8; }
-  50%      { opacity:0.5; r:5; }
+/* Dark mode optimization */
+@media (prefers-color-scheme: light) {
+  :root {
+    --void: #ffffff;
+    --deep: #f8f9fa;
+    --panel: #ffffff;
+    --border: rgba(80,120,180,0.15);
+    --accent: #4070c0;
+    --white: #1a1a24;
+    --text: #2a2a36;
+    --muted: #5a6070;
+  }
 }
 </style>
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursorRing"></div>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="logo">
-    <!-- VECVO mark: mirrored V's + helix dot -->
-    <div class="vecvo-mark">
-      <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="17" cy="17" r="15.5" stroke="#00d4dc" stroke-width="0.8" style="animation: vecvoSpin1 20s linear infinite; transform-origin:50% 50%"/>
-        <circle cx="17" cy="17" r="10" stroke="rgba(0,212,220,0.35)" stroke-width="0.8" style="animation: vecvoSpin2 14s linear infinite; transform-origin:50% 50%"/>
-        <!-- Left V -->
-        <polyline points="4,10 10,24 14,15" stroke="#00d4dc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Right V (mirror) -->
-        <polyline points="30,10 24,24 20,15" stroke="#00d4dc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Centre dot -->
-        <circle cx="17" cy="17" r="2.5" fill="#00d4dc" style="animation: vecvoGlow 3s ease-in-out infinite"/>
-      </svg>
-    </div>
-    VE<span style="color:var(--accent)">C</span>VO
-  </a>
+<!-- Navigation -->
+<nav id="nav">
+  <a href="#" class="logo">VECVO</a>
   <ul class="nav-links">
-    <li><a href="#aging">Science</a></li>
+    <li><a href="#hallmarks">Hallmarks</a></li>
     <li><a href="#interventions">Interventions</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#publications">Publications</a></li>
     <li><a href="#about">About</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="grid-overlay"></div>
-
-  <!-- animated VECVO hero emblem -->
-  <div class="hero-symbol">
-    <div class="hero-vecvo-ring">
-      <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="66" stroke="rgba(0,212,220,0.12)" stroke-width="1" style="animation:vecvoSpin1 30s linear infinite;transform-origin:50% 50%"/>
-        <circle cx="70" cy="70" r="52" stroke="rgba(0,212,220,0.2)" stroke-width="1" style="animation:vecvoSpin2 20s linear infinite;transform-origin:50% 50%"/>
-        <circle cx="70" cy="70" r="38" stroke="#00d4dc" stroke-width="1.2" style="animation:vecvoSpin1 14s linear infinite;transform-origin:50% 50%"/>
-        <!-- big V left -->
-        <polyline points="22,38 50,100 66,62" stroke="#00d4dc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- big V right (mirror) -->
-        <polyline points="118,38 90,100 74,62" stroke="#00d4dc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- centre core -->
-        <circle cx="70" cy="70" r="7" fill="#00d4dc" style="animation:vecvoGlow 2.8s ease-in-out infinite"/>
-        <circle cx="70" cy="70" r="14" stroke="rgba(0,212,220,0.3)" stroke-width="1" style="animation:vecvoGlow 2.8s ease-in-out infinite"/>
-      </svg>
-    </div>
-  </div>
-
-  <div class="hero-eyebrow" style="position:relative;z-index:2;animation:riseIn 1s 0.2s both;">Longevity Science Research Hub</div>
-
-  <h1 style="position:relative;z-index:2;animation:riseIn 1s 0.35s both;">
-    DEDICATED
-    <span class="accent-word">TO LIFE</span>
-  </h1>
-
-  <p class="hero-sub">
-    Aging is not a law of nature. It is a disease with identifiable mechanisms — and every mechanism has a solution. VECVO exists to accelerate that solution.
-  </p>
-
-  <div class="hero-cta">
-    <a href="#aging" class="btn-primary"><span>Explore the Science</span></a>
-    <a href="#about" class="btn-ghost">About Vecvo</a>
-  </div>
-
-  <div class="scroll-hint">
-    <div class="scroll-bar"></div>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stat-bar">
-  <div class="stat-item">
-    <span class="stat-num"><b id="stat1">0</b>T</span>
-    <span class="stat-label">Cells in the human body</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num"><b id="stat2">0</b></span>
-    <span class="stat-label">Hallmarks of aging</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">$<b id="stat3">0</b>B+</span>
-    <span class="stat-label">Longevity investment 2023</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num"><b id="stat4">0</b></span>
-    <span class="stat-label">Target: escape velocity year</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="about-section" id="about">
-  <div class="about-text fade-in">
-    <div class="section-tag">00 — Origin</div>
-    <h2>Why <em>VECVO</em> Exists</h2>
-    <p>Every year, 55 million people die from age-related causes. Not from war, not from accidents — from the slow accumulation of molecular damage we once called "natural." It is not natural. It is a solvable problem.</p>
-    <p>VECVO is a research hub tracking the frontier of longevity science — a living synthesis of the most consequential scientific work happening right now, built for researchers, students, and anyone who refuses to accept biological limits as permanent.</p>
-    <div class="founder-block">
-      <div class="founder-name">Alice Frolov</div>
-      <span class="founder-role">Founder & Researcher</span>
-      <p class="founder-bio">Future scientist and longevity researcher. VECVO is built on the conviction that the generation alive today may be the first to escape the mortality curve entirely.</p>
-    </div>
-  </div>
-  <div class="about-visual fade-in">
-    <!-- Animated DNA-strand SVG -->
-    <svg width="200" height="380" viewBox="0 0 200 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="dnaGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#00d4dc" stop-opacity="0"/>
-          <stop offset="20%" stop-color="#00d4dc" stop-opacity="0.8"/>
-          <stop offset="80%" stop-color="#00d4dc" stop-opacity="0.8"/>
-          <stop offset="100%" stop-color="#00d4dc" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
-      <!-- Strand 1 -->
-      <path d="M100,10 C140,30 60,70 100,90 C140,110 60,150 100,170 C140,190 60,230 100,250 C140,270 60,310 100,330 C140,350 60,370 100,380"
-        stroke="url(#dnaGrad)" stroke-width="1.5" fill="none"
-        style="animation: none"/>
-      <!-- Strand 2 -->
-      <path d="M100,10 C60,30 140,70 100,90 C60,110 140,150 100,170 C60,190 140,230 100,250 C60,270 140,310 100,330 C60,350 140,370 100,380"
-        stroke="rgba(0,255,204,0.4)" stroke-width="1.5" fill="none"/>
-      <!-- Rungs -->
-      <line x1="100" y1="50" x2="100" y2="50" stroke="#00d4dc" stroke-width="1"/>
-      <!-- Generated rungs via JS below -->
-      <g id="dna-rungs"></g>
-      <!-- Nodes -->
-      <circle cx="100" cy="90" r="3" fill="#00d4dc" opacity="0.9"/>
-      <circle cx="100" cy="170" r="3" fill="#00d4dc" opacity="0.9"/>
-      <circle cx="100" cy="250" r="3" fill="#00d4dc" opacity="0.9"/>
-      <circle cx="100" cy="330" r="3" fill="#00d4dc" opacity="0.9"/>
-    </svg>
-  </div>
-</section>
-
-<!-- HALLMARKS -->
-<section class="hallmarks-section" id="aging">
-  <div class="section-tag fade-in">01 — The Enemy</div>
-  <h2 class="fade-in">12 Hallmarks of <em>Aging</em></h2>
-  <div class="hallmarks-grid">
-    <div class="hallmark-card fade-in"><div class="hallmark-num">01</div><h3>Genomic Instability</h3><p>Accumulated DNA damage disrupts cellular function, driving mutations and systemic dysfunction over decades.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">02</div><h3>Telomere Attrition</h3><p>Protective caps on chromosomes shorten with every cell division, eventually triggering senescence or apoptosis.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">03</div><h3>Epigenetic Alterations</h3><p>Gene expression patterns drift from their youthful state, reprogrammable via Yamanaka factor interventions.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">04</div><h3>Loss of Proteostasis</h3><p>Protein folding and clearance machinery declines, leading to toxic aggregations linked to neurodegeneration.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">05</div><h3>Disabled Macroautophagy</h3><p>The cell's self-cleaning recycling system degrades, allowing cellular debris to accumulate and impair function.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">06</div><h3>Deregulated Nutrient Sensing</h3><p>mTOR, AMPK, and insulin signaling pathways lose calibration, accelerating metabolic aging across tissues.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">07</div><h3>Mitochondrial Dysfunction</h3><p>The cell's power plants accumulate damage, producing oxidative stress that amplifies all other hallmarks.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">08</div><h3>Cellular Senescence</h3><p>Zombie cells accumulate throughout the body, secreting inflammatory signals that degrade surrounding tissues.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">09</div><h3>Stem Cell Exhaustion</h3><p>Regenerative capacity declines as stem cell pools deplete and lose functional properties needed for tissue repair.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">10</div><h3>Altered Intercellular Communication</h3><p>Signaling between cells degrades with age, disrupting coordinated tissue function and immune surveillance.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">11</div><h3>Chronic Inflammation</h3><p>Low-grade inflammaging driven by senescent cells and immune dysfunction accelerates every other hallmark.</p></div>
-    <div class="hallmark-card fade-in"><div class="hallmark-num">12</div><h3>Dysbiosis</h3><p>Gut microbiome imbalance disrupts metabolism, immunity, and systemic signaling, contributing to accelerated aging.</p></div>
-  </div>
-</section>
-
-<!-- INTERVENTIONS -->
-<section class="interventions-section" id="interventions">
-  <div class="section-tag fade-in">02 — The Arsenal</div>
-  <h2 class="fade-in">Current <em>Interventions</em></h2>
-  <div class="tabs fade-in">
-    <button class="tab-btn active" onclick="switchTab('senolytics',event)">Senolytics</button>
-    <button class="tab-btn" onclick="switchTab('reprogramming',event)">Reprogramming</button>
-    <button class="tab-btn" onclick="switchTab('mtor',event)">mTOR Inhibition</button>
-    <button class="tab-btn" onclick="switchTab('nad',event)">NAD+ Restoration</button>
-  </div>
-
-  <div id="tab-senolytics" class="tab-content active">
-    <div class="intervention-info">
-      <h3>Senolytics</h3>
-      <p>Senolytics selectively eliminate senescent cells — the "zombie cells" that accumulate with age, corrupting surrounding tissue through the senescence-associated secretory phenotype (SASP).</p>
-      <p>Dasatinib + Quercetin, Navitoclax, and Fisetin are the leading compounds, with multiple clinical trials now underway for age-related diseases.</p>
-      <div class="intervention-meta">
-        <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Clinical Trials</span></div>
-        <div class="meta-item"><span class="meta-label">Target Hallmark</span><span class="meta-value">Cellular Senescence</span></div>
-        <div class="meta-item"><span class="meta-label">Animal Data</span><span class="meta-value">Strong</span></div>
-        <div class="meta-item"><span class="meta-label">Human Data</span><span class="meta-value">Emerging</span></div>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Longevity Science Research Hub</div>
+    <h1>Systematic documentation of aging biology and lifespan-extending interventions</h1>
+    <p class="hero-subtitle">
+      Evidence-based compilation of research on the biological mechanisms of aging, 
+      therapeutic interventions, and translational barriers between model organisms and humans.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Evidence Basis</span>
+        <span class="meta-value">Peer-reviewed literature</span>
       </div>
-    </div>
-    <div class="intervention-cards">
-      <div class="intervention-card"><h4>Dasatinib + Quercetin</h4><p>First senolytic combination shown to clear senescent cells in humans. Intermittent dosing reduces systemic senescent cell burden measurably.</p></div>
-      <div class="intervention-card"><h4>Navitoclax (ABT-263)</h4><p>BCL-2 family inhibitor that selectively induces apoptosis in senescent cells by targeting their anti-apoptotic survival mechanisms.</p></div>
-      <div class="intervention-card"><h4>Fisetin</h4><p>Naturally occurring flavonoid with strong senolytic properties. Lower toxicity profile makes it promising for long-term intermittent use.</p></div>
-    </div>
-  </div>
-
-  <div id="tab-reprogramming" class="tab-content">
-    <div class="intervention-info">
-      <h3>Epigenetic Reprogramming</h3>
-      <p>Partial expression of Yamanaka factors can reverse epigenetic aging marks without full dedifferentiation — restoring youthful gene expression patterns in aged cells.</p>
-      <p>Considered the most transformative longevity approach by many researchers, as it targets upstream information loss rather than downstream damage.</p>
-      <div class="intervention-meta">
-        <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Preclinical</span></div>
-        <div class="meta-item"><span class="meta-label">Target</span><span class="meta-value">Epigenetic Clock</span></div>
-        <div class="meta-item"><span class="meta-label">Animal Data</span><span class="meta-value">Very Strong</span></div>
-        <div class="meta-item"><span class="meta-label">Risk</span><span class="meta-value">Tumorigenesis</span></div>
+      <div class="meta-item">
+        <span class="meta-label">Scope</span>
+        <span class="meta-value">12 hallmarks · 40+ interventions</span>
       </div>
-    </div>
-    <div class="intervention-cards">
-      <div class="intervention-card"><h4>OSK Reprogramming — Altos Labs</h4><p>$3B company developing safe partial reprogramming using Oct4, Sox2, Klf4 to restore youthful cellular identity without cancer risk.</p></div>
-      <div class="intervention-card"><h4>Chemical Reprogramming</h4><p>Small molecule cocktails inducing reprogramming without viral vectors — safer and more scalable for eventual therapeutic delivery.</p></div>
-      <div class="intervention-card"><h4>In Vivo Reprogramming</h4><p>AAV-delivered reprogramming factors directly into living organisms — the ultimate goal for systemic whole-body rejuvenation.</p></div>
-    </div>
-  </div>
-
-  <div id="tab-mtor" class="tab-content">
-    <div class="intervention-info">
-      <h3>mTOR Inhibition</h3>
-      <p>Rapamycin and its analogs inhibit mTORC1, mimicking caloric restriction's effects on aging. The most consistent lifespan extension data in model organisms of any single known intervention.</p>
-      <div class="intervention-meta">
-        <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Off-Label Use</span></div>
-        <div class="meta-item"><span class="meta-label">Target</span><span class="meta-value">Nutrient Sensing</span></div>
-        <div class="meta-item"><span class="meta-label">Animal Data</span><span class="meta-value">Excellent</span></div>
-        <div class="meta-item"><span class="meta-label">Human Data</span><span class="meta-value">Promising</span></div>
+      <div class="meta-item">
+        <span class="meta-label">Maintained By</span>
+        <span class="meta-value">Alice Frolov</span>
       </div>
-    </div>
-    <div class="intervention-cards">
-      <div class="intervention-card"><h4>Rapamycin</h4><p>mTORC1 inhibitor extending mouse lifespan by 9–14% even when started late in life. Growing human longevity community uses intermittent dosing protocols.</p></div>
-      <div class="intervention-card"><h4>Rapalogs</h4><p>Second-generation mTOR inhibitors with improved selectivity, aiming to preserve longevity benefits while reducing immunosuppressive side effects.</p></div>
-    </div>
-  </div>
-
-  <div id="tab-nad" class="tab-content">
-    <div class="intervention-info">
-      <h3>NAD+ Restoration</h3>
-      <p>NAD+ levels decline dramatically with age, impairing sirtuin activity, DNA repair, and mitochondrial function. Precursors NMN and NR can measurably restore levels in human tissue.</p>
-      <div class="intervention-meta">
-        <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Supplements + Trials</span></div>
-        <div class="meta-item"><span class="meta-label">Target</span><span class="meta-value">Mitochondria + DNA Repair</span></div>
-        <div class="meta-item"><span class="meta-label">Animal Data</span><span class="meta-value">Strong</span></div>
-        <div class="meta-item"><span class="meta-label">Safety</span><span class="meta-value">Excellent</span></div>
-      </div>
-    </div>
-    <div class="intervention-cards">
-      <div class="intervention-card"><h4>NMN (Nicotinamide Mononucleotide)</h4><p>Direct NAD+ precursor showing improvements in muscle function, insulin sensitivity, and NAD+ blood levels in human clinical trials.</p></div>
-      <div class="intervention-card"><h4>NR (Nicotinamide Riboside)</h4><p>Alternative NAD+ precursor with robust safety data and demonstrated ability to raise NAD+ in blood and multiple tissues.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ROADMAP -->
-<section class="roadmap-section" id="roadmap">
-  <div class="section-tag fade-in">03 — The Timeline</div>
-  <h2 class="fade-in">The Road to <em>Immortality</em></h2>
-  <div class="timeline">
-    <div class="timeline-item fade-in">
-      <div class="timeline-year">NOW — 2030</div>
-      <h3>The Compression Era</h3>
-      <p>First senolytic therapies reach clinical approval. Rapamycin enters longevity trials. Partial reprogramming shows safety in primates. Biological age becomes a standard clinical biomarker. The first humans measurably reverse their biological age.</p>
+<!-- Hallmarks -->
+<section id="hallmarks">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">01 — Foundations</div>
+      <h2>The Twelve Hallmarks of Aging</h2>
+      <p class="section-intro">
+        The hallmarks framework, established by López-Otín et al. (2013, updated 2023), 
+        organizes aging research into twelve mechanistic categories. Each hallmark represents 
+        a distinct but interconnected pathway of age-related deterioration.
+      </p>
     </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-year">2030 — 2040</div>
-      <h3>The Rejuvenation Decade</h3>
-      <p>Combination therapies targeting multiple hallmarks simultaneously achieve 20+ year biological age reversal in clinical settings. In vivo reprogramming reaches human trials. AI-designed longevity drugs compress decades of discovery into years.</p>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Genomic Instability</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Accumulation of DNA damage from endogenous and exogenous sources. 
+          Double-strand breaks, chromosomal aberrations, and telomere attrition 
+          contribute to cellular senescence and dysfunction.
+        </p>
+        <p class="card-meta mt-1">Key interventions: DNA repair enhancement, genoprotective compounds</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Telomere Attrition</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Progressive shortening of telomeres with each cell division. 
+          Critical shortening triggers replicative senescence. Telomerase 
+          activity varies across tissue types and correlates with regenerative capacity.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Telomerase activation (experimental), lifestyle factors</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Epigenetic Alterations</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Age-related changes in DNA methylation patterns, histone modifications, 
+          and chromatin remodeling. Epigenetic clocks quantify biological age 
+          with high accuracy across tissues.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Partial reprogramming, epigenetic modulation</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Loss of Proteostasis</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Declining efficiency of protein synthesis, folding, and degradation systems. 
+          Accumulation of misfolded proteins and reduced autophagy contribute to 
+          neurodegenerative diseases and functional decline.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Autophagy induction, proteasome enhancement</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Disabled Macroautophagy</h4>
+          <span class="badge badge-medium">Moderate Evidence</span>
+        </div>
+        <p class="card-body">
+          Age-related reduction in autophagy flux impairs cellular waste clearance. 
+          Mitophagy decline leads to accumulation of dysfunctional mitochondria. 
+          Autophagy stimulation extends lifespan in model organisms.
+        </p>
+        <p class="card-meta mt-1">Key interventions: mTOR inhibition, caloric restriction, spermidine</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Deregulated Nutrient Sensing</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Dysregulation of insulin/IGF-1, mTOR, AMPK, and sirtuin pathways. 
+          Reduced metabolic flexibility and impaired response to nutrient availability. 
+          Strong animal evidence for longevity benefits of pathway modulation.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Metformin, rapamycin, NAD+ precursors</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Mitochondrial Dysfunction</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Declining mitochondrial efficiency, increased ROS production, and 
+          accumulation of mtDNA mutations. Impaired mitochondrial biogenesis 
+          and reduced oxidative capacity with age.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Exercise, mitochondrial-targeted antioxidants, NAD+ boost</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Cellular Senescence</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Accumulation of senescent cells secreting pro-inflammatory factors (SASP). 
+          Senescent cells resist apoptosis and contribute to tissue dysfunction. 
+          Senolytic interventions show promise in preclinical and early clinical studies.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Senolytics (dasatinib+quercetin, fisetin)</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Stem Cell Exhaustion</h4>
+          <span class="badge badge-medium">Moderate Evidence</span>
+        </div>
+        <p class="card-body">
+          Age-related decline in stem cell number and regenerative capacity. 
+          Reduced tissue repair and homeostasis. Niche alterations impair 
+          stem cell function independent of intrinsic aging.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Young blood factors, rejuvenation protocols (experimental)</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Altered Intercellular Communication</h4>
+          <span class="badge badge-medium">Moderate Evidence</span>
+        </div>
+        <p class="card-body">
+          Chronic inflammation (inflammaging), impaired neuroendocrine signaling, 
+          and altered extracellular matrix. Systemic factors influence aging 
+          across tissues via paracrine and endocrine mechanisms.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Anti-inflammatory compounds, parabiosis (experimental)</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Chronic Inflammation</h4>
+          <span class="badge badge-high">High Evidence</span>
+        </div>
+        <p class="card-body">
+          Low-grade systemic inflammation driven by SASP, immunosenescence, 
+          and gut dysbiosis. Elevated IL-6, TNF-α, and CRP correlate with 
+          age-related disease and mortality.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Lifestyle modification, senolytic therapy, rapamycin</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Dysbiosis</h4>
+          <span class="badge badge-medium">Moderate Evidence</span>
+        </div>
+        <p class="card-body">
+          Age-related changes in gut microbiome composition and diversity. 
+          Reduced beneficial bacteria, increased pathobionts, and compromised 
+          gut barrier integrity. Links to systemic inflammation unclear.
+        </p>
+        <p class="card-meta mt-1">Key interventions: Probiotics, prebiotics, dietary fiber (evidence mixed)</p>
+      </div>
     </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-year">2040 — 2050</div>
-      <h3>Escape Velocity</h3>
-      <p>For every year a person lives, science adds more than one year to their remaining life expectancy. The first generation to live indefinitely is already alive today. Death from aging becomes a choice, not a certainty.</p>
-    </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-year">2050+</div>
-      <h3>The Post-Mortal World</h3>
-      <p>Aging is classified as a fully treatable condition. The profound philosophical and societal questions of indefinite lifespans become humanity's central challenge. VECVO's mission is complete.</p>
+
+    <div class="mt-2">
+      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.7; max-width: 780px;">
+        <strong>Citation:</strong> López-Otín C, Blasco MA, Partridge L, Serrano M, Kroemer G. 
+        Hallmarks of aging: An expanding universe. Cell. 2023;186(2):243-278. 
+        <code>doi:10.1016/j.cell.2022.11.001</code>
+      </p>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-section" id="faq">
-  <div class="section-tag fade-in">04 — Questions</div>
-  <h2 class="fade-in">Critical <em>Questions</em></h2>
-  <div style="max-width:780px;">
-    <div class="accordion-item fade-in">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h4>Is defeating aging actually scientifically possible?</h4>
-        <div class="accordion-icon">+</div>
-      </div>
-      <div class="accordion-body"><div class="accordion-body-inner">The scientific consensus has shifted dramatically. Aging is now understood as a biological process driven by identifiable molecular mechanisms — not a fixed law of nature. We have already reversed aging in model organisms. The 12 hallmarks provide a comprehensive mechanistic framework. The question is no longer "can we" but "how fast can we move."</div></div>
+<!-- Interventions -->
+<section id="interventions" style="background: var(--deep);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">02 — Therapeutics</div>
+      <h2>Lifespan-Extending Interventions</h2>
+      <p class="section-intro">
+        Interventions ranked by strength of evidence across model organisms and humans. 
+        Translation from short-lived species to humans remains a critical uncertainty. 
+        Most interventions lack adequate long-term safety data.
+      </p>
     </div>
-    <div class="accordion-item fade-in">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h4>What is longevity escape velocity?</h4>
-        <div class="accordion-icon">+</div>
-      </div>
-      <div class="accordion-body"><div class="accordion-body-inner">Longevity escape velocity (LEV) is the point at which science extends human life expectancy faster than time passes. If you gain more than one year of healthy life expectancy for every year lived, you escape the mortality curve. Aubrey de Grey estimates LEV is achievable within decades with sufficient scientific investment.</div></div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('pharmacological', event)">Pharmacological</button>
+      <button class="tab-btn" onclick="switchTab('cellular', event)">Cellular</button>
+      <button class="tab-btn" onclick="switchTab('lifestyle', event)">Lifestyle</button>
+      <button class="tab-btn" onclick="switchTab('experimental', event)">Experimental</button>
     </div>
-    <div class="accordion-item fade-in">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h4>Will AI dramatically accelerate longevity research?</h4>
-        <div class="accordion-icon">+</div>
-      </div>
-      <div class="accordion-body"><div class="accordion-body-inner">AlphaFold's protein structure predictions transformed structural biology overnight. Similar breakthroughs in aging research could compress decades of work into years. AI systems are already identifying novel drug candidates, predicting treatment outcomes, and designing trials. The convergence of AI with aging biology may be the decisive catalyst.</div></div>
+
+    <!-- Pharmacological -->
+    <div id="tab-pharmacological" class="tab-content active">
+      <table class="evidence-table">
+        <thead>
+          <tr>
+            <th>Intervention</th>
+            <th>Mechanism</th>
+            <th>Mouse Evidence</th>
+            <th>Human Evidence</th>
+            <th>Safety Profile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Rapamycin</strong></td>
+            <td>mTOR inhibition, autophagy induction</td>
+            <td><span class="badge badge-high">+15% median lifespan</span><br>
+                <small style="color: var(--muted);">Harrison 2009, ITP studies</small></td>
+            <td><span class="badge badge-prelim">Phase II trials ongoing</span><br>
+                <small style="color: var(--muted);">NCT02874924, PEARL trial</small></td>
+            <td style="color: var(--warning);">Immunosuppressant<br>Long-term safety unknown</td>
+          </tr>
+          <tr>
+            <td><strong>Metformin</strong></td>
+            <td>AMPK activation, mitochondrial complex I inhibition</td>
+            <td><span class="badge badge-medium">Mixed results</span><br>
+                <small style="color: var(--muted);">Strain-dependent effects</small></td>
+            <td><span class="badge badge-prelim">TAME trial enrolling</span><br>
+                <small style="color: var(--muted);">Diabetes data inconclusive</small></td>
+            <td style="color: var(--success);">Well-tolerated<br>Decades of clinical use</td>
+          </tr>
+          <tr>
+            <td><strong>NAD+ Precursors</strong><br><small>(NMN, NR)</small></td>
+            <td>NAD+ restoration, sirtuin activation</td>
+            <td><span class="badge badge-medium">Modest benefits</span><br>
+                <small style="color: var(--muted);">Metabolic improvements</small></td>
+            <td><span class="badge badge-low">Biomarker changes only</span><br>
+                <small style="color: var(--muted);">No longevity data</small></td>
+            <td style="color: var(--muted);">Generally safe<br>Limited long-term data</td>
+          </tr>
+          <tr>
+            <td><strong>Senolytics</strong><br><small>(D+Q, Fisetin)</small></td>
+            <td>Selective elimination of senescent cells</td>
+            <td><span class="badge badge-high">+36% remaining lifespan</span><br>
+                <small style="color: var(--muted);">When started late-life</small></td>
+            <td><span class="badge badge-prelim">Phase I/II completed</span><br>
+                <small style="color: var(--muted);">Safety established, efficacy TBD</small></td>
+            <td style="color: var(--warning);">Intermittent dosing<br>Safety profile emerging</td>
+          </tr>
+          <tr>
+            <td><strong>Resveratrol</strong></td>
+            <td>SIRT1 activation (disputed)</td>
+            <td><span class="badge badge-low">No consistent effect</span><br>
+                <small style="color: var(--muted);">Negative in rigorous studies</small></td>
+            <td><span class="badge badge-low">No benefit demonstrated</span><br>
+                <small style="color: var(--muted);">Despite early hype</small></td>
+            <td style="color: var(--muted);">Generally safe<br>No efficacy signal</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="accordion-item fade-in">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h4>Which single intervention has the greatest impact today?</h4>
-        <div class="accordion-icon">+</div>
+
+    <!-- Cellular -->
+    <div id="tab-cellular" class="tab-content">
+      <div class="grid grid-2">
+        <div class="card">
+          <h4 class="card-title">Partial Cellular Reprogramming</h4>
+          <div class="mb-1">
+            <span class="badge badge-medium">Preclinical</span>
+            <span class="badge badge-prelim">Human trials 2025+</span>
+          </div>
+          <p class="card-body">
+            Transient expression of Yamanaka factors (OSK, OSKM) resets epigenetic age 
+            without dedifferentiation. Proof-of-concept demonstrated in mice (Ocampo 2016, 
+            Lu 2020). Altos Labs, Turn Bio, and others developing clinical applications.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Mechanism:</strong> Epigenetic clock reversal, cellular rejuvenation<br>
+            <strong>Risk:</strong> Teratoma formation if dedifferentiation occurs<br>
+            <strong>Timeline:</strong> First human trials expected 2025-2026
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Stem Cell Therapies</h4>
+          <div class="mb-1">
+            <span class="badge badge-medium">Limited Clinical Data</span>
+          </div>
+          <p class="card-body">
+            Mesenchymal stem cells (MSCs) and induced pluripotent stem cells (iPSCs) 
+            for tissue regeneration. Safety established for MSCs; efficacy remains unclear. 
+            iPSC-derived cells show promise but face regulatory hurdles.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Mechanism:</strong> Tissue regeneration, paracrine signaling<br>
+            <strong>Evidence:</strong> Mixed results in clinical trials<br>
+            <strong>Status:</strong> MSCs approved for specific indications; longevity claims unproven
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Mitochondrial Transfer</h4>
+          <div class="mb-1">
+            <span class="badge badge-prelim">Experimental</span>
+          </div>
+          <p class="card-body">
+            Replacement of dysfunctional mitochondria with healthy mitochondria from 
+            young donors or autologous sources. Proof-of-concept in cell culture; 
+            in vivo delivery remains challenging.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Mechanism:</strong> Restoration of mitochondrial function<br>
+            <strong>Challenge:</strong> Delivery method, immune response<br>
+            <strong>Status:</strong> Early research stage
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Telomerase Gene Therapy</h4>
+          <div class="mb-1">
+            <span class="badge badge-prelim">Experimental</span>
+          </div>
+          <p class="card-body">
+            AAV-mediated TERT expression to restore telomerase activity. 
+            Demonstrated safety in mice without increased cancer incidence (Bernardes de Jesus 2012). 
+            Human applications face cancer risk concerns.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Mechanism:</strong> Telomere extension, enhanced proliferative capacity<br>
+            <strong>Risk:</strong> Theoretical cancer promotion<br>
+            <strong>Status:</strong> Preclinical only
+          </p>
+        </div>
       </div>
-      <div class="accordion-body"><div class="accordion-body-inner">Epigenetic reprogramming is considered most transformative as it addresses upstream information loss. Senolytics offer the clearest near-term clinical benefit. mTOR inhibition has the most consistent animal data. The current leading hypothesis is a combination approach: senolytics, rapamycin, NAD+ precursors, and epigenetic interventions together.</div></div>
+    </div>
+
+    <!-- Lifestyle -->
+    <div id="tab-lifestyle" class="tab-content">
+      <div class="grid grid-2">
+        <div class="card">
+          <h4 class="card-title">Exercise</h4>
+          <div class="mb-1">
+            <span class="badge badge-high">Strongest Human Evidence</span>
+          </div>
+          <p class="card-body">
+            Regular physical activity reduces all-cause mortality by ~30% (150 min/week moderate intensity). 
+            VO<sub>2</sub>max is strongest single predictor of longevity. Both aerobic and resistance 
+            training provide independent benefits.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Effect size:</strong> 1 MET increase → 10-25% mortality reduction<br>
+            <strong>Mechanism:</strong> Multi-system (cardiovascular, metabolic, neurological)<br>
+            <strong>Dose-response:</strong> Benefits continue beyond current guidelines
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Caloric Restriction</h4>
+          <div class="mb-1">
+            <span class="badge badge-high">Strong Animal Data</span>
+            <span class="badge badge-medium">Limited Human Data</span>
+          </div>
+          <p class="card-body">
+            20-40% caloric restriction extends lifespan in most model organisms. 
+            Human data from CALERIE trial shows metabolic benefits but no longevity endpoint. 
+            Compliance extremely difficult; potential for malnutrition and bone loss.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Animal effect:</strong> +20-40% lifespan extension<br>
+            <strong>Human benefit:</strong> Unclear; surrogate markers improve<br>
+            <strong>Practical limitation:</strong> Adherence, quality of life trade-off
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Sleep Optimization</h4>
+          <div class="mb-1">
+            <span class="badge badge-high">Strong Epidemiological Evidence</span>
+          </div>
+          <p class="card-body">
+            7-8 hours sleep duration associated with lowest mortality (U-shaped curve). 
+            Sleep fragmentation independently predicts cognitive decline and cardiovascular events. 
+            Circadian alignment critical for metabolic and immune function.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Optimal duration:</strong> 7-8 hours (both short and long sleep harmful)<br>
+            <strong>Quality markers:</strong> Sleep efficiency, deep sleep percentage<br>
+            <strong>Implementation:</strong> Consistent schedule, environment optimization
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Social Connection</h4>
+          <div class="mb-1">
+            <span class="badge badge-high">Strong Evidence</span>
+          </div>
+          <p class="card-body">
+            Social isolation increases mortality risk by ~50%, equivalent to smoking 15 cigarettes daily. 
+            Quality of relationships more important than quantity. Mechanisms include stress reduction, 
+            immune function, and health behaviors.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Effect size:</strong> Comparable to major clinical risk factors<br>
+            <strong>Mechanism:</strong> HPA axis regulation, inflammation reduction<br>
+            <strong>Evidence quality:</strong> Multiple large cohort studies
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experimental -->
+    <div id="tab-experimental" class="tab-content">
+      <div class="grid grid-2">
+        <div class="card">
+          <h4 class="card-title">Parabiosis / Young Plasma</h4>
+          <div class="mb-1">
+            <span class="badge badge-prelim">Experimental Only</span>
+          </div>
+          <p class="card-body">
+            Heterochronic parabiosis (young-old blood sharing) reverses aging markers in old mice. 
+            Young plasma infusions show mixed results. GDF11, oxytocin, and other factors implicated. 
+            Clinical trials by Alkahest showed no cognitive benefit in Alzheimer's patients.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Mechanism:</strong> Circulating rejuvenation factors vs. dilution of pro-aging factors<br>
+            <strong>Status:</strong> Human trials disappointing; mechanism unclear<br>
+            <strong>Recommendation:</strong> Not supported by evidence
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Thymus Regeneration</h4>
+          <div class="mb-1">
+            <span class="badge badge-medium">Early Clinical Data</span>
+          </div>
+          <p class="card-body">
+            TRIIM trial (Fahy 2019): growth hormone, DHEA, metformin cocktail regenerated 
+            thymic tissue and reversed epigenetic age. Small n=9 study requires replication. 
+            Thymus regeneration could restore immune function in aging.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Result:</strong> 2.5 year epigenetic age reversal over 1 year<br>
+            <strong>Limitation:</strong> Tiny sample, no control group, surrogate endpoint<br>
+            <strong>Status:</strong> Larger trials needed
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Hyperbaric Oxygen</h4>
+          <div class="mb-1">
+            <span class="badge badge-low">Weak Evidence</span>
+          </div>
+          <p class="card-body">
+            Claims of telomere lengthening and senescent cell clearance from small Israeli study 
+            (Hachmo 2020, n=35). No replication; surrogate markers only. Mechanism unclear. 
+            Expensive intervention with no mortality or hard clinical endpoint data.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Evidence quality:</strong> Single small study, biomarker endpoints<br>
+            <strong>Cost:</strong> Prohibitive for most individuals<br>
+            <strong>Recommendation:</strong> Insufficient evidence to recommend
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Cryonics</h4>
+          <div class="mb-1">
+            <span class="badge badge-prelim">No Revival Technology</span>
+          </div>
+          <p class="card-body">
+            Preservation of legally dead individuals at -196°C with intent of future revival. 
+            Vitrification prevents ice crystal formation but causes chemical damage. 
+            No demonstrated ability to reverse preservation damage or revive complex organisms.
+          </p>
+          <p class="card-meta mt-1">
+            <strong>Status:</strong> Speculative; no proof of concept for revival<br>
+            <strong>Organizations:</strong> Alcor, Cryonics Institute<br>
+            <strong>Assessment:</strong> Unknown feasibility; last-resort option
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- COMPANIES -->
-<section class="companies-section">
-  <div class="section-tag fade-in" style="justify-content:center;">05 — The Ecosystem</div>
-  <h2 class="fade-in">Pioneering <em>Organizations</em></h2>
-  <p class="fade-in" style="max-width:560px;margin:0 auto;font-size:17px;color:var(--muted);line-height:1.85;">The longevity industry has attracted billions in capital. These organizations are pushing the frontier of aging science.</p>
-  <div class="companies-grid fade-in">
-    <div class="company-cell"><span class="company-name">ALTOS LABS</span><span class="company-focus">Epigenetic Reprogramming</span><span class="company-desc">$3B backed. Developing cellular rejuvenation programming to restore youthful biology.</span></div>
-    <div class="company-cell"><span class="company-name">CALICO</span><span class="company-focus">Longevity Research</span><span class="company-desc">Google/Alphabet's longevity moonshot. Basic research into the biology of aging.</span></div>
-    <div class="company-cell"><span class="company-name">UNITY BIOTECH</span><span class="company-focus">Senolytics</span><span class="company-desc">Clinical-stage company developing senolytic therapies for age-related diseases.</span></div>
-    <div class="company-cell"><span class="company-name">RETRO BIOSCIENCES</span><span class="company-focus">Reprogramming</span><span class="company-desc">Sam Altman-backed. Partial cellular reprogramming and plasma dilution therapies.</span></div>
-    <div class="company-cell"><span class="company-name">INSILICO MEDICINE</span><span class="company-focus">AI Drug Discovery</span><span class="company-desc">AI-powered aging target identification and drug candidate generation at scale.</span></div>
-    <div class="company-cell"><span class="company-name">BIOAGE LABS</span><span class="company-focus">Biomarkers + Drugs</span><span class="company-desc">Machine learning on blood biomarkers to develop precision longevity therapies.</span></div>
-    <div class="company-cell"><span class="company-name">SENS RESEARCH</span><span class="company-focus">Damage Repair</span><span class="company-desc">Targeting all 7 categories of age-related molecular damage for comprehensive repair.</span></div>
-    <div class="company-cell"><span class="company-name">NEWLIMIT</span><span class="company-focus">Epigenetic Medicines</span><span class="company-desc">Coinbase-backed. Building epigenetic medicines to extend healthy human lifespan.</span></div>
-  </div>
-</section>
-
-<!-- MANIFESTO -->
-<section class="manifesto">
-  <div class="manifesto-inner fade-in">
-    <div class="section-tag" style="justify-content:center;margin-bottom:36px;">Our Belief</div>
-    <div class="manifesto-quote">
-      "Death is not <em>inevitable.</em> Aging is not natural law. It is a disease — and every disease has a cure. The greatest project in human history has already begun."
+<!-- Research Timeline -->
+<section id="timeline">
+  <div class="container-narrow">
+    <div class="section-header">
+      <div class="section-tag">03 — History</div>
+      <h2>Longevity Research Timeline</h2>
+      <p class="section-intro">
+        Major milestones in aging biology and translational research. 
+        Timeline reflects established discoveries, not speculative projections.
+      </p>
     </div>
-    <p class="manifesto-sub">The science is ready. The technology is converging. The only question is how fast we move.</p>
-    <a href="#aging" class="btn-primary"><span>Begin from the Start</span></a>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1935</div>
+        <h4>Caloric Restriction Discovery</h4>
+        <p>
+          Clive McCay demonstrates that caloric restriction extends lifespan in rats by up to 50%. 
+          Establishes dietary intervention as fundamental aging research paradigm.
+        </p>
+        <span class="timeline-citation">McCay CM et al. J Nutr. 1935;10(1):63-79</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1993</div>
+        <h4>First Genetic Lifespan Extension</h4>
+        <p>
+          Cynthia Kenyon's lab discovers age-1 mutation doubles C. elegans lifespan. 
+          Demonstrates aging is genetically malleable, not fixed developmental program.
+        </p>
+        <span class="timeline-citation">Kenyon C et al. Nature. 1993;366(6454):461-464</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2000</div>
+        <h4>Sirtuins and Longevity</h4>
+        <p>
+          Leonard Guarente identifies Sir2 (sirtuin) as mediator of caloric restriction benefits 
+          in yeast. Launches NAD+ and resveratrol research programs (later findings more nuanced).
+        </p>
+        <span class="timeline-citation">Lin SJ et al. Science. 2000;289(5487):2126-2128</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2009</div>
+        <h4>Rapamycin Extends Mouse Lifespan</h4>
+        <p>
+          NIH Interventions Testing Program demonstrates rapamycin extends median lifespan 
+          by 14% in mice, even when started late-life. First drug shown to extend mammalian lifespan.
+        </p>
+        <span class="timeline-citation">Harrison DE et al. Nature. 2009;460(7253):392-395</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2011</div>
+        <h4>Senescent Cell Removal Extends Healthspan</h4>
+        <p>
+          Baker et al. show genetic elimination of senescent cells delays age-related pathology 
+          in progeroid mice. Establishes senolytic therapy rationale.
+        </p>
+        <span class="timeline-citation">Baker DJ et al. Nature. 2011;479(7372):232-236</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2013</div>
+        <h4>Hallmarks of Aging Framework</h4>
+        <p>
+          López-Otín et al. publish comprehensive framework organizing aging research into 
+          nine mechanistic hallmarks (later expanded to twelve in 2023 update).
+        </p>
+        <span class="timeline-citation">López-Otín C et al. Cell. 2013;153(6):1194-1217</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2013</div>
+        <h4>Epigenetic Clocks</h4>
+        <p>
+          Steve Horvath develops DNA methylation-based aging clock accurate across tissues. 
+          Enables quantification of biological age and intervention testing.
+        </p>
+        <span class="timeline-citation">Horvath S. Genome Biol. 2013;14(10):R115</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2015</div>
+        <h4>First Senolytic Drugs</h4>
+        <p>
+          Dasatinib + quercetin combination identified as senolytic. Launches clinical 
+          trial programs for age-related disease intervention.
+        </p>
+        <span class="timeline-citation">Zhu Y et al. Aging Cell. 2015;14(4):644-658</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2016</div>
+        <h4>Partial Reprogramming Reverses Aging</h4>
+        <p>
+          Juan Carlos Izpisua Belmonte demonstrates transient Yamanaka factor expression 
+          reverses aging markers in progeroid mice without teratoma formation.
+        </p>
+        <span class="timeline-citation">Ocampo A et al. Cell. 2016;167(7):1719-1733</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <h4>Thymus Regeneration Trial</h4>
+        <p>
+          TRIIM trial reports thymic regeneration and epigenetic age reversal with 
+          growth hormone + DHEA + metformin. Small study (n=9) requires replication.
+        </p>
+        <span class="timeline-citation">Fahy GM et al. Aging Cell. 2019;18(6):e13028</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2020</div>
+        <h4>In Vivo Reprogramming Restores Vision</h4>
+        <p>
+          Sinclair lab demonstrates OSK reprogramming reverses glaucoma-induced vision loss 
+          in mice, resetting epigenetic age without dedifferentiation.
+        </p>
+        <span class="timeline-citation">Lu Y et al. Nature. 2020;588(7836):124-129</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2021</div>
+        <h4>Altos Labs Founded</h4>
+        <p>
+          $3B cellular rejuvenation company launched with Yamanaka, Izpisua Belmonte, and others. 
+          Largest private investment in aging biology to date.
+        </p>
+        <span class="timeline-citation">Industry milestone</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <h4>Hallmarks of Aging 2.0</h4>
+        <p>
+          Updated framework expands to twelve hallmarks, adding disabled macroautophagy, 
+          chronic inflammation, and dysbiosis based on decade of research.
+        </p>
+        <span class="timeline-citation">López-Otín C et al. Cell. 2023;186(2):243-278</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2024-2025</div>
+        <h4>Current State</h4>
+        <p>
+          Multiple Phase II senolytic trials ongoing. Partial reprogramming approaches 
+          expected to enter human trials 2025-2026. TAME metformin trial enrolling. 
+          Translation gap from mice to humans remains primary challenge.
+        </p>
+        <span class="timeline-citation">ClinicalTrials.gov registry</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- Publications -->
+<section id="publications" style="background: var(--deep);">
+  <div class="container-narrow">
+    <div class="section-header">
+      <div class="section-tag">04 — Research Output</div>
+      <h2>Publications & Research Notes</h2>
+      <p class="section-intro">
+        Open-access research notes, literature reviews, and scientific writing 
+        on longevity science. All publications available via OSF and ORCID.
+      </p>
+    </div>
+
+    <!-- Placeholder for your actual publications -->
+    <div class="pub-card">
+      <h3 class="pub-title">Evidence-Based Longevity Framework: What Actually Matters</h3>
+      <div class="pub-authors">Alice Frolov</div>
+      <div class="pub-meta">
+        <span>2026</span>
+        <span>Research Note</span>
+        <span>Open Access</span>
+      </div>
+      <p class="pub-abstract">
+        Critical analysis of longevity interventions filtering for human evidence strength. 
+        Systematic review of hallmarks of aging, pharmacological interventions, and 
+        translational barriers between model organisms and humans. Emphasizes harm avoidance 
+        over optimization and behavioral sustainability over perfect execution.
+      </p>
+      <div class="pub-links">
+        <a href="#" class="pub-link">OSF Repository</a>
+        <a href="#" class="pub-link">PDF Download</a>
+        <a href="#" class="pub-link">DOI: [pending]</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <h3 class="pub-title">Visual Guide to Cellular Senescence Mechanisms</h3>
+      <div class="pub-authors">Alice Frolov</div>
+      <div class="pub-meta">
+        <span>2025</span>
+        <span>Scientific Illustration</span>
+        <span>CC BY 4.0</span>
+      </div>
+      <p class="pub-abstract">
+        Comprehensive visual documentation of senescent cell accumulation pathways, 
+        SASP factor secretion, and senolytic intervention mechanisms. Includes molecular 
+        pathway diagrams and annotated cellular cross-sections.
+      </p>
+      <div class="pub-links">
+        <a href="#" class="pub-link">View Gallery</a>
+        <a href="#" class="pub-link">High-Res Download</a>
+        <a href="#" class="pub-link">Citation Info</a>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border); background: rgba(80,120,208,0.04);">
+      <h4 style="margin-bottom: 0.75rem;">Full Publication List</h4>
+      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.7;">
+        Complete list of research notes, literature reviews, and scientific illustrations 
+        available via:<br><br>
+        <strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);">0009-0006-2567-1734</a><br>
+        <strong>OSF:</strong> <a href="#" style="color: var(--accent);">osf.io/[your-profile]</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container-narrow">
+    <div class="section-header">
+      <div class="section-tag">05 — Project</div>
+      <h2>About VECVO</h2>
+    </div>
+
+    <div style="font-size: 1.1rem; line-height: 1.8; color: var(--text);">
+      <p style="margin-bottom: 1.5rem;">
+        VECVO is a research compilation project focused on the biology of aging and 
+        lifespan-extending interventions. The project synthesizes peer-reviewed literature, 
+        ongoing clinical trials, and mechanistic research into the twelve hallmarks of aging.
+      </p>
+
+      <p style="margin-bottom: 1.5rem;">
+        All content is referenced to primary literature. Evidence strength is explicitly 
+        indicated using standardized categories: high (multiple RCTs or large cohorts), 
+        moderate (observational studies or limited trials), low (animal models only), 
+        preliminary (early-stage research). Speculative content is labeled as such.
+      </p>
+
+      <p style="margin-bottom: 1.5rem;">
+        The project prioritizes honest assessment of translational barriers, uncertainty 
+        acknowledgment, and distinction between established findings and ongoing research. 
+        No commercial affiliations or conflicts of interest.
+      </p>
+
+      <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Maintained By</h3>
+      <p style="margin-bottom: 1rem;">
+        <strong style="color: var(--white);">Alice Frolov</strong><br>
+        Science writer, scientific illustrator, and student researcher<br>
+        Buenos Aires, Argentina
+      </p>
+
+      <p style="margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--muted);">
+        Current focus: aging biology, cellular senescence, CRISPR applications, 
+        and epigenetic reprogramming. Pursuing university study in biotechnology 
+        with emphasis on longevity science research.
+      </p>
+
+      <p style="margin-bottom: 1rem;">
+        <strong>Publications & Contact:</strong>
+      </p>
+      <ul style="list-style: none; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--muted); line-height: 2;">
+        <li>→ ORCID: <a href="https://orcid.org/0009-0006-2567-1734" style="color: var(--accent);">0009-0006-2567-1734</a></li>
+        <li>→ OSF: <a href="#" style="color: var(--accent);">osf.io/[profile]</a></li>
+        <li>→ Website: <a href="https://vecvo.com" style="color: var(--accent);">vecvo.com</a></li>
+        <li>→ LinkedIn: <a href="#" style="color: var(--accent);">[profile]</a></li>
+      </ul>
+
+      <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Methodology</h3>
+      <p style="margin-bottom: 1rem;">
+        Content selection follows evidence hierarchy:
+      </p>
+      <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; color: var(--muted);">
+        <li>Human randomized controlled trials (RCTs)</li>
+        <li>Large observational cohort studies</li>
+        <li>Mammalian model organism studies</li>
+        <li>Short-lived model organisms (C. elegans, Drosophila)</li>
+        <li>In vitro studies</li>
+        <li>Theoretical mechanisms</li>
+      </ol>
+
+      <p style="margin-bottom: 1.5rem; color: var(--muted);">
+        Interventions are assessed on: strength of evidence, effect size, safety profile, 
+        practical implementation feasibility, and cost-benefit ratio. Translation uncertainty 
+        from model organisms to humans is explicitly discussed.
+      </p>
+
+      <h3 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">Contribute</h3>
+      <p style="margin-bottom: 1rem; color: var(--muted);">
+        Corrections, updates, and suggested additions welcome. Submit via GitHub issues 
+        or email with supporting citations. All contributions are reviewed for accuracy 
+        and evidence quality before inclusion.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer>
-  <div class="footer-logo">
-    <div class="f-dot"></div>
-    VE<span>C</span>VO
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>VECVO</h4>
+      <p>
+        Longevity science research hub<br>
+        Evidence-based documentation<br>
+        Open-access compilation
+      </p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#hallmarks">Hallmarks of Aging</a></li>
+        <li><a href="#interventions">Interventions Database</a></li>
+        <li><a href="#timeline">Research Timeline</a></li>
+        <li><a href="#publications">Publications</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>External Links</h4>
+      <ul>
+        <li><a href="https://orcid.org/0009-0006-2567-1734" target="_blank">ORCID Profile</a></li>
+        <li><a href="#" target="_blank">OSF Repository</a></li>
+        <li><a href="#" target="_blank">GitHub</a></li>
+        <li><a href="#" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-center">
-    An open-source longevity research hub<br>
-    Built for the pursuit of human immortality
-  </div>
-  <div class="footer-founder">
-    <strong>ALICE FROLOV</strong>
-    Founder & Researcher
-  </div>
-  <div class="footer-nav">
-    <a href="#aging">Science</a>
-    <a href="#interventions">Interventions</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#faq">FAQ</a>
-    <a href="#about">About</a>
+
+  <div class="footer-bottom">
+    <div>© 2026 VECVO · Alice Frolov · All content CC BY 4.0 unless noted</div>
+    <div>Last updated: March 2026</div>
   </div>
 </footer>
 
 <script>
-// Cursor
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx - 3 + 'px';
-  cursor.style.top  = my - 3 + 'px';
-});
-(function tick() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px';
-  ring.style.top  = ry + 'px';
-  requestAnimationFrame(tick);
-})();
-document.querySelectorAll('a,button,.accordion-header,.hallmark-card,.intervention-card,.company-cell').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'scale(3)';
-    ring.style.transform = 'translate(-50%,-50%) scale(1.4)';
-    ring.style.borderColor = 'rgba(0,212,220,0.65)';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.transform = 'scale(1)';
-    ring.style.transform = 'translate(-50%,-50%) scale(1)';
-    ring.style.borderColor = 'rgba(0,212,220,0.35)';
-  });
+// Navigation scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
 });
 
-// Tabs
-function switchTab(name, e) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+// Tab switching
+function switchTab(name, event) {
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Remove active from all buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  // Show selected tab
   document.getElementById('tab-' + name).classList.add('active');
-  e.target.classList.add('active');
+  event.target.classList.add('active');
 }
 
-// Accordion
-function toggleAccordion(hdr) {
-  const item = hdr.parentElement;
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
-  if (!open) item.classList.add('open');
-}
-
-// Fade in
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// Counters
-function counter(id, target, ms = 1800) {
-  const el = document.getElementById(id);
-  let v = 0, step = target / (ms / 16);
-  const t = setInterval(() => {
-    v += step;
-    if (v >= target) { v = target; clearInterval(t); }
-    el.textContent = Math.round(v);
-  }, 16);
-}
-const statsObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      counter('stat1', 150);
-      counter('stat2', 12);
-      counter('stat3', 5);
-      counter('stat4', 2050, 2400);
-      statsObs.disconnect();
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
-}, { threshold: 0.5 });
-const sb = document.querySelector('.stat-bar');
-if (sb) statsObs.observe(sb);
-
-// Nav scroll
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('nav');
-  nav.style.background = window.scrollY > 80
-    ? 'rgba(3,4,10,0.97)'
-    : 'linear-gradient(to bottom, rgba(3,4,10,0.96), transparent)';
-  nav.style.borderBottom = window.scrollY > 80 ? '1px solid rgba(0,212,220,0.07)' : 'none';
 });
 </script>
+
 </body>
 </html>
