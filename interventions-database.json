@@ -1,0 +1,591 @@
+{
+  "interventions": [
+    {
+      "id": "rapamycin",
+      "name": "Rapamycin (Sirolimus)",
+      "category": "pharmacological",
+      "subcategory": "mTOR inhibitor",
+      "mechanism": {
+        "primary": "mTOR complex 1 (mTORC1) inhibition",
+        "secondary": ["Autophagy induction", "Reduced protein synthesis", "Metabolic reprogramming"],
+        "pathway": "Nutrient sensing / deregulated nutrient sensing hallmark"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "+13-15% median lifespan, +9% maximum lifespan",
+          "studies": [
+            {
+              "citation": "Harrison DE et al. Nature. 2009;460(7253):392-395",
+              "result": "14% median lifespan extension when started at 20 months",
+              "quality": "high"
+            },
+            {
+              "citation": "Miller RA et al. J Gerontol A. 2014;69(2):119-130",
+              "result": "Replicated across multiple sites, both sexes",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "high",
+          "notes": "Most robust pharmacological intervention in ITP program"
+        },
+        "human": {
+          "status": "Phase II trials ongoing",
+          "trials": [
+            {
+              "nct": "NCT02874924",
+              "name": "Rapamycin in Alzheimer's Disease (ARIAD)",
+              "status": "Recruiting",
+              "endpoint": "Cognitive function, biomarkers"
+            },
+            {
+              "nct": "NCT04488601",
+              "name": "PEARL Trial (Participatory Evaluation of Aging with Rapamycin)",
+              "status": "Active",
+              "endpoint": "Immune function, aging biomarkers"
+            }
+          ],
+          "evidence_level": "preliminary",
+          "notes": "No completed longevity trials; diabetes/transplant data not applicable"
+        }
+      },
+      "safety": {
+        "profile": "Known immunosuppressant",
+        "concerns": [
+          "Increased infection risk at high doses",
+          "Glucose intolerance / insulin resistance paradox",
+          "Hyperlipidemia",
+          "Mouth ulcers (common at therapeutic doses)"
+        ],
+        "long_term_data": "Decades of transplant use; longevity dosing (<5mg/week) safety unclear",
+        "contraindications": ["Active infection", "Immunocompromised states", "Pregnancy"]
+      },
+      "practical": {
+        "dosing": "Experimental longevity protocols: 3-8mg weekly (vs 2-5mg daily for transplant)",
+        "cost": "Generic: $50-150/month at longevity doses",
+        "accessibility": "Prescription required; off-label use",
+        "monitoring": "Lipids, glucose, CBC recommended"
+      },
+      "translation_gap": "high",
+      "translation_notes": "Lifespan extension consistent in mice; human applicability unknown. Immunosuppression may offset benefits in healthy humans.",
+      "recommendation": "Insufficient evidence for general use. Consider only with medical supervision and biomarker monitoring.",
+      "last_updated": "2026-03"
+    },
+    {
+      "id": "metformin",
+      "name": "Metformin",
+      "category": "pharmacological",
+      "subcategory": "AMPK activator / Complex I inhibitor",
+      "mechanism": {
+        "primary": "Mitochondrial complex I inhibition → AMPK activation",
+        "secondary": ["Reduced hepatic gluconeogenesis", "Improved insulin sensitivity", "Anti-inflammatory effects"],
+        "pathway": "Nutrient sensing / mitochondrial function"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "Inconsistent; strain-dependent effects",
+          "studies": [
+            {
+              "citation": "ITP studies (multiple)",
+              "result": "No significant lifespan extension in most strains",
+              "quality": "high"
+            },
+            {
+              "citation": "Martin-Montalvo A et al. Nat Commun. 2013;4:2192",
+              "result": "Healthspan improvements without lifespan extension",
+              "quality": "moderate"
+            }
+          ],
+          "evidence_level": "low",
+          "notes": "Benefits in diabetes models may not translate to healthy aging"
+        },
+        "human": {
+          "status": "TAME trial (Targeting Aging with Metformin) enrolling",
+          "trials": [
+            {
+              "nct": "Planned multi-site RCT",
+              "name": "TAME",
+              "status": "Delayed / seeking funding",
+              "endpoint": "Age-related disease incidence (composite)"
+            }
+          ],
+          "observational": "Diabetic patients on metformin show reduced mortality vs other antidiabetics (confounded)",
+          "evidence_level": "preliminary",
+          "notes": "Diabetes benefit ≠ longevity benefit in healthy individuals"
+        }
+      },
+      "safety": {
+        "profile": "Well-tolerated, decades of clinical use",
+        "concerns": [
+          "GI distress (common, usually transient)",
+          "Lactic acidosis (rare, in renal impairment)",
+          "B12 deficiency with long-term use",
+          "Contraindicated in kidney disease"
+        ],
+        "long_term_data": "Extensive safety data in diabetes; longevity use profile similar",
+        "contraindications": ["eGFR <30", "Acute illness", "Alcohol abuse"]
+      },
+      "practical": {
+        "dosing": "500-2000mg daily (extended-release formulation better tolerated)",
+        "cost": "Generic: $5-20/month",
+        "accessibility": "Prescription required; widely prescribed for diabetes",
+        "monitoring": "Kidney function, B12 levels"
+      },
+      "translation_gap": "moderate",
+      "translation_notes": "Weak animal evidence despite strong mechanistic rationale. Human trial results awaited.",
+      "recommendation": "Promising but unproven. TAME trial results needed. Consider only with medical supervision.",
+      "last_updated": "2026-03"
+    },
+    {
+      "id": "nad-precursors",
+      "name": "NAD+ Precursors (NMN, NR)",
+      "category": "pharmacological",
+      "subcategory": "Cofactor supplementation",
+      "mechanism": {
+        "primary": "NAD+ pool restoration",
+        "secondary": ["Sirtuin activation (SIRT1, SIRT3)", "Mitochondrial function support", "DNA repair enhancement (PARP)"],
+        "pathway": "Deregulated nutrient sensing / mitochondrial dysfunction"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "Modest metabolic improvements; minimal lifespan data",
+          "studies": [
+            {
+              "citation": "Mills KF et al. Cell Metab. 2016;24(6):795-806",
+              "result": "NMN improves glucose tolerance, lipid profile in aged mice",
+              "quality": "moderate"
+            },
+            {
+              "citation": "Zhang H et al. Science. 2016;352(6292):1436-1443",
+              "result": "NMN mitigates age-associated physiological decline",
+              "quality": "moderate"
+            }
+          ],
+          "evidence_level": "moderate",
+          "notes": "Healthspan benefits; no rigorous lifespan studies in ITP"
+        },
+        "human": {
+          "status": "Multiple Phase I/II trials completed",
+          "trials": [
+            {
+              "citation": "Yoshino M et al. npj Aging. 2021;7:9",
+              "result": "NMN increases NAD+ in muscle; no functional improvements detected",
+              "quality": "moderate"
+            },
+            {
+              "citation": "Remie CME et al. Am J Clin Nutr. 2020;112(2):413-426",
+              "result": "NR supplementation: no metabolic benefit in healthy adults",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "low",
+          "notes": "Biomarker changes (NAD+ increase) without clinical benefits in most studies"
+        }
+      },
+      "safety": {
+        "profile": "Generally well-tolerated",
+        "concerns": [
+          "Long-term safety unknown",
+          "Flushing (niacin-like effects in some individuals)",
+          "Theoretical cancer promotion (NAD+ supports proliferation)"
+        ],
+        "long_term_data": "Limited; <5 years supplementation data",
+        "contraindications": ["None established"]
+      },
+      "practical": {
+        "dosing": "NMN: 250-1000mg daily; NR: 300-1000mg daily",
+        "cost": "$30-100/month depending on dose and brand",
+        "accessibility": "Widely available as supplement (regulatory status uncertain)",
+        "monitoring": "No specific monitoring required"
+      },
+      "translation_gap": "moderate-to-high",
+      "translation_notes": "Biomarker effects clear; functional/longevity benefits absent in human trials to date.",
+      "recommendation": "Insufficient evidence for longevity benefits. Expensive intervention without demonstrated outcomes.",
+      "last_updated": "2026-03"
+    },
+    {
+      "id": "senolytics-dq",
+      "name": "Senolytics (Dasatinib + Quercetin)",
+      "category": "pharmacological",
+      "subcategory": "Senolytic therapy",
+      "mechanism": {
+        "primary": "Selective elimination of senescent cells",
+        "secondary": ["Reduction of SASP factors", "Improved tissue regeneration", "Reduced chronic inflammation"],
+        "pathway": "Cellular senescence hallmark"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "+36% remaining lifespan when started late-life (20 months)",
+          "studies": [
+            {
+              "citation": "Xu M et al. Nat Med. 2018;24(8):1246-1256",
+              "result": "D+Q extends healthspan and lifespan in naturally aged mice",
+              "quality": "high"
+            },
+            {
+              "citation": "Zhu Y et al. Aging Cell. 2015;14(4):644-658",
+              "result": "D+Q clears senescent cells in vitro and in vivo",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "high",
+          "notes": "Most impressive effect when started late in life; targets existing damage"
+        },
+        "human": {
+          "status": "Phase I/II trials completed; larger trials ongoing",
+          "trials": [
+            {
+              "nct": "NCT02848131",
+              "result": "D+Q safe in idiopathic pulmonary fibrosis; functional improvements",
+              "quality": "moderate"
+            },
+            {
+              "nct": "NCT02652052",
+              "result": "D+Q reduces senescent cell burden in diabetic kidney disease",
+              "quality": "moderate"
+            }
+          ],
+          "evidence_level": "preliminary",
+          "notes": "Safety established; efficacy for aging vs. specific diseases being tested"
+        }
+      },
+      "safety": {
+        "profile": "Intermittent dosing (3 days/month) reduces side effects",
+        "concerns": [
+          "Dasatinib: bleeding risk (platelet dysfunction)",
+          "GI effects",
+          "Drug interactions (both are CYP substrates)",
+          "Long-term effect of repeated senescent cell clearance unknown"
+        ],
+        "long_term_data": "Intermittent dosing data emerging; continuous dasatinib not recommended",
+        "contraindications": ["Bleeding disorders", "Anticoagulant use", "Active cancer treatment"]
+      },
+      "practical": {
+        "dosing": "Dasatinib 100mg + Quercetin 1000mg for 3 consecutive days per month",
+        "cost": "Dasatinib expensive (~$50-100/dose); quercetin cheap",
+        "accessibility": "Dasatinib requires prescription; quercetin OTC",
+        "monitoring": "CBC before each cycle; bleeding risk assessment"
+      },
+      "translation_gap": "moderate",
+      "translation_notes": "Strong mechanistic rationale; human trials show senescent cell reduction but longevity endpoint TBD.",
+      "recommendation": "Most promising senolytic. Consider only with medical supervision and appropriate monitoring.",
+      "last_updated": "2026-03"
+    },
+    {
+      "id": "exercise-aerobic",
+      "name": "Aerobic Exercise",
+      "category": "lifestyle",
+      "subcategory": "Physical activity",
+      "mechanism": {
+        "primary": "Multi-system adaptation",
+        "secondary": [
+          "Mitochondrial biogenesis",
+          "Improved insulin sensitivity",
+          "Cardiovascular remodeling",
+          "Anti-inflammatory effects",
+          "BDNF upregulation"
+        ],
+        "pathway": "Multiple hallmarks (mitochondrial, inflammation, metabolic)"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "Variable; difficult to translate voluntary vs forced exercise",
+          "evidence_level": "moderate",
+          "notes": "Healthspan benefits clearer than lifespan extension in rodents"
+        },
+        "human": {
+          "status": "Strongest evidence of any longevity intervention",
+          "observational": [
+            {
+              "citation": "Wen CP et al. Lancet. 2011;378(9798):1244-1253",
+              "result": "15 min/day exercise → 3 year life expectancy increase",
+              "quality": "high",
+              "population": "416,175 individuals"
+            },
+            {
+              "citation": "Lee DC et al. J Am Coll Cardiol. 2014;64(5):472-481",
+              "result": "Running 5-10 min/day → 3 year life expectancy gain",
+              "quality": "high"
+            },
+            {
+              "citation": "Mandsager K et al. JAMA Netw Open. 2018;1(6):e183605",
+              "result": "Each 1-MET increase in VO2max → 10-25% mortality reduction",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "very high",
+          "notes": "Dose-response relationship; benefits continue beyond guidelines"
+        }
+      },
+      "safety": {
+        "profile": "Safest intervention with proper progression",
+        "concerns": [
+          "Injury risk with excessive volume/intensity",
+          "Overtraining syndrome (rare)",
+          "Cardiac events in unscreened high-risk individuals"
+        ],
+        "long_term_data": "Decades of data; benefits clear and consistent",
+        "contraindications": ["Unstable cardiac disease", "Acute illness"]
+      },
+      "practical": {
+        "dosing": "150 min/week moderate intensity minimum; benefits increase to ~300 min/week",
+        "types": "Walking, jogging, cycling, swimming",
+        "intensity": "Zone 2 (conversational pace) for base; some higher intensity beneficial",
+        "accessibility": "Free or low-cost; universally accessible"
+      },
+      "translation_gap": "none",
+      "translation_notes": "Direct human evidence. No translation needed.",
+      "recommendation": "Single strongest longevity intervention. Universal recommendation barring contraindications.",
+      "last_updated": "2026-03"
+    },
+    {
+      "id": "caloric-restriction",
+      "name": "Caloric Restriction",
+      "category": "lifestyle",
+      "subcategory": "Dietary intervention",
+      "mechanism": {
+        "primary": "Energy sensing pathway modulation",
+        "secondary": [
+          "Reduced mTOR signaling",
+          "Enhanced autophagy",
+          "Reduced oxidative stress",
+          "Improved insulin sensitivity",
+          "Hormetic stress response"
+        ],
+        "pathway": "Deregulated nutrient sensing / disabled macroautophagy"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "+20-40% lifespan extension (strain-dependent)",
+          "studies": [
+            {
+              "citation": "McCay CM et al. J Nutr. 1935;10(1):63-79",
+              "result": "Foundational study: CR extends rat lifespan",
+              "quality": "landmark"
+            },
+            {
+              "citation": "ITP studies (multiple)",
+              "result": "Consistent lifespan extension across strains and labs",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "very high",
+          "notes": "Most robust and replicated lifespan intervention in rodents"
+        },
+        "primate": {
+          "effect_size": "Inconsistent results between two major studies",
+          "studies": [
+            {
+              "citation": "Mattison JA et al. Nat Commun. 2017;8:14063",
+              "result": "NIA study: healthspan benefit, no lifespan extension",
+              "quality": "high"
+            },
+            {
+              "citation": "Colman RJ et al. Nat Commun. 2014;5:3557",
+              "result": "Wisconsin study: survival benefit, reduced age-related disease",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "moderate",
+          "notes": "Diet composition and study design differences may explain discrepancy"
+        },
+        "human": {
+          "status": "CALERIE trial (2-year 25% CR) completed",
+          "trials": [
+            {
+              "citation": "Kraus WE et al. J Gerontol A. 2019;74(1):162-165",
+              "result": "Metabolic benefits, reduced inflammation, no longevity endpoint",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "moderate",
+          "notes": "Biomarker improvements; lifespan impact unknown and untestable in humans"
+        }
+      },
+      "safety": {
+        "profile": "Severe restriction carries risks",
+        "concerns": [
+          "Bone density loss",
+          "Impaired immune function",
+          "Psychological effects (irritability, depression)",
+          "Reduced lean mass",
+          "Cold sensitivity",
+          "Potential fertility impacts"
+        ],
+        "long_term_data": "CALERIE provides human data; <25% restriction safer",
+        "contraindications": ["Underweight", "Eating disorders", "Pregnancy/lactation", "Growth period"]
+      },
+      "practical": {
+        "dosing": "20-25% reduction from ad libitum intake",
+        "duration": "Lifelong required for benefits in animal models",
+        "adherence": "Extremely difficult; compliance poor in free-living humans",
+        "quality_of_life": "Significant negative impact reported"
+      },
+      "translation_gap": "high",
+      "translation_notes": "Robust rodent data; primate data mixed; human lifespan untested. Severe restrictions may cause net harm.",
+      "recommendation": "Not recommended for longevity in humans. Time-restricted eating or moderate restriction may provide benefits with better adherence.",
+      "last_updated": "2026-03"
+    },
+    {
+      "id": "partial-reprogramming",
+      "name": "Partial Cellular Reprogramming",
+      "category": "cellular",
+      "subcategory": "Epigenetic intervention",
+      "mechanism": {
+        "primary": "Transient Yamanaka factor (OSK/OSKM) expression",
+        "secondary": [
+          "Epigenetic clock reversal",
+          "Chromatin remodeling",
+          "Cellular rejuvenation without dedifferentiation",
+          "Restoration of regenerative capacity"
+        ],
+        "pathway": "Epigenetic alterations hallmark"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "Reverses aging markers; extends lifespan in progeroid models",
+          "studies": [
+            {
+              "citation": "Ocampo A et al. Cell. 2016;167(7):1719-1733",
+              "result": "OSK expression extends lifespan and ameliorates aging in progeria mice",
+              "quality": "high"
+            },
+            {
+              "citation": "Lu Y et al. Nature. 2020;588(7836):124-129",
+              "result": "In vivo OSK reprogramming restores vision in glaucoma model",
+              "quality": "high"
+            },
+            {
+              "citation": "Browder KC et al. Nat Aging. 2022;2:243-253",
+              "result": "Reprogramming improves muscle regeneration in aged mice",
+              "quality": "high"
+            }
+          ],
+          "evidence_level": "high",
+          "notes": "Breakthrough approach; proof-of-concept strong in mice"
+        },
+        "human": {
+          "status": "Preclinical; trials planned 2025-2026",
+          "trials": "Altos Labs, Turn Bio, Life Biosciences developing clinical programs",
+          "evidence_level": "none",
+          "notes": "No human data yet; major safety validation required"
+        }
+      },
+      "safety": {
+        "profile": "Unknown in humans",
+        "concerns": [
+          "Teratoma/cancer risk if cells dedifferentiate",
+          "Unpredictable cell fate changes",
+          "Dosage and timing critical (too much = cancer, too little = no effect)",
+          "Long-term stability of reprogrammed state unclear"
+        ],
+        "long_term_data": "None",
+        "contraindications": "Not applicable (experimental only)"
+      },
+      "practical": {
+        "delivery": "Gene therapy vectors (AAV, lentivirus) or mRNA",
+        "dosing": "Pulsed expression (days to weeks, not continuous)",
+        "cost": "Not commercially available; gene therapy pricing TBD",
+        "accessibility": "Research only; years from clinical access"
+      },
+      "translation_gap": "very high",
+      "translation_notes": "Revolutionary approach in mice. Human safety entirely unknown. Teratoma risk must be definitively excluded.",
+      "recommendation": "Experimental only. Most promising long-term intervention but human trials needed. Monitor clinical trial progress.",
+      "last_updated": "2026-03"
+    },
+    {
+      "id": "young-plasma",
+      "name": "Young Plasma / Parabiosis",
+      "category": "experimental",
+      "subcategory": "Systemic factors",
+      "mechanism": {
+        "primary": "Transfer of pro-youthful factors or dilution of pro-aging factors",
+        "secondary": [
+          "Hypothesized: GDF11, oxytocin, TIMP2 supplementation",
+          "Or: dilution of inflammatory cytokines, senescent cell factors"
+        ],
+        "pathway": "Altered intercellular communication / chronic inflammation"
+      },
+      "evidence": {
+        "mouse": {
+          "effect_size": "Reverses aging markers in heterochronic parabiosis",
+          "studies": [
+            {
+              "citation": "Conboy IM et al. Nature. 2005;433(7027):760-764",
+              "result": "Young blood rejuvenates aged muscle and liver",
+              "quality": "high"
+            },
+            {
+              "citation": "Villeda SA et al. Nat Med. 2014;20(6):659-663",
+              "result": "Young blood reverses age-related cognitive impairment",
+              "quality": "high"
+            },
+            {
+              "citation": "Rebo J et al. Nat Commun. 2016;7:13363",
+              "result": "Plasma dilution (without young blood) also beneficial",
+              "quality": "moderate"
+            }
+          ],
+          "evidence_level": "high",
+          "notes": "Mechanism unclear: add youth factors vs. remove aging factors"
+        },
+        "human": {
+          "status": "Clinical trials completed; results disappointing",
+          "trials": [
+            {
+              "company": "Alkahest",
+              "indication": "Alzheimer's disease",
+              "result": "No cognitive benefit demonstrated",
+              "quality": "moderate"
+            },
+            {
+              "company": "Ambrosia (shut down)",
+              "result": "No rigorous trial data; FDA warning issued",
+              "quality": "very low"
+            }
+          ],
+          "evidence_level": "low",
+          "notes": "Human trials failed to replicate mouse benefits"
+        }
+      },
+      "safety": {
+        "profile": "Plasma infusion risks standard for transfusion",
+        "concerns": [
+          "Infectious disease transmission",
+          "Allergic reactions",
+          "Immune complications",
+          "Unknown long-term effects of repeated plasma exchange"
+        ],
+        "long_term_data": "Insufficient",
+        "contraindications": ["Standard transfusion contraindications"]
+      },
+      "practical": {
+        "procedure": "Plasma infusion or plasmapheresis",
+        "cost": "$8,000-10,000 per session (when offered commercially)",
+        "accessibility": "Largely unavailable; most clinics shut down",
+        "frequency": "Unclear; no established protocol"
+      },
+      "translation_gap": "very high",
+      "translation_notes": "Dramatic mouse results failed to translate to humans. Mechanism remains poorly understood.",
+      "recommendation": "Not recommended. Human trials failed. Expensive intervention without demonstrated benefit. Possible harms.",
+      "last_updated": "2026-03"
+    }
+  ],
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-03-29",
+    "evidence_levels": {
+      "very_high": "Multiple large RCTs or consistent cohort studies",
+      "high": "RCT data or large observational studies with strong effect",
+      "moderate": "Limited RCT or observational data with moderate effect",
+      "low": "Animal data only or very limited human data",
+      "preliminary": "Early-stage research or surrogate endpoints only",
+      "none": "No human data"
+    },
+    "categories": {
+      "pharmacological": "Drug-based interventions",
+      "cellular": "Cell-based therapies or genetic interventions",
+      "lifestyle": "Behavioral and environmental interventions",
+      "experimental": "Early-stage or speculative approaches"
+    }
+  }
+}
